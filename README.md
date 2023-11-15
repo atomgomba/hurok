@@ -4,7 +4,7 @@ This is a framework library for developing applications on the JVM based on the 
 
 ```mermaid
 flowchart LR
-    A[State N] -->|Input| B{Action} -->|Change| C(Model) -->|Render| D[State N+1] -.->|Input| B
+    A[First State] -->|Input| B{Action} -->|Mutate| C(Model) -->|Render| D[Next State] -.->|Input| B
     B -->|Trigger| E([Effect]) --> B 
 ```
 
