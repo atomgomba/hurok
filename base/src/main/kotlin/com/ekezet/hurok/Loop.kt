@@ -8,7 +8,9 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.forEach
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 /**
@@ -19,8 +21,9 @@ import kotlinx.coroutines.launch
  * @param dependency dependency container
  * @param effectDispatcher dispatcher for launching effects
  */
-abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TAction : Action<TModel, TDependency>>(
+abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, in TArgs, TDependency, in TAction : Action<TModel, TDependency>>(
     model: TModel,
+    renderer: Renderer<TModel, TDependency, TState>,
     args: TArgs? = null,
     private val firstAction: TAction? = null,
     private val dependency: TDependency? = null,
@@ -31,7 +34,9 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
         args?.let { applyArgs(it) } ?: this
     })
 
-    val state: Flow<TState> = _model.map(::renderState)
+    val state: Flow<TState> = _model.map(renderer::renderState).onEach {
+        it.emitter = this
+    }
 
     private val actions = MutableSharedFlow<TAction>()
 
@@ -67,11 +72,6 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
         firstAction?.let { emit(it) }
         return this
     }
-
-    /**
-     * Render the model into state.
-     */
-    protected abstract fun renderState(model: TModel): TState
 
     protected open fun TDependency.onAddChildEmitter(child: AnyActionEmitter) {
         throw NotImplementedError("This method must be overridden to add child loops")

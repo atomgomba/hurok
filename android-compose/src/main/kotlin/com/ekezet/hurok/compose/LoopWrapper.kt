@@ -18,6 +18,7 @@ import com.ekezet.hurok.ActionEmitter
 import com.ekezet.hurok.AnyActionEmitter
 import com.ekezet.hurok.Loop
 import com.ekezet.hurok.LoopBuilder
+import com.ekezet.hurok.ViewState
 import kotlinx.coroutines.CoroutineScope
 
 /**
@@ -28,7 +29,7 @@ import kotlinx.coroutines.CoroutineScope
 @Throws(IllegalStateException::class)
 @Composable
 @NonRestartableComposable
-inline fun <TState : Any, reified TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> LoopWrapper(
+inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> LoopWrapper(
     builder: @DisallowComposableCalls LoopBuilder<TState, TModel, TArgs, TDependency, TAction>,
     args: TArgs? = null,
     parentEmitter: AnyActionEmitter? = null,
