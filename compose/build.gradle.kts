@@ -1,9 +1,8 @@
 import com.ekezet.hurok.buildLogic.ProjectDefaults
-import org.gradle.kotlin.dsl.support.kotlinCompilerOptions
 
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.composeMultiplatform)
     id("module.publication")
 }
@@ -20,7 +19,7 @@ kotlin {
     }
 
     androidTarget {
-        publishLibraryVariants("release")
+        publishLibraryVariants("release", "debug")
         compilations.all {
             kotlinOptions {
                 jvmTarget = ProjectDefaults.javaVersion.toString()

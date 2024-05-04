@@ -1,22 +1,28 @@
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.bundling.Jar
-import org.gradle.kotlin.dsl.`maven-publish`
 
 plugins {
-    `maven-publish`
-    signing
+    id("maven-publish")
 }
 
 publishing {
-    // Configure all publications
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/atomgomba/hurok")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+
     publications.withType<MavenPublication> {
-        // Stub javadoc.jar artifact
         artifact(tasks.register("${name}JavadocJar", Jar::class) {
             archiveClassifier.set("javadoc")
             archiveAppendix.set(this@withType.name)
         })
 
-        // Provide artifacts information required by Maven Central
         pom {
             name.set("hurok")
             description.set("UDF framework")
@@ -39,12 +45,5 @@ publishing {
                 url.set("https://github.com/atomgomba/hurok")
             }
         }
-    }
-}
-
-signing {
-    if (project.hasProperty("signing.gnupg.keyName")) {
-        useGpgCmd()
-        sign(publishing.publications)
     }
 }
