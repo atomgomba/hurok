@@ -18,3 +18,7 @@ flowchart LR
 | Action   | Mutates the `Model` and can trigger (any) `Effect`              |
 | Effect   | Does background work and triggers (any) `Action`                |
 | Loop     | Renders `Model` into `State` and executes `Action` and `Effect` |
+
+## Example code
+
+For code samples please see [Othello for Android](https://github.com/atomgomba/othello).
