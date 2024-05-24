@@ -9,21 +9,10 @@ plugins {
 kotlin {
     applyDefaultHierarchyTemplate()
 
-    jvm {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = ProjectDefaults.javaVersion.toString()
-            }
-        }
-    }
+    jvm()
 
     androidTarget {
         publishLibraryVariants("release", "debug")
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = ProjectDefaults.javaVersion.toString()
-            }
-        }
     }
 
     linuxX64()

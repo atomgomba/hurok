@@ -4,27 +4,17 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.compose.compiler)
     id("module.publication")
 }
 
 kotlin {
     applyDefaultHierarchyTemplate()
 
-    jvm {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = ProjectDefaults.javaVersion.toString()
-            }
-        }
-    }
+    jvm()
 
     androidTarget {
         publishLibraryVariants("release", "debug")
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = ProjectDefaults.javaVersion.toString()
-            }
-        }
     }
 
     linuxX64()
