@@ -29,7 +29,7 @@ inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs
     builder: @DisallowComposableCalls LoopBuilder<TState, TModel, TArgs, TDependency, TAction>,
     args: TArgs? = null,
     parentEmitter: AnyActionEmitter? = null,
-    parentScope: CoroutineScope = parentEmitter?.parentScope ?: rememberCoroutineScope(),
+    parentScope: CoroutineScope = rememberCoroutineScope(),
     key: String? = TModel::class.qualifiedName,
     crossinline wrapper: @Composable TState.(emitter: ActionEmitter<TModel, TDependency>) -> Unit,
 ) {
