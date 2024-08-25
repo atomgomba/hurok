@@ -31,7 +31,7 @@ inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs
     parentEmitter: AnyActionEmitter? = null,
     parentScope: CoroutineScope = rememberCoroutineScope(),
     key: String? = TModel::class.qualifiedName,
-    crossinline wrapper: @Composable TState.(emitter: ActionEmitter<TModel, TDependency>) -> Unit,
+    crossinline wrapper: @Composable TState.() -> Unit,
 ) {
     var applyArgs by remember { mutableStateOf(true) }
 
@@ -53,6 +53,6 @@ inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs
 
     CompositionLocalProvider(LocalActionEmitter provides loop) {
         val state by loop.collectAsState()
-        state.wrapper(loop)
+        state.wrapper()
     }
 }
