@@ -2,9 +2,9 @@
 agp = "8.2.0"
 android-compileSdk = "34"
 android-minSdk = "24"
-androidx-lifecycle = "2.8.3"
+androidx-lifecycle = "2.8.4"
 cmp = "1.6.11"
-kotlin = "2.0.0"
+kotlin = "2.0.20"
 kotlinx-coroutines = "1.8.1"
 
 [libraries]
