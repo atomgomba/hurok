@@ -8,5 +8,5 @@ plugins {
 
 allprojects {
     group = "com.ekezet.hurok"
-    version = "1.1.0"
+    version = "1.2.0"
 }
