@@ -15,7 +15,9 @@ kotlin {
         publishLibraryVariants("release", "debug")
     }
 
-    linuxX64()
+    compilerOptions {
+        jvmToolchain(ProjectDefaults.javaVersion.majorVersion.toInt())
+    }
 
     sourceSets {
         val androidMain by getting {
@@ -39,6 +41,11 @@ kotlin {
         val jvmMain by getting {
         }
     }
+}
+
+java {
+    targetCompatibility = ProjectDefaults.javaVersion
+    sourceCompatibility = ProjectDefaults.javaVersion
 }
 
 android {

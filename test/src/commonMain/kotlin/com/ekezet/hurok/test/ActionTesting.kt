@@ -7,7 +7,7 @@ import kotlin.test.Asserter
 import kotlin.test.DefaultAsserter
 import kotlin.test.assertEquals
 
-data class NextAsserter<TModel : Any, TDependency> internal constructor(
+class NextAsserter<TModel : Any, TDependency> internal constructor(
     private val next: Next<TModel, TDependency>,
 ) : Asserter by DefaultAsserter {
     internal var isNotModelAsserted: Boolean = true

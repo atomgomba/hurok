@@ -17,7 +17,9 @@ kotlin {
         publishLibraryVariants("release", "debug")
     }
 
-    linuxX64()
+    compilerOptions {
+        jvmToolchain(ProjectDefaults.javaVersion.majorVersion.toInt())
+    }
 
     sourceSets {
         val androidMain by getting {
@@ -30,6 +32,7 @@ kotlin {
             dependencies {
                 implementation(libs.kotlinx.coroutines)
                 implementation(compose.runtime)
+                implementation(libs.common.lifecycle.viewmodelCompose)
 
                 implementation(project(":base"))
             }
@@ -46,6 +49,11 @@ kotlin {
     }
 }
 
+java {
+    targetCompatibility = ProjectDefaults.javaVersion
+    sourceCompatibility = ProjectDefaults.javaVersion
+}
+
 android {
     namespace = "com.ekezet.hurok"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -57,9 +65,5 @@ android {
     compileOptions {
         sourceCompatibility = ProjectDefaults.javaVersion
         targetCompatibility = ProjectDefaults.javaVersion
-    }
-
-    dependencies {
-        implementation(libs.androidx.lifecycle.viewmodelCompose)
     }
 }
