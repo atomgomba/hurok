@@ -79,7 +79,7 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
         throw NotImplementedError("This method must be overridden to apply arguments")
     }
 
-    private suspend fun onNextAction(action: TAction) = parentScope.launch {
+    private fun onNextAction(action: TAction) = parentScope.launch {
         val (updatedModel, triggeredEffects) = action.run { _model.value.proceed() }
         updatedModel?.let { update -> _model.value = update }
         val effects = triggeredEffects.takeIf { it.isNotEmpty() } ?: return@launch
