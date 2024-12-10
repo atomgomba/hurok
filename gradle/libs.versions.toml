@@ -1,10 +1,10 @@
 [versions]
 agp = "8.2.2"
-android-compileSdk = "34"
+android-compileSdk = "35"
 android-minSdk = "24"
 common-lifecycle = "2.8.3"
-cmp = "1.7.0"
-kotlin = "2.0.20"
+cmp = "1.7.1"
+kotlin = "2.1.0"
 kotlinx-coroutines = "1.9.0"
 
 [libraries]
