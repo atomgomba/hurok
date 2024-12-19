@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
@@ -61,7 +62,7 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
     }
 
     fun applyArgs(args: TArgs) {
-        _model.value = _model.value.applyArgs(args)
+        _model.update { _model.value.applyArgs(args) }
     }
 
     fun startIn(parentScope: CoroutineScope): Loop<TState, TModel, TArgs, TDependency, TAction> {
@@ -81,7 +82,7 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
 
     private fun onNextAction(action: TAction) = parentScope.launch {
         val (updatedModel, triggeredEffects) = action.run { _model.value.proceed() }
-        updatedModel?.let { update -> _model.value = update }
+        updatedModel?.let { new -> _model.update { new } }
         val effects = triggeredEffects.takeIf { it.isNotEmpty() } ?: return@launch
         launch(effectDispatcher) {
             val deferreds = effects.map { effect ->
