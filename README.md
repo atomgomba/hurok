@@ -1,6 +1,6 @@
 # Hurok
 
-This is a framework library for developing applications on the JVM based on the unidirectional dataflow model. 
+This is a framework library for developing applications on the JVM based on the unidirectional dataflow model.
 
 ```mermaid
 flowchart LR

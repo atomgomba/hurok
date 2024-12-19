@@ -11,7 +11,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import com.ekezet.hurok.Action
-import com.ekezet.hurok.ActionEmitter
 import com.ekezet.hurok.AnyActionEmitter
 import com.ekezet.hurok.LoopBuilder
 import com.ekezet.hurok.ViewState

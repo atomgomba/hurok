@@ -1,8 +1,8 @@
 package com.ekezet.hurok.test
 
 import com.ekezet.hurok.Action
-import com.ekezet.hurok.Effect
 import com.ekezet.hurok.ActionEmitter
+import com.ekezet.hurok.Effect
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking

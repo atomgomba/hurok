@@ -13,7 +13,7 @@ actual inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any
     builder: @DisallowComposableCalls LoopBuilder<TState, TModel, TArgs, TDependency, TAction>,
     args: TArgs?,
     key: String?,
-    onNewInstance: @DisallowComposableCalls () -> Unit
+    onNewInstance: @DisallowComposableCalls () -> Unit,
 ): LoopViewModel<TState, TModel, TArgs, TDependency, TAction> {
     TODO("createRetainedViewModel.native: Not yet implemented")
 }
