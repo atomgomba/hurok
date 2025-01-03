@@ -2,9 +2,10 @@ import com.ekezet.hurok.buildLogic.ProjectDefaults
 
 plugins {
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.kover)
     id("module.publication")
 }
 

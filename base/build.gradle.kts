@@ -3,6 +3,7 @@ import com.ekezet.hurok.buildLogic.ProjectDefaults
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.kover)
     id("module.publication")
 }
 
