@@ -1,8 +1,10 @@
 package com.ekezet.hurok
 
+import com.ekezet.hurok.test.CoverageIgnore
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
+@CoverageIgnore
 actual object DispatcherProvider {
     actual val Main: CoroutineDispatcher
         get() = Dispatchers.Main

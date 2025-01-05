@@ -1,5 +1,6 @@
 package com.ekezet.hurok
 
+import com.ekezet.hurok.test.CoverageIgnore
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
@@ -72,10 +73,12 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
         return this
     }
 
+    @CoverageIgnore
     protected open fun TDependency.onAddChildEmitter(child: AnyActionEmitter) {
         throw NotImplementedError("This method must be overridden to add child loops")
     }
 
+    @CoverageIgnore
     protected open fun TModel.applyArgs(args: TArgs): TModel {
         throw NotImplementedError("This method must be overridden to apply arguments")
     }

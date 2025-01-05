@@ -24,6 +24,15 @@ dependencies {
 
 kover {
     reports {
+        filters {
+            excludes {
+                annotatedBy(
+                    "androidx.compose.runtime.Composable",
+                    "com.ekezet.hurok.test.CoverageIgnore",
+                )
+            }
+        }
+
         verify {
             rule {
                 groupBy = GroupingEntityType.CLASS

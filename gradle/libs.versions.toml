@@ -2,14 +2,18 @@
 agp = "8.7.3"
 android-compileSdk = "35"
 android-minSdk = "24"
-common-lifecycle = "2.8.3"
 cmp = "1.7.1"
+common-lifecycle = "2.8.3"
+junit5 = "5.11.4"
 kotlin = "2.1.0"
 kotlinx-coroutines = "1.9.0"
 kover = "0.9.0"
 
 [libraries]
 common-lifecycle-viewmodelCompose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "common-lifecycle" }
+junit5-bom = { group ="org.junit", name = "junit-bom", version.ref = "junit5" }
+junit5-jupiter = { group ="org.junit.jupiter", name = "junit-jupiter" }
+junit5-platform = { group ="org.junit.platform", name = "junit-platform-launcher" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }

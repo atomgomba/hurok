@@ -7,6 +7,12 @@ plugins {
     id("module.publication")
 }
 
+dependencies {
+    testImplementation(platform(libs.junit5.bom))
+    testImplementation(libs.junit5.jupiter)
+    testRuntimeOnly(libs.junit5.platform)
+}
+
 kotlin {
     applyDefaultHierarchyTemplate()
 
@@ -36,10 +42,14 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(libs.kotlin.test)
+                implementation(libs.kotlinx.coroutines.test)
             }
         }
 
         val jvmMain by getting {
+        }
+
+        val jvmTest by getting {
         }
     }
 }
@@ -61,4 +71,8 @@ android {
         sourceCompatibility = ProjectDefaults.javaVersion
         targetCompatibility = ProjectDefaults.javaVersion
     }
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
