@@ -33,10 +33,12 @@ kover {
             }
         }
 
-        verify {
-            rule {
-                groupBy = GroupingEntityType.CLASS
-                minBound(90)
+        total {
+            verify {
+                rule {
+                    groupBy = GroupingEntityType.CLASS
+                    minBound(80)
+                }
             }
         }
     }

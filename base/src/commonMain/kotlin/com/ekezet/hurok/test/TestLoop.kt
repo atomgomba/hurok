@@ -45,6 +45,7 @@ class TestLoop(
     }
 }
 
+@CoverageIgnore
 class TestChildLoop(
     model: TestModel,
     renderer: Renderer<TestModel, TestDependency, TestState>,

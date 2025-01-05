@@ -36,6 +36,12 @@ kotlin {
                 implementation(project(":base"))
             }
         }
+
+        val jvmTest by getting {
+            dependencies {
+                implementation(project(":base"))
+            }
+        }
     }
 }
 
@@ -56,4 +62,8 @@ android {
         sourceCompatibility = ProjectDefaults.javaVersion
         targetCompatibility = ProjectDefaults.javaVersion
     }
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }

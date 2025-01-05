@@ -18,6 +18,7 @@ import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertNull
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class LoopTest {
@@ -311,5 +312,21 @@ class LoopTest {
         subject.addChildEmitter(childEmitter)
 
         assertEquals(childEmitter, testDependency.childEmitter)
+    }
+
+    @Test
+    fun `addChildEmitter should not set unexpected dependency`() = runTest {
+        val testModel = TestModel()
+        val testDependency = TestDependency()
+
+        val subject = TestLoop(
+            model = testModel,
+            renderer = { TestState(title = "") },
+            dependency = testDependency,
+        )
+
+        subject.addChildEmitter(subject)
+
+        assertNull(testDependency.childEmitter)
     }
 }
