@@ -17,7 +17,9 @@ import kotlinx.coroutines.launch
  * Base class that handles unidirectional data flow.
  *
  * @param model model to inject
+ * @param renderer transform model into state
  * @param args input arguments
+ * @param firstAction action to emit when loop is constructed
  * @param dependency dependency container
  * @param effectDispatcher dispatcher for launching effects
  */

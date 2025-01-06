@@ -24,7 +24,7 @@ import kotlinx.coroutines.CoroutineScope
 @Throws(IllegalStateException::class)
 @Composable
 @NonRestartableComposable
-inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> LoopWrapper(
+inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> LoopView(
     builder: @DisallowComposableCalls LoopBuilder<TState, TModel, TArgs, TDependency, TAction>,
     args: TArgs? = null,
     parentEmitter: AnyActionEmitter? = null,
