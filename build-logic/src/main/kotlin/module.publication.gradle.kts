@@ -31,6 +31,7 @@ publishing {
                     url.set("https://opensource.org/licenses/MIT")
                 }
             }
+
             developers {
                 developer {
                     id.set("atomgomba")
@@ -38,6 +39,7 @@ publishing {
                     email.set("karcsi@ekezet.com")
                 }
             }
+
             scm {
                 url.set("https://github.com/atomgomba/hurok")
             }

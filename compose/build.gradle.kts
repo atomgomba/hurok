@@ -31,9 +31,9 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
-                implementation(libs.kotlinx.coroutines)
                 implementation(compose.runtime)
                 implementation(libs.common.lifecycle.viewmodelCompose)
+                implementation(libs.kotlinx.coroutines)
 
                 implementation(project(":base"))
             }
