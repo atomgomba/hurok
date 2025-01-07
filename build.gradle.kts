@@ -27,7 +27,6 @@ kover {
         filters {
             excludes {
                 annotatedBy(
-                    "androidx.compose.runtime.Composable",
                     "com.ekezet.hurok.test.CoverageIgnore",
                 )
             }

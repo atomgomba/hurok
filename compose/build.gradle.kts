@@ -1,4 +1,5 @@
 import com.ekezet.hurok.buildLogic.ProjectDefaults
+import org.jetbrains.compose.ExperimentalComposeLibrary
 
 plugins {
     alias(libs.plugins.androidLibrary)
@@ -41,11 +42,19 @@ kotlin {
 
         val commonTest by getting {
             dependencies {
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(compose.uiTest)
                 implementation(libs.kotlin.test)
             }
         }
 
         val jvmMain by getting {
+        }
+
+        val jvmTest by getting {
+            dependencies {
+                implementation(compose.desktop.currentOs)
+            }
         }
     }
 }
