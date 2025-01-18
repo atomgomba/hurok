@@ -9,4 +9,5 @@ import com.ekezet.hurok.test.CoverageIgnore
 @CoverageIgnore
 data class LoopViewModel<TState : ViewState<TModel, TDependency>, TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>>(
     val loop: Loop<TState, TModel, TArgs, TDependency, TAction>,
+    var args: TArgs?,
 ) : ViewModel()

@@ -12,15 +12,16 @@ import com.ekezet.hurok.Action
 import com.ekezet.hurok.Loop
 import com.ekezet.hurok.LoopBuilder
 import com.ekezet.hurok.ViewState
+import com.ekezet.hurok.test.CoverageIgnore
 import kotlin.reflect.KClass
 
 @Composable
 @NonRestartableComposable
+@CoverageIgnore
 inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> createRetainedViewModel(
     builder: @DisallowComposableCalls LoopBuilder<TState, TModel, TArgs, TDependency, TAction>,
     args: TArgs? = null,
     key: String? = TModel::class.qualifiedName,
-    crossinline onNewInstance: @DisallowComposableCalls () -> Unit = {},
 ): LoopViewModel<TState, TModel, TArgs, TDependency, TAction> =
     viewModel<LoopViewModel<TState, TModel, TArgs, TDependency, TAction>>(
         key = key,
@@ -31,8 +32,7 @@ inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs
                     val loop =
                         builder.build(args) as? Loop<TState, TModel, TArgs, TDependency, TAction>
                             ?: error("Not a Loop instance")
-                    onNewInstance()
-                    return LoopViewModel(loop = loop) as T
+                    return LoopViewModel(loop = loop, args = args) as T
                 }
             }
         },

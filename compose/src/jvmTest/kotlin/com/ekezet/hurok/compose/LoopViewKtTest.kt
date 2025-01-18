@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.node.Ref
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.runComposeUiTest
 import androidx.lifecycle.ViewModelStore
@@ -93,14 +94,15 @@ class LoopViewKtTest {
         var recompositions = 0
 
         setContent {
-            var args by remember { mutableStateOf(testArgs) }
+            val args: Ref<TestArgs> = remember { Ref<TestArgs>().apply { value = testArgs } }
+            var recompose by remember { mutableStateOf(false) }
 
             CompositionLocalProvider(
                 LocalViewModelStoreOwner provides testViewModelStoreOwner
             ) {
                 LoopView(
                     builder = testLoopBuilder,
-                    args = args,
+                    args = args.value,
                     wrapper = {
                         if (recompositions == 0) {
                             assertEquals("Howdy, World!", title)
@@ -113,11 +115,12 @@ class LoopViewKtTest {
             }
 
             LaunchedEffect(Unit) {
-                args = TestArgs(title = "Hey")
+                args.value = TestArgs(title = "Hey")
+                recompose = true
             }
         }
 
-        assertEquals(2, recompositions)
+        assertEquals(1, recompositions)
     }
 
     @Test

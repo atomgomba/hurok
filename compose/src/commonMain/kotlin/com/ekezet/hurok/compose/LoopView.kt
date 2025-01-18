@@ -3,13 +3,10 @@ package com.ekezet.hurok.compose
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisallowComposableCalls
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import com.ekezet.hurok.Action
 import com.ekezet.hurok.AnyActionEmitter
 import com.ekezet.hurok.LoopBuilder
@@ -32,22 +29,16 @@ inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs
     key: String? = TModel::class.qualifiedName,
     crossinline wrapper: @Composable TState.() -> Unit,
 ) {
-    var applyArgs by remember { mutableStateOf(true) }
-
-    val vm = createRetainedViewModel(builder = builder, args = args, key = key) {
-        applyArgs = false
-    }
+    val vm = createRetainedViewModel(builder = builder, args = args, key = key)
 
     val loop = remember(key1 = key) {
         parentEmitter?.addChildEmitter(vm.loop)
         vm.loop.startIn(parentScope)
     }
 
-    LaunchedEffect(key1 = args) {
-        if (applyArgs) {
-            args?.let { loop.applyArgs(it) }
-        }
-        applyArgs = true
+    if (args != vm.args) {
+        args?.let { loop.applyArgs(args) }
+        vm.args = args
     }
 
     CompositionLocalProvider(LocalActionEmitter provides loop) {
