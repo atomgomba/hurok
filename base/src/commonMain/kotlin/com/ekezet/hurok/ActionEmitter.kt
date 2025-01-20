@@ -3,7 +3,7 @@ package com.ekezet.hurok
 import kotlinx.coroutines.CoroutineScope
 
 interface ActionEmitter<TModel : Any, TDependency> {
-    val parentScope: CoroutineScope
+    val scope: CoroutineScope
 
     /**
      * Emit an action.

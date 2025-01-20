@@ -15,4 +15,4 @@ import com.ekezet.hurok.test.CoverageIgnore
 @Composable
 @CoverageIgnore
 fun <TState : ViewState<TModel, TDependency>, TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> Loop<TState, TModel, TArgs, TDependency, TAction>.collectAsState(): State<TState> =
-    state.collectAsState(initial = firstState, context = parentScope.coroutineContext)
+    state.collectAsState(initial = firstState, context = scope.coroutineContext)

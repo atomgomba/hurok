@@ -12,7 +12,7 @@ class ViewStateTest {
     fun `Should delegate emit call to emitter`() {
         var expectedAction: Action<*, *>? = null
         val testEmitter = object : ActionEmitter<TestModel, TestDependency> {
-            override val parentScope: CoroutineScope
+            override val scope: CoroutineScope
                 get() = TODO("Not yet implemented")
 
             override fun <TChildModel : Any, TChildDependency> addChildEmitter(child: ActionEmitter<TChildModel, TChildDependency>) {

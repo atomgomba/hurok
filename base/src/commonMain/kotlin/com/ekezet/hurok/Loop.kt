@@ -43,16 +43,17 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
 
     private val actions = MutableSharedFlow<TAction>()
 
-    private lateinit var _parentScope: CoroutineScope
-    override val parentScope: CoroutineScope
-        get() = if (!::_parentScope.isInitialized) {
-            error("Loop must be started")
+    private lateinit var _scope: CoroutineScope
+    override val scope: CoroutineScope
+        @Throws(IllegalArgumentException::class)
+        get() = if (!::_scope.isInitialized) {
+            error("Loop must be started. Please call startIn() first!")
         } else {
-            _parentScope
+            _scope
         }
 
     final override fun emit(action: Action<TModel, TDependency>) {
-        parentScope.launch {
+        scope.launch {
             @Suppress("UNCHECKED_CAST") actions.emit(action as TAction)
         }
     }
@@ -69,9 +70,16 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
         currentModel.update { currentModel.value.applyArgs(args) }
     }
 
-    fun startIn(parentScope: CoroutineScope): Loop<TState, TModel, TArgs, TDependency, TAction> {
-        _parentScope = parentScope
-        parentScope.launch { actions.collect(::onNextAction) }
+    /**
+     * Start the loop in the given scope.
+     *
+     * @param scope the scope used to launch actions
+     * @throws IllegalStateException if the loop has already started
+     */
+    @Throws(IllegalArgumentException::class)
+    fun startIn(scope: CoroutineScope): Loop<TState, TModel, TArgs, TDependency, TAction> {
+        _scope = scope
+        scope.launch { actions.collect(::onNextAction) }
         firstAction?.let { emit(it) }
         return this
     }

@@ -27,7 +27,7 @@ abstract class EffectTest(
 }
 
 class EmitAsserter<TModel : Any, TDependency> internal constructor(
-    override val parentScope: CoroutineScope,
+    override val scope: CoroutineScope,
 ) : ActionEmitter<TModel, TDependency> {
     private val emitted: MutableList<Action<TModel, TDependency>> = mutableListOf()
 

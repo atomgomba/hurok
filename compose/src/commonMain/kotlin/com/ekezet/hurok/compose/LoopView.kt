@@ -25,7 +25,7 @@ inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs
     builder: @DisallowComposableCalls LoopBuilder<TState, TModel, TArgs, TDependency, TAction>,
     args: TArgs? = null,
     parentEmitter: AnyActionEmitter? = null,
-    parentScope: CoroutineScope = rememberCoroutineScope(),
+    scope: CoroutineScope = rememberCoroutineScope(),
     key: String? = TModel::class.qualifiedName,
     crossinline wrapper: @Composable TState.() -> Unit,
 ) {
@@ -33,7 +33,7 @@ inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs
 
     val loop = remember(key1 = key) {
         parentEmitter?.addChildEmitter(vm.loop)
-        vm.loop.startIn(parentScope)
+        vm.loop.startIn(scope)
     }
 
     if (args != vm.args) {
