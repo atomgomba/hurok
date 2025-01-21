@@ -36,7 +36,7 @@ kotlin {
                 implementation(libs.common.lifecycle.viewmodelCompose)
                 implementation(libs.kotlinx.coroutines)
 
-                implementation(project(":base"))
+                implementation(projects.base)
             }
         }
 

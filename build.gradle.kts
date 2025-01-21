@@ -17,9 +17,9 @@ allprojects {
 }
 
 dependencies {
-    kover(project(":base"))
-    kover(project(":compose"))
-    kover(project(":test"))
+    kover(projects.base)
+    kover(projects.compose)
+    kover(projects.test)
 }
 
 kover {

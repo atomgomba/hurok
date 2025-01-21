@@ -33,13 +33,13 @@ kotlin {
                 implementation(libs.kotlinx.coroutines.test)
                 implementation(libs.kotlin.test)
 
-                implementation(project(":base"))
+                implementation(projects.base)
             }
         }
 
         val jvmTest by getting {
             dependencies {
-                implementation(project(":base"))
+                implementation(projects.base)
             }
         }
     }
