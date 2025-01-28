@@ -7,34 +7,59 @@ import com.ekezet.hurok.Effect
 import com.ekezet.hurok.Loop
 import com.ekezet.hurok.Renderer
 import com.ekezet.hurok.ViewState
-import kotlinx.coroutines.CoroutineDispatcher
+import kotlin.coroutines.CoroutineContext
 
+/**
+ * Types used to test the library.
+ */
+
+/**
+ * Model used in library tests.
+ */
 data class TestModel(val title: String = "", val foobar: Boolean = false)
 
+/**
+ * State used in library tests.
+ */
 data class TestState(val title: String) : ViewState<TestModel, TestDependency>()
 
+/**
+ * Args used in library tests.
+ */
 data class TestArgs(val title: String, val foobar: Boolean? = null)
 
+/**
+ * Dependency used in library tests.
+ */
 class TestDependency(var childEmitter: TestChildLoop? = null)
 
-interface TestAction : Action<TestModel, TestDependency>
+/**
+ * Action used in library tests.
+ */
+fun interface TestAction : Action<TestModel, TestDependency>
 
-interface TestEffect : Effect<TestModel, TestDependency>
+/**
+ * Effect used in library tests.
+ */
+fun interface TestEffect : Effect<TestModel, TestDependency>
 
+/**
+ * Loop used in library tests.
+ */
 class TestLoop(
     model: TestModel,
     renderer: Renderer<TestModel, TestDependency, TestState>,
     args: TestArgs? = null,
     firstAction: TestAction? = null,
     dependency: TestDependency? = null,
-    effectDispatcher: CoroutineDispatcher = DispatcherProvider.IO,
+    effectContext: CoroutineContext = DispatcherProvider.IO,
 ) : Loop<TestState, TestModel, TestArgs, TestDependency, TestAction>(
     model,
     renderer,
     args,
     firstAction,
     dependency,
-    effectDispatcher,
+    effectContext,
 ) {
     override fun TestModel.applyArgs(args: TestArgs): TestModel =
         copy(title = args.title, foobar = args.foobar ?: foobar)
@@ -45,6 +70,9 @@ class TestLoop(
     }
 }
 
+/**
+ * Child loop used in library tests.
+ */
 @CoverageIgnore
 class TestChildLoop(
     model: TestModel,
@@ -52,12 +80,12 @@ class TestChildLoop(
     args: TestArgs? = null,
     firstAction: TestAction? = null,
     dependency: TestDependency? = null,
-    effectDispatcher: CoroutineDispatcher = DispatcherProvider.IO,
+    effectContext: CoroutineContext = DispatcherProvider.IO,
 ) : Loop<TestState, TestModel, TestArgs, TestDependency, TestAction>(
     model,
     renderer,
     args,
     firstAction,
     dependency,
-    effectDispatcher,
+    effectContext,
 )

@@ -73,10 +73,7 @@ class LoopTest {
             renderer = { model ->
                 TestState(title = "${model.title}, World!")
             },
-            firstAction = object : TestAction {
-                override fun TestModel.proceed() =
-                    mutate(copy(title = "Howdy"))
-            },
+            firstAction = { next((copy(title = "Howdy"))) },
         )
 
         val expectedState = TestState(
@@ -116,10 +113,6 @@ class LoopTest {
     @Test
     fun `Renderer should produce expected state when mutate Action emitted`() = runTest {
         val testModel = TestModel(title = "Hello")
-        val testAction = object : TestAction {
-            override fun TestModel.proceed() =
-                mutate(copy(title = "Foobar"))
-        }
 
         val subject = TestLoop(
             model = testModel,
@@ -130,7 +123,9 @@ class LoopTest {
 
         backgroundScope.launch(UnconfinedTestDispatcher()) {
             subject.startIn(this)
-            subject.emit(testAction)
+            subject.emit {
+                next(copy(title = "Foobar"))
+            }
         }
 
         val expectedState = TestState(

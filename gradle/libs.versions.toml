@@ -4,6 +4,8 @@ android-compileSdk = "35"
 android-minSdk = "24"
 cmp = "1.7.1"
 common-lifecycle = "2.8.3"
+dokka = "2.0.0"
+dokka-mermaid = "0.6.0"
 junit5 = "5.11.4"
 kotlin = "2.1.0"
 kotlinx-coroutines = "1.9.0"
@@ -11,6 +13,7 @@ kover = "0.9.0"
 
 [libraries]
 common-lifecycle-viewmodelCompose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "common-lifecycle" }
+dokka-mermaid = { group = "com.glureau", name = "html-mermaid-dokka-plugin", version.ref = "dokka-mermaid" }
 junit5-bom = { group = "org.junit", name = "junit-bom", version.ref = "junit5" }
 junit5-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter" }
 junit5-platform = { group = "org.junit.platform", name = "junit-platform-launcher" }
@@ -23,5 +26,6 @@ kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "cmp" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }

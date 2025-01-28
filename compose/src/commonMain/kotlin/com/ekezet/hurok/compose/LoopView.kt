@@ -14,9 +14,34 @@ import com.ekezet.hurok.ViewState
 import kotlinx.coroutines.CoroutineScope
 
 /**
- * Pass the `State` of a `Loop` to a @Composable block.
+ * Attach a [Loop] to a `@Composable` block as a state receiver.
  *
- * @throws IllegalStateException when `builder` result is not a `Loop` instance
+ * For example:
+ *
+ * ```kotlin
+ * @Composable
+ * fun ScoreScreenView() {
+ *     LoopView(ScoreScreenLoop) {
+ *         Column {
+ *             Text(text = playerName)
+ *
+ *             Text(text = score)
+ *
+ *             Button(onClick = { emit(OnUpdateScoreClick) }) {
+ *                 Text(text = "Update score")
+ *             }
+ *         }
+ *     }
+ * }
+ * ```
+ *
+ * @param builder used to create the underlying Loop
+ * @param args arguments to pass to the Loop when created or to apply when the Loop already exists
+ * @param parentEmitter parent emitter, usually another Loop instance
+ * @param scope CoroutineScope for launching actions
+ * @param key used for storing the ViewModel
+ * @param content composable function used by the Loop
+ * @throws IllegalStateException when [builder] result is not a Loop instance
  */
 @Throws(IllegalStateException::class)
 @Composable
@@ -27,7 +52,7 @@ inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs
     parentEmitter: AnyActionEmitter? = null,
     scope: CoroutineScope = rememberCoroutineScope(),
     key: String? = TModel::class.qualifiedName,
-    crossinline wrapper: @Composable TState.() -> Unit,
+    crossinline content: @Composable TState.() -> Unit,
 ) {
     val vm = createRetainedViewModel(builder = builder, args = args, key = key)
 
@@ -43,6 +68,6 @@ inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs
 
     CompositionLocalProvider(LocalActionEmitter provides loop) {
         val state by loop.collectAsState()
-        state.wrapper()
+        state.content()
     }
 }

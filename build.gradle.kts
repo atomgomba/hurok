@@ -7,7 +7,8 @@ plugins {
     alias(libs.plugins.composeMultiplatform).apply(false)
     alias(libs.plugins.kotlinMultiplatform).apply(false)
 
-    // apply coverage to whole project
+    // apply these to the whole project
+    alias(libs.plugins.dokka)
     alias(libs.plugins.kover)
 }
 
@@ -16,10 +17,8 @@ allprojects {
     version = "1.4.0"
 }
 
-dependencies {
-    kover(projects.base)
-    kover(projects.compose)
-    kover(projects.test)
+subprojects {
+    apply(plugin = rootProject.libs.plugins.dokka.get().pluginId)
 }
 
 kover {
@@ -41,4 +40,16 @@ kover {
             }
         }
     }
+}
+
+dependencies {
+    kover(projects.base)
+    kover(projects.compose)
+    kover(projects.test)
+
+    dokkaPlugin(libs.dokka.mermaid)
+
+    dokka(projects.base)
+    dokka(projects.compose)
+    dokka(projects.test)
 }

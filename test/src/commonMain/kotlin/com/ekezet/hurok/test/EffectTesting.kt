@@ -6,17 +6,33 @@ import com.ekezet.hurok.Effect
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlin.coroutines.CoroutineContext
 import kotlin.test.assertContentEquals
 import kotlin.test.assertTrue
 
+/**
+ * Base class for Effect tests.
+ *
+ * @property testScope
+ * @constructor
+ *
+ * @param testContext
+ */
 @OptIn(ExperimentalCoroutinesApi::class)
 abstract class EffectTest(
-    testDispatcher: TestDispatcher = UnconfinedTestDispatcher(),
-    private val testScope: CoroutineScope = TestScope(testDispatcher),
+    testContext: CoroutineContext = UnconfinedTestDispatcher(),
+    private val testScope: CoroutineScope = TestScope(testContext),
 ) : CoroutineScope by testScope {
+
+    /**
+     * Run the effect using the dependency for asserting the result.
+     *
+     * @param TModel
+     * @param TDependency
+     * @param effect
+     */
     infix fun <TModel : Any, TDependency> TDependency.runWith(
         effect: Effect<TModel, TDependency>,
     ) = EmitAsserter<TModel, TDependency>(testScope).apply {
@@ -26,6 +42,14 @@ abstract class EffectTest(
     }
 }
 
+/**
+ * Action emitter used for testing.
+ *
+ * @param TModel
+ * @param TDependency
+ * @property scope
+ * @constructor Create empty Emit asserter
+ */
 class EmitAsserter<TModel : Any, TDependency> internal constructor(
     override val scope: CoroutineScope,
 ) : ActionEmitter<TModel, TDependency> {
@@ -51,8 +75,16 @@ class EmitAsserter<TModel : Any, TDependency> internal constructor(
     }
 }
 
-infix fun <TModel : Any, TDependency> EmitAsserter<TModel, TDependency>.matches(
-    block: EmitAsserter<TModel, TDependency>.() -> Unit,
+/**
+ * Assert emitted actions by the [Effect].
+ *
+ * @param TModel
+ * @param TDependency
+ * @param block
+ * @receiver
+ */
+inline infix fun <TModel : Any, TDependency> EmitAsserter<TModel, TDependency>.matches(
+    crossinline block: EmitAsserter<TModel, TDependency>.() -> Unit,
 ) {
     block()
 }

@@ -1,4 +1,4 @@
-# Hurok
+# hurok
 
 This is a framework library for developing applications on the JVM based on the unidirectional dataflow model.
 
@@ -8,16 +8,25 @@ flowchart LR
     B -->|Trigger| F([Effect]) --> B 
 ```
 
+Please click here for [generated documentation](https://atomgomba.github.io/hurok/).
+
 ## Parts
 
-| Name     | Description                                                     |
-|----------|-----------------------------------------------------------------|
-| Model    | Holds data for business logic                                   |
-| State    | UI state derived from the `Model`                               |
-| Renderer | Uses the `Model` to create `State`                              |
-| Action   | Mutates the `Model` and can trigger (any) `Effect`              |
-| Effect   | Does background work and triggers (any) `Action`                |
-| Loop     | Renders `Model` into `State` and executes `Action` and `Effect` |
+| Name      | Description                                        |
+|-----------|----------------------------------------------------|
+| Model     | Holds data for business logic                      |
+| ViewState | UI state derived from the `Model`                  |
+| Renderer  | Uses the `Model` to create new `State` for the UI  |
+| Action    | Mutates the `Model` and can trigger (any) `Effect` |
+| Effect    | Does background work and triggers (any) `Action`   |
+| Loop      | Handles `Action` and `Effect`                      |
+
+## Technologies
+
+* Kotlin Multiplatform
+* Kotlin Coroutines
+* Compose Multiplatform
+* Android SDK
 
 ## Example code
 

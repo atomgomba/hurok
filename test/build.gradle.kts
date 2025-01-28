@@ -64,6 +64,15 @@ android {
     }
 }
 
+dokka {
+    moduleName = "hurok-test"
+    modulePath = "test"
+
+    dokkaSourceSets.configureEach {
+        includes.from("${rootProject.rootDir}/docs/include/index-test.md")
+    }
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
 }

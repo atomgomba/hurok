@@ -9,6 +9,9 @@ import kotlin.annotation.AnnotationTarget.PROPERTY
 import kotlin.annotation.AnnotationTarget.PROPERTY_GETTER
 import kotlin.annotation.AnnotationTarget.PROPERTY_SETTER
 
+/**
+ * Annotation for excluding code from coverage.
+ */
 @Retention(RUNTIME)
 @Target(FILE, CLASS, FIELD, FUNCTION, PROPERTY, PROPERTY_GETTER, PROPERTY_SETTER)
 annotation class CoverageIgnore

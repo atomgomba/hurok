@@ -17,7 +17,7 @@ import kotlin.coroutines.CoroutineContext
 /**
  * Base class that handles unidirectional data flow.
  *
- * @param model model to inject
+ * @param model the initial model
  * @param renderer transform model into state
  * @param args input arguments
  * @param firstAction action to emit when loop is constructed

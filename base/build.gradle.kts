@@ -11,6 +11,8 @@ dependencies {
     testImplementation(platform(libs.junit5.bom))
     testImplementation(libs.junit5.jupiter)
     testRuntimeOnly(libs.junit5.platform)
+
+    dokkaPlugin(libs.dokka.mermaid)
 }
 
 kotlin {
@@ -70,6 +72,15 @@ android {
     compileOptions {
         sourceCompatibility = ProjectDefaults.javaVersion
         targetCompatibility = ProjectDefaults.javaVersion
+    }
+}
+
+dokka {
+    moduleName = "hurok-base"
+    modulePath = "base"
+
+    dokkaSourceSets.configureEach {
+        includes.from("${rootProject.rootDir}/docs/include/index-base.md")
     }
 }
 

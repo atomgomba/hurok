@@ -77,3 +77,16 @@ android {
         targetCompatibility = ProjectDefaults.javaVersion
     }
 }
+
+dokka {
+    moduleName = "hurok-compose"
+    modulePath = "compose"
+
+    dokkaSourceSets.configureEach {
+        includes.from("${rootProject.rootDir}/docs/include/index-compose.md")
+    }
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}

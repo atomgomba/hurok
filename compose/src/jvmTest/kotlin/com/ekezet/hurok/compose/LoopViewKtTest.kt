@@ -55,7 +55,7 @@ class LoopViewKtTest {
             ) {
                 LoopView(
                     builder = testLoopBuilder,
-                    wrapper = {
+                    content = {
                         assertEquals("Hello, World!", title)
                     },
                 )
@@ -77,7 +77,7 @@ class LoopViewKtTest {
                 LoopView(
                     builder = testLoopBuilder,
                     args = testArgs,
-                    wrapper = {
+                    content = {
                         assertEquals("Howdy, World!", title)
                     },
                 )
@@ -103,7 +103,7 @@ class LoopViewKtTest {
                 LoopView(
                     builder = testLoopBuilder,
                     args = args.value,
-                    wrapper = {
+                    content = {
                         if (recompositions == 0) {
                             assertEquals("Howdy, World!", title)
                         } else if (recompositions == 1) {
@@ -139,7 +139,7 @@ class LoopViewKtTest {
                 LoopView(
                     builder = testLoopBuilder,
                     args = args,
-                    wrapper = {
+                    content = {
                         assertEquals("Howdy, World!", title)
                     },
                 )
@@ -165,7 +165,7 @@ class LoopViewKtTest {
                 LoopView(
                     builder = testChildLoopBuilder,
                     parentEmitter = testLoop,
-                    wrapper = {
+                    content = {
                         // do nothing
                     },
                 )
@@ -185,7 +185,7 @@ class LoopViewKtTest {
                 args = args,
                 firstAction = null,
                 dependency = testDependency,
-                effectDispatcher = UnconfinedTestDispatcher(),
+                effectContext = UnconfinedTestDispatcher(),
             )
         }
 
@@ -198,7 +198,7 @@ class LoopViewKtTest {
                 args = args,
                 firstAction = null,
                 dependency = TestDependency(),
-                effectDispatcher = UnconfinedTestDispatcher(),
+                effectContext = UnconfinedTestDispatcher(),
             )
         }
 }

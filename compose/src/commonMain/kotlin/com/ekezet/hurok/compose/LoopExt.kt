@@ -10,7 +10,14 @@ import com.ekezet.hurok.firstState
 import com.ekezet.hurok.test.CoverageIgnore
 
 /**
- * Collects state values from this `Loop` as a `State<TState>`.
+ * Collects state values from this Loop as a State<TState>.
+ *
+ * @param TState
+ * @param TModel
+ * @param TArgs
+ * @param TDependency
+ * @param TAction
+ * @return
  */
 @Composable
 @CoverageIgnore
