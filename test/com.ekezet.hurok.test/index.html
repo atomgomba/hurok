@@ -1,0 +1,202 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>com.ekezet.hurok.test</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../index.html">
+                    hurok
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">1.4.0
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":test/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":test/commonMain" data-filter=":test/commonMain">
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    hurok
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageids="hurok-test::com.ekezet.hurok.test////PointingToDeclaration//1383718493">
+  <div class="breadcrumbs"><a href="../index.html">hurok-test</a><span class="delimiter">/</span><span class="current">com.ekezet.hurok.test</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":test/commonMain"><h1 class="">Tools for testing hurok-based applications</h1><h2 class="">DSL for unit testing Action result</h2><p class="paragraph">Functions for asserting action results:</p><ul><li><p class="paragraph"><a href="-next-asserter/assert-skipped.html">assertSkipped</a> - assert no change at all</p></li><li><p class="paragraph"><a href="-next-asserter/assert-model.html">assertModel</a> - assert the expected model change</p></li><li><p class="paragraph"><a href="-next-asserter/assert-effects.html">assertEffects</a> - assert triggering the expected effect(s)</p></li><li><p class="paragraph"><a href="-next-asserter/assert-model-not-changed.html">assertModelNotChanged</a> - assert the model not changed</p></li><li><p class="paragraph"><a href="-next-asserter/assert-no-effects.html">assertNoEffects</a> - assert no effects triggered</p></li></ul><p class="paragraph">Example:</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">@Test<br>fun `Making a move works correctly`() {<br>    // set up init model and expected model<br>    // ...<br><br>    initModel after OnMoveMade(position) matches {<br>        assertModel(expectedModel)<br>        assertNoEffects()<br>    }<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><h2 class="">DSL for unit testing Effect</h2><p class="paragraph">For testing effects inherit from <a href="-effect-test/index.html">EffectTest</a> and mock the dependency if there's one. Use <a href="-effect-test/run-with.html">runWith</a> to test and assert the subject against the mocked dependency.</p><p class="paragraph">Functions for asserting effect results:</p><ul><li><p class="paragraph"><a href="-emit-asserter/assert-actions.html">assertActions</a> can be used to assert which actions were emitted</p></li><li><p class="paragraph"><a href="-emit-asserter/assert-no-actions.html">assertNoActions</a> can be used to assert that no actions ere   emitted</p></li></ul><p class="paragraph">Example:</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">class GameBoardEffectTest : EffectTest() {<br>    // ...<br><br>    @Test<br>    fun `WaitBeforeNextTurn works correctly`() = runTest {<br>        val nextMove: Position = mockk()<br><br>        dependency runWith WaitBeforeNextTurn(nextMove) matches {<br>            assertActions(listOf(OnMoveMade(nextMove)))<br>        }<br>    }<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="711917653%2FClasslikes%2F1383718493" anchor-label="EffectTest" id="711917653%2FClasslikes%2F1383718493" data-filterable-set=":test/commonMain"></a>
+          <div class="table-row" data-filterable-current=":test/commonMain" data-filterable-set=":test/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-effect-test/index.html"><span>Effect</span><wbr><span><span>Test</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="711917653%2FClasslikes%2F1383718493"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":test/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-effect-test/index.html">EffectTest</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">testContext<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.coroutines/-coroutine-context/index.html">CoroutineContext</a><span class="token operator"> = </span>UnconfinedTestDispatcher()<span class="token punctuation">, </span></span><span class="parameter ">testScope<span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/CoroutineScope///PointingToDeclaration/">CoroutineScope</span><span class="token operator"> = </span>TestScope(testContext)</span></span><span class="token punctuation">)</span> : <span data-unresolved-link="kotlinx.coroutines/CoroutineScope///PointingToDeclaration/">CoroutineScope</span></div><div class="brief "><p class="paragraph">Base class for Effect tests.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1562766766%2FClasslikes%2F1383718493" anchor-label="EmitAsserter" id="-1562766766%2FClasslikes%2F1383718493" data-filterable-set=":test/commonMain"></a>
+          <div class="table-row" data-filterable-current=":test/commonMain" data-filterable-set=":test/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-emit-asserter/index.html"><span>Emit</span><wbr><span><span>Asserter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1562766766%2FClasslikes%2F1383718493"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":test/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-emit-asserter/index.html">EmitAsserter</a><span class="token operator">&lt;</span><a href="-emit-asserter/index.html">TModel</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span><a href="-emit-asserter/index.html">TDependency</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Action emitter used for testing.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1199965390%2FClasslikes%2F1383718493" anchor-label="NextAsserter" id="-1199965390%2FClasslikes%2F1383718493" data-filterable-set=":test/commonMain"></a>
+          <div class="table-row" data-filterable-current=":test/commonMain" data-filterable-set=":test/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-next-asserter/index.html"><span>Next</span><wbr><span><span>Asserter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1199965390%2FClasslikes%2F1383718493"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":test/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-next-asserter/index.html">NextAsserter</a><span class="token operator">&lt;</span><a href="-next-asserter/index.html">TModel</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span><a href="-next-asserter/index.html">TDependency</a><span class="token operator">&gt;</span> : <a href="https://kotlinlang.org/api/core/kotlin-test/kotlin.test/-asserter/index.html">Asserter</a></div><div class="brief "><p class="paragraph">Asserter for action results.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="EXTENSION_FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="2133460273%2FFunctions%2F1383718493" anchor-label="after" id="2133460273%2FFunctions%2F1383718493" data-filterable-set=":test/commonMain"></a>
+          <div class="table-row" data-filterable-current=":test/commonMain" data-filterable-set=":test/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="after.html"><span><span>after</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2133460273%2FFunctions%2F1383718493"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":test/commonMain"><div class="symbol monospace"><span class="token keyword">infix </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="after.html">TModel</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span><a href="after.html">TDependency</a><span class="token operator">&gt; </span><a href="after.html">TModel</a><span class="token punctuation">.</span><a href="after.html"><span class="token function">after</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">action<span class="token operator">: </span><span data-unresolved-link="/<Error class: unknown class>///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span><span class="token operator">&lt;</span><a href="after.html">TModel</a><span class="token punctuation">, </span><a href="after.html">TDependency</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="/<Error class: unknown class>///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span><span class="token operator">&lt;</span><a href="after.html">TModel</a><span class="token punctuation">, </span><a href="after.html">TDependency</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Apply the action to a model.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1887880106%2FFunctions%2F1383718493" anchor-label="matches" id="1887880106%2FFunctions%2F1383718493" data-filterable-set=":test/commonMain"></a>
+          <div class="table-row" data-filterable-current=":test/commonMain" data-filterable-set=":test/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="matches.html"><span><span>matches</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1887880106%2FFunctions%2F1383718493"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":test/commonMain"><div class="symbol monospace"><span class="token keyword">infix </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="matches.html">TModel</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span><a href="matches.html">TDependency</a><span class="token operator">&gt; </span><span data-unresolved-link="/<Error class: unknown class>///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span><span class="token operator">&lt;</span><a href="matches.html">TModel</a><span class="token punctuation">, </span><a href="matches.html">TDependency</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="matches.html"><span class="token function">matches</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="-next-asserter/index.html">NextAsserter</a><span class="token operator">&lt;</span><a href="matches.html">TModel</a><span class="token punctuation">, </span><a href="matches.html">TDependency</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span data-unresolved-link="/<Error class: unknown class>///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span><span class="token operator">&lt;</span><a href="matches.html">TModel</a><span class="token punctuation">, </span><a href="matches.html">TDependency</a><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Assert the result of an action.</p></div><div class="symbol monospace"><span class="token keyword">infix inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="matches.html">TModel</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span><a href="matches.html">TDependency</a><span class="token operator">&gt; </span><a href="-emit-asserter/index.html">EmitAsserter</a><span class="token operator">&lt;</span><a href="matches.html">TModel</a><span class="token punctuation">, </span><a href="matches.html">TDependency</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="matches.html"><span class="token function">matches</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">crossinline </span>block<span class="token operator">: </span><a href="-emit-asserter/index.html">EmitAsserter</a><span class="token operator">&lt;</span><a href="matches.html">TModel</a><span class="token punctuation">, </span><a href="matches.html">TDependency</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Assert emitted actions by the Effect.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

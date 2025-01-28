@@ -1,0 +1,10 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+module:hurok-base
+com.ekezet.hurok
+com.ekezet.hurok.test
+module:hurok-compose
+com.ekezet.hurok.compose
+module:hurok-test
+com.ekezet.hurok.test
