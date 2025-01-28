@@ -42,7 +42,7 @@
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">1.4.0
+        <div class="library-version" id="library-version">1.5.0
         </div>
         <div class="navigation-controls">
         <div class="filter-section filter-section_loading" id="filter-section">
@@ -113,14 +113,14 @@
     <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
     <div class="platform-hinted UnderCoverText with-platform-tabs" data-platform-hinted="data-platform-hinted">
       <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":base/androidMain" data-filterable-set=":base/androidMain" data-active="" data-toggle=":base/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":base/commonMain" data-filterable-set=":base/commonMain" data-toggle=":base/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":base/jvmMain" data-filterable-set=":base/jvmMain" data-toggle=":base/jvmMain">jvm</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":base/androidMain"><h1 class="">hurok: UDF-based application framework</h1><div class="sample-container"><div id="mermaid-container-7f82jil41ru4b"></div></div><script>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":base/androidMain"><h1 class="">hurok: UDF-based application framework</h1><div class="sample-container"><div id="mermaid-container-rbqhgf8g97km"></div></div><script>
 window.addEventListener('load', function() {
   var graphDef =  `flowchart LR
     A[First State] -->|Input| B{Action} -->|Mutate| C(Model) --> D[Renderer] -->|Derive| E[Next State] -.->|Input| B
     B -->|Trigger| F([Effect]) --> B `;
-  var container = document.getElementById('mermaid-container-7f82jil41ru4b');
-  container.innerHTML = '<div id="mermaid-target-7f82jil41ru4b"></div>';
-  var updateGraph7f82jil41ru4b = function() {
+  var container = document.getElementById('mermaid-container-rbqhgf8g97km');
+  container.innerHTML = '<div id="mermaid-target-rbqhgf8g97km"></div>';
+  var updateGraphrbqhgf8g97km = function() {
     // setTimeout required or else the 1st render could be done before mermaid.initialize() has applied the theme.
     // Also required because we can't listen to localStorage events reliably, and it's changed on the same click event...
     setTimeout(() => {
@@ -131,28 +131,28 @@ window.addEventListener('load', function() {
         theme = 'dark';
       }
       mermaid.initialize({'theme': theme});
-      mermaid.render('mermaid-target-7f82jil41ru4b', graphDef).then(({ svg, bindFunctions }) => {
+      mermaid.render('mermaid-target-rbqhgf8g97km', graphDef).then(({ svg, bindFunctions }) => {
           container.innerHTML = svg;
           // Trick to make the graph takes only the required height.
-          document.getElementById('mermaid-target-7f82jil41ru4b').removeAttribute('height')
+          document.getElementById('mermaid-target-rbqhgf8g97km').removeAttribute('height')
           bindFunctions?.(element);
       });
     }, 0);
   }
-  updateGraph7f82jil41ru4b();
+  updateGraphrbqhgf8g97km();
   
   var themeToggleButton = document.getElementById('theme-toggle-button');
   themeToggleButton.addEventListener('click', () => {
-    updateGraph7f82jil41ru4b();
+    updateGraphrbqhgf8g97km();
   });
-});</script><h2 class="">Parts</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>Model</td><td>Holds data for business logic</td></tr><tr><td>State</td><td>UI state derived from the <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Model</code></td></tr><tr><td>Renderer</td><td>Uses the <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Model</code> to create new <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">State</code> for the UI</td></tr><tr><td>Action</td><td>Mutates the <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Model</code> and can trigger (any) <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Effect</code></td></tr><tr><td>Effect</td><td>Does background work and triggers (any) <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Action</code></td></tr><tr><td>Loop</td><td>Handles <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Action</code> and <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Effect</code></td></tr></tbody></table></div><div class="content sourceset-dependent-content" data-togglable=":base/commonMain"><h1 class="">hurok: UDF-based application framework</h1><div class="sample-container"><div id="mermaid-container-6sje53hi0deut"></div></div><script>
+});</script><h2 class="">Parts</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>Model</td><td>Holds data for business logic</td></tr><tr><td>State</td><td>UI state derived from the <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Model</code></td></tr><tr><td>Renderer</td><td>Uses the <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Model</code> to create new <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">State</code> for the UI</td></tr><tr><td>Action</td><td>Mutates the <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Model</code> and can trigger (any) <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Effect</code></td></tr><tr><td>Effect</td><td>Does background work and triggers (any) <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Action</code></td></tr><tr><td>Loop</td><td>Handles <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Action</code> and <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Effect</code></td></tr></tbody></table></div><div class="content sourceset-dependent-content" data-togglable=":base/commonMain"><h1 class="">hurok: UDF-based application framework</h1><div class="sample-container"><div id="mermaid-container-4dla80m7njhml"></div></div><script>
 window.addEventListener('load', function() {
   var graphDef =  `flowchart LR
     A[First State] -->|Input| B{Action} -->|Mutate| C(Model) --> D[Renderer] -->|Derive| E[Next State] -.->|Input| B
     B -->|Trigger| F([Effect]) --> B `;
-  var container = document.getElementById('mermaid-container-6sje53hi0deut');
-  container.innerHTML = '<div id="mermaid-target-6sje53hi0deut"></div>';
-  var updateGraph6sje53hi0deut = function() {
+  var container = document.getElementById('mermaid-container-4dla80m7njhml');
+  container.innerHTML = '<div id="mermaid-target-4dla80m7njhml"></div>';
+  var updateGraph4dla80m7njhml = function() {
     // setTimeout required or else the 1st render could be done before mermaid.initialize() has applied the theme.
     // Also required because we can't listen to localStorage events reliably, and it's changed on the same click event...
     setTimeout(() => {
@@ -163,28 +163,28 @@ window.addEventListener('load', function() {
         theme = 'dark';
       }
       mermaid.initialize({'theme': theme});
-      mermaid.render('mermaid-target-6sje53hi0deut', graphDef).then(({ svg, bindFunctions }) => {
+      mermaid.render('mermaid-target-4dla80m7njhml', graphDef).then(({ svg, bindFunctions }) => {
           container.innerHTML = svg;
           // Trick to make the graph takes only the required height.
-          document.getElementById('mermaid-target-6sje53hi0deut').removeAttribute('height')
+          document.getElementById('mermaid-target-4dla80m7njhml').removeAttribute('height')
           bindFunctions?.(element);
       });
     }, 0);
   }
-  updateGraph6sje53hi0deut();
+  updateGraph4dla80m7njhml();
   
   var themeToggleButton = document.getElementById('theme-toggle-button');
   themeToggleButton.addEventListener('click', () => {
-    updateGraph6sje53hi0deut();
+    updateGraph4dla80m7njhml();
   });
-});</script><h2 class="">Parts</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>Model</td><td>Holds data for business logic</td></tr><tr><td>State</td><td>UI state derived from the <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Model</code></td></tr><tr><td>Renderer</td><td>Uses the <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Model</code> to create new <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">State</code> for the UI</td></tr><tr><td>Action</td><td>Mutates the <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Model</code> and can trigger (any) <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Effect</code></td></tr><tr><td>Effect</td><td>Does background work and triggers (any) <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Action</code></td></tr><tr><td>Loop</td><td>Handles <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Action</code> and <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Effect</code></td></tr></tbody></table></div><div class="content sourceset-dependent-content" data-togglable=":base/jvmMain"><h1 class="">hurok: UDF-based application framework</h1><div class="sample-container"><div id="mermaid-container-499sjr6npem6t"></div></div><script>
+});</script><h2 class="">Parts</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>Model</td><td>Holds data for business logic</td></tr><tr><td>State</td><td>UI state derived from the <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Model</code></td></tr><tr><td>Renderer</td><td>Uses the <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Model</code> to create new <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">State</code> for the UI</td></tr><tr><td>Action</td><td>Mutates the <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Model</code> and can trigger (any) <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Effect</code></td></tr><tr><td>Effect</td><td>Does background work and triggers (any) <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Action</code></td></tr><tr><td>Loop</td><td>Handles <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Action</code> and <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Effect</code></td></tr></tbody></table></div><div class="content sourceset-dependent-content" data-togglable=":base/jvmMain"><h1 class="">hurok: UDF-based application framework</h1><div class="sample-container"><div id="mermaid-container-5873hmfli36ua"></div></div><script>
 window.addEventListener('load', function() {
   var graphDef =  `flowchart LR
     A[First State] -->|Input| B{Action} -->|Mutate| C(Model) --> D[Renderer] -->|Derive| E[Next State] -.->|Input| B
     B -->|Trigger| F([Effect]) --> B `;
-  var container = document.getElementById('mermaid-container-499sjr6npem6t');
-  container.innerHTML = '<div id="mermaid-target-499sjr6npem6t"></div>';
-  var updateGraph499sjr6npem6t = function() {
+  var container = document.getElementById('mermaid-container-5873hmfli36ua');
+  container.innerHTML = '<div id="mermaid-target-5873hmfli36ua"></div>';
+  var updateGraph5873hmfli36ua = function() {
     // setTimeout required or else the 1st render could be done before mermaid.initialize() has applied the theme.
     // Also required because we can't listen to localStorage events reliably, and it's changed on the same click event...
     setTimeout(() => {
@@ -195,21 +195,21 @@ window.addEventListener('load', function() {
         theme = 'dark';
       }
       mermaid.initialize({'theme': theme});
-      mermaid.render('mermaid-target-499sjr6npem6t', graphDef).then(({ svg, bindFunctions }) => {
+      mermaid.render('mermaid-target-5873hmfli36ua', graphDef).then(({ svg, bindFunctions }) => {
           container.innerHTML = svg;
           // Trick to make the graph takes only the required height.
-          document.getElementById('mermaid-target-499sjr6npem6t').removeAttribute('height')
+          document.getElementById('mermaid-target-5873hmfli36ua').removeAttribute('height')
           bindFunctions?.(element);
       });
     }, 0);
   }
-  updateGraph499sjr6npem6t();
+  updateGraph5873hmfli36ua();
   
   var themeToggleButton = document.getElementById('theme-toggle-button');
   themeToggleButton.addEventListener('click', () => {
-    updateGraph499sjr6npem6t();
+    updateGraph5873hmfli36ua();
   });
-});</script><h2 class="">Parts</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>Model</td><td>Holds data for business logic</td></tr><tr><td>State</td><td>UI state derived from the <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Model</code></td></tr><tr><td>Renderer</td><td>Uses the <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Model</code> to create new <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">State</code> for the UI</td></tr><tr><td>Action</td><td>Mutates the <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Model</code> and can trigger (any) <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Effect</code></td></tr><tr><td>Effect</td><td>Does background work and triggers (any) <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Action</code></td></tr><tr><td>Loop</td><td>Handles <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Action</code> and <code class="org.jetbrains.dokka.pages.commenttable@53b0719 lang-kotlin">Effect</code></td></tr></tbody></table></div>    </div>
+});</script><h2 class="">Parts</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>Model</td><td>Holds data for business logic</td></tr><tr><td>State</td><td>UI state derived from the <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Model</code></td></tr><tr><td>Renderer</td><td>Uses the <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Model</code> to create new <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">State</code> for the UI</td></tr><tr><td>Action</td><td>Mutates the <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Model</code> and can trigger (any) <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Effect</code></td></tr><tr><td>Effect</td><td>Does background work and triggers (any) <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Action</code></td></tr><tr><td>Loop</td><td>Handles <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Action</code> and <code class="org.jetbrains.dokka.pages.commenttable@690e7be1 lang-kotlin">Effect</code></td></tr></tbody></table></div>    </div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button><button class="section-tab" data-togglable="PROPERTY,EXTENSION_PROPERTY">Properties</button></div>
