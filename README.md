@@ -105,6 +105,41 @@ data class UpdateScore(val userId: String) : ScoreScreenEffect {
 | Effect    | Does background work and triggers (any) `Action`   |
 | Loop      | Handles `Action` and `Effect`                      |
 
+## Using hurok with Gradle
+
+Packages are published to Maven Central, so make sure to add it to your list of repositories.
+
+```kts
+repositories {
+    mavenCentral()
+}
+```
+
+### Kotlin DSL
+
+```kotlin
+dependencies {
+    // core multiplatform package
+    implementation("com.ekezet.hurok:base:2.0.0")
+    // library for using hurok with Compose Multiplatform
+    implementation("com.ekezet.hurok:compose:2.0.0")
+    // library for testing hurok-based applications
+    implementation("com.ekezet.hurok:test:2.0.0")
+}
+```
+
+### Version catalog
+
+```toml
+[versions]
+hurok = "2.0.0
+
+[libraries]
+hurok-base = { group = "com.ekezet.hurok", name = "base", version.ref = "hurok" }
+hurok-compose = { group = "com.ekezet.hurok", name = "compsoe", version.ref = "hurok" }
+hurok-test = { group = "com.ekezet.hurok", name = "test", version.ref = "hurok" }
+```
+
 ## Technologies
 
 * Kotlin Multiplatform

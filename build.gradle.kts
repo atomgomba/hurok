@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.composeCompiler).apply(false)
     alias(libs.plugins.composeMultiplatform).apply(false)
     alias(libs.plugins.kotlinMultiplatform).apply(false)
+    alias(libs.plugins.mavenPublish).apply(false)
 
     // apply these to the whole project
     alias(libs.plugins.dokka)

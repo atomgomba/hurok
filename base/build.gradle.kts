@@ -4,7 +4,8 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kover)
-    id("module.publication")
+
+    id("hurok.publishing")
 }
 
 dependencies {

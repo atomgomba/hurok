@@ -7,7 +7,8 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kover)
-    id("module.publication")
+
+    id("hurok.publishing")
 }
 
 kotlin {
