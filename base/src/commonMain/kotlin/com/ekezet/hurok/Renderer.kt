@@ -6,7 +6,7 @@ package com.ekezet.hurok
  * For example:
  *
  * ```kotlin
- * class ScoreScreenRenderer : Renderer<ScoreScreenModel, Unit, ScoreScreenState> {
+ * class ScoreScreenRenderer : Renderer<ScoreScreenModel, ScoreScreenState> {
  *     fun renderState(model: ScoreScreenModel) = ScoreScreenState(
  *         playerName = model.user.nickname,
  *         score = model.score.roundToInt().toString(),
@@ -15,10 +15,9 @@ package com.ekezet.hurok
  * ```
  *
  * @param TModel the type of the [Loop] model
- * @param TDependency the type of the [Loop]'s dependency
  * @param TState the concrete type of the resulting [ViewState]
  */
-fun interface Renderer<TModel : Any, TDependency, out TState : ViewState<TModel, TDependency>> {
+fun interface Renderer<in TModel : Any, out TState : ViewState<*, *>> {
     /**
      * @param model current [Loop] model
      * @return a new state

@@ -48,7 +48,7 @@ fun interface TestEffect : Effect<TestModel, TestDependency>
  */
 class TestLoop(
     model: TestModel,
-    renderer: Renderer<TestModel, TestDependency, TestState>,
+    renderer: Renderer<TestModel, TestState>,
     args: TestArgs? = null,
     firstAction: TestAction? = null,
     dependency: TestDependency? = null,
@@ -76,7 +76,7 @@ class TestLoop(
 @CoverageIgnore
 class TestChildLoop(
     model: TestModel,
-    renderer: Renderer<TestModel, TestDependency, TestState>,
+    renderer: Renderer<TestModel, TestState>,
     args: TestArgs? = null,
     firstAction: TestAction? = null,
     dependency: TestDependency? = null,

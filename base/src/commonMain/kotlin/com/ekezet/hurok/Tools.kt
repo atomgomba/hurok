@@ -9,7 +9,7 @@ package com.ekezet.hurok
  * @param args optional arguments for the [Loop]
  * @return a state based on the input arguments
  */
-inline fun <TState : ViewState<TModel, TDependency>, TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>, TRenderer : Renderer<TModel, TDependency, TState>, TLoop : Loop<TState, TModel, TArgs, TDependency, TAction>> renderState(
+inline fun <TState : ViewState<TModel, TDependency>, TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>, TRenderer : Renderer<TModel, TState>, TLoop : Loop<TState, TModel, TArgs, TDependency, TAction>> renderState(
     constructor: (model: TModel, renderer: TRenderer, args: TArgs?) -> TLoop,
     model: TModel,
     renderer: TRenderer,

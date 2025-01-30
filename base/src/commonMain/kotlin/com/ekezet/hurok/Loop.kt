@@ -26,7 +26,7 @@ import kotlin.coroutines.CoroutineContext
  */
 abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, in TArgs, TDependency, in TAction : Action<TModel, TDependency>>(
     model: TModel,
-    renderer: Renderer<TModel, TDependency, TState>,
+    renderer: Renderer<TModel, TState>,
     args: TArgs? = null,
     private val firstAction: TAction? = null,
     private val dependency: TDependency? = null,
