@@ -15,7 +15,7 @@ plugins {
 
 allprojects {
     group = "com.ekezet.hurok"
-    version = "2.0.0"
+    version = "2.0.1"
 }
 
 subprojects {

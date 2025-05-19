@@ -24,5 +24,8 @@ rootProject.name = "hurok"
 include(
     ":base",
     ":compose",
+    ":meta",
     ":test",
 )
+
+project(":meta").name = "all"
