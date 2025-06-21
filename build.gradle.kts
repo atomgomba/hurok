@@ -1,4 +1,5 @@
 import kotlinx.kover.gradle.plugin.dsl.GroupingEntityType
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     // trick: for the same plugin versions in all sub-modules
@@ -20,6 +21,12 @@ allprojects {
 
 subprojects {
     apply(plugin = rootProject.libs.plugins.dokka.get().pluginId)
+
+    tasks.withType<KotlinCompile> {
+        compilerOptions {
+            freeCompilerArgs.add("-Xexpect-actual-classes")
+        }
+    }
 }
 
 kover {
