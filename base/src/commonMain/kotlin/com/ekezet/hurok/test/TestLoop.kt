@@ -1,8 +1,8 @@
 package com.ekezet.hurok.test
 
 import com.ekezet.hurok.Action
-import com.ekezet.hurok.AnyActionEmitter
 import com.ekezet.hurok.Args
+import com.ekezet.hurok.DependencyContainer
 import com.ekezet.hurok.DispatcherProvider
 import com.ekezet.hurok.Effect
 import com.ekezet.hurok.Loop
@@ -35,7 +35,12 @@ data class TestArgs(val title: String, val foobar: Boolean? = null) : Args<TestM
 /**
  * Dependency used in library tests.
  */
-class TestDependency(var childEmitter: TestChildLoop? = null)
+class TestDependency(var childEmitter: TestChildLoop? = null) : DependencyContainer {
+    override fun plus(dependency: Any) = when (dependency) {
+        is TestChildLoop -> childEmitter = dependency
+        else -> Unit
+    }
+}
 
 /**
  * Action used in library tests.
@@ -64,12 +69,7 @@ class TestLoop(
     firstAction,
     dependency,
     effectContext,
-) {
-    override fun TestDependency.onAddChildEmitter(child: AnyActionEmitter) = when (child) {
-        is TestChildLoop -> childEmitter = child
-        else -> Unit
-    }
-}
+)
 
 /**
  * Child loop used in library tests.

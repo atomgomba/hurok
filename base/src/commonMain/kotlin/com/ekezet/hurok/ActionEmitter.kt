@@ -22,9 +22,7 @@ interface ActionEmitter<TModel : Any, TDependency> {
     /**
      * Add a child emitter on the dependency.
      */
-    fun <TChildModel : Any, TChildDependency> addChildEmitter(
-        child: ActionEmitter<TChildModel, TChildDependency>,
-    )
+    fun addChildEmitter(child: AnyActionEmitter) {}
 }
 
 /**

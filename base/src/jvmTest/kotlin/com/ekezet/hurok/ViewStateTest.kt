@@ -15,10 +15,6 @@ class ViewStateTest {
             override val scope: CoroutineScope
                 get() = TODO("Not yet implemented")
 
-            override fun <TChildModel : Any, TChildDependency> addChildEmitter(child: ActionEmitter<TChildModel, TChildDependency>) {
-                TODO("Not yet implemented")
-            }
-
             override fun emit(action: Action<TestModel, TestDependency>) {
                 expectedAction = action
             }

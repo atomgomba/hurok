@@ -1,6 +1,5 @@
 package com.ekezet.hurok
 
-import com.ekezet.hurok.test.CoverageIgnore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -60,12 +59,10 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
         }
     }
 
-    final override fun <TChildModel : Any, TChildDependency> addChildEmitter(
-        child: ActionEmitter<TChildModel, TChildDependency>,
-    ) {
-        requireNotNull(dependency) {
-            "Dependency must be set before adding a child emitter"
-        }.onAddChildEmitter(child)
+    final override fun addChildEmitter(child: AnyActionEmitter) {
+        requireNotNull(dependency as? DependencyContainer) {
+            "Dependency must implement DependencyContainer before adding a child emitter"
+        }.plus(child)
     }
 
     fun applyArgs(args: TArgs) {
@@ -84,11 +81,6 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
         scope.launch { actions.collect(::onNextAction) }
         firstAction?.let { emit(it) }
         return this
-    }
-
-    @CoverageIgnore
-    protected open fun TDependency.onAddChildEmitter(child: AnyActionEmitter) {
-        throw NotImplementedError("This method must be overridden to add child loops")
     }
 
     private suspend fun onNextAction(action: TAction) = coroutineScope {

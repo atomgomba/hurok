@@ -66,13 +66,6 @@ class EmitAsserter<TModel : Any, TDependency> internal constructor(
     fun assertNoActions(message: String? = null) {
         assertTrue(emitted.isEmpty(), message)
     }
-
-    @CoverageIgnore
-    override fun <TChildModel : Any, TChildDependency> addChildEmitter(
-        child: ActionEmitter<TChildModel, TChildDependency>,
-    ) {
-        // not used
-    }
 }
 
 /**
