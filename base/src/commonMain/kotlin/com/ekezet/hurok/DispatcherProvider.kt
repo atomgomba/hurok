@@ -14,3 +14,5 @@ expect object DispatcherProvider {
     val Default: CoroutineDispatcher
     val IO: CoroutineDispatcher
 }
+
+typealias Dispatchers = DispatcherProvider
