@@ -8,6 +8,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
@@ -24,22 +25,23 @@ import kotlin.coroutines.CoroutineContext
  * @param dependency dependency container
  * @param effectContext dispatcher for launching effects
  */
-abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, in TArgs, TDependency, in TAction : Action<TModel, TDependency>>(
+abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, in TArgs : Args<TModel>, TDependency, in TAction : Action<TModel, TDependency>>(
     model: TModel,
     renderer: Renderer<TModel, TState>,
     args: TArgs? = null,
     private val firstAction: TAction? = null,
     private val dependency: TDependency? = null,
-    private val effectContext: CoroutineContext = DispatcherProvider.IO,
+    private val effectContext: CoroutineContext = Dispatchers.IO,
 ) : ActionEmitter<TModel, TDependency> {
 
-    private val currentModel = MutableStateFlow(model.run {
-        args?.let { applyArgs(it) } ?: this
-    })
+    private val currentModel = MutableStateFlow(args?.applyToModel(model) ?: model)
 
-    val state: Flow<TState> = currentModel.map(renderer::renderState).onEach {
-        it.emitter = this
-    }
+    val state: Flow<TState> = currentModel
+        .map(renderer::renderState)
+        .distinctUntilChanged()
+        .onEach {
+            it.emitter = this
+        }
 
     private val actions = MutableSharedFlow<TAction>()
 
@@ -67,7 +69,7 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
     }
 
     fun applyArgs(args: TArgs) {
-        currentModel.update { currentModel.value.applyArgs(args) }
+        currentModel.update { args.applyToModel(it) }
     }
 
     /**
@@ -87,11 +89,6 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
     @CoverageIgnore
     protected open fun TDependency.onAddChildEmitter(child: AnyActionEmitter) {
         throw NotImplementedError("This method must be overridden to add child loops")
-    }
-
-    @CoverageIgnore
-    protected open fun TModel.applyArgs(args: TArgs): TModel {
-        throw NotImplementedError("This method must be overridden to apply arguments")
     }
 
     private suspend fun onNextAction(action: TAction) = coroutineScope {
