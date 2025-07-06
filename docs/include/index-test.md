@@ -57,4 +57,6 @@ class GameBoardEffectTest : EffectTest() {
 
 ## Testing the Renderer
 
-To unit test a [Renderer](com.ekezet.hurok.Renderer) prepare a model, instantiate the [Renderer](com.ekezet.hurok.Renderer) and call its [renderState()](com.ekezet.hurok.Renderer) method to get the expected state. Then you can use assert methods like `assertEquals()` on the result.
+To unit test a [Renderer](com.ekezet.hurok.Renderer) prepare a model, instantiate
+the [Renderer](com.ekezet.hurok.Renderer) and call its [renderState()](com.ekezet.hurok.Renderer) method to get the
+expected state. Then you can use assert methods like `assertEquals()` on the result.

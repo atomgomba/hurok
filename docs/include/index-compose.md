@@ -2,7 +2,8 @@
 
 # Utilities for using hurok with Compose Multiplatform
 
-This package contains the [LoopView] which can be used to attach a [Loop](com.ekezet.hurok.Loop) to a `@Composable` function. 
+This package contains the [LoopView] which can be used to attach a [Loop](com.ekezet.hurok.Loop) to a `@Composable`
+function.
 
 For example:
 
@@ -23,8 +24,11 @@ fun ScoreScreenView() {
 }
 ```
 
-In the above example `ScoreScreenLoop` is a [LoopBuilder](com.ekezet.hurok.LoopBuilder). A [LoopBuilder](com.ekezet.hurok.LoopBuilder)(com.ekezet.hurok.LoopBuilder) is used to create a [Loop](com.ekezet.hurok.Loop) by passing
-optional arguments and is needed to re-create the given [Loop](com.ekezet.hurok.Loop) when the function leaves the composition (e.g. a
+In the above example `ScoreScreenLoop` is a [LoopBuilder](com.ekezet.hurok.LoopBuilder).
+A [LoopBuilder](com.ekezet.hurok.LoopBuilder)(com.ekezet.hurok.LoopBuilder) is used to create
+a [Loop](com.ekezet.hurok.Loop) by passing
+optional arguments and is needed to re-create the given [Loop](com.ekezet.hurok.Loop) when the function leaves the
+composition (e.g. a
 configuration change).
 
 ```kotlin
@@ -55,4 +59,5 @@ class ScoreScreenLoop(
 }
 ```
 
-By creating a builder, the [Loop](com.ekezet.hurok.Loop) can be re-created by the UI with the given input arguments whenever necessary.
+By creating a builder, the [Loop](com.ekezet.hurok.Loop) can be re-created by the UI with the given input arguments
+whenever necessary.
