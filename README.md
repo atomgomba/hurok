@@ -124,7 +124,7 @@ dependencies {
     // library for using hurok with Compose Multiplatform
     implementation("com.ekezet.hurok:compose:2.0.1")
     // library for testing hurok-based applications
-    implementation("com.ekezet.hurok:test:2.0.1")
+    testImplementation("com.ekezet.hurok:test:2.0.1")
 }
 ```
 
@@ -140,12 +140,13 @@ hurok-compose = { group = "com.ekezet.hurok", name = "compsoe", version.ref = "h
 hurok-test = { group = "com.ekezet.hurok", name = "test", version.ref = "hurok" }
 
 [bundles]
-hurok = ["hurok-base", "hurok-compose", "hurok-test"]
+hurok = ["hurok-base", "hurok-compose"]
 ```
 
 ```kotlin
 dependencies {
     implementation(libs.bundles.hurok)
+    testImplementation(libs.hurok.test)
 }
 ```
 
