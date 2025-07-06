@@ -132,12 +132,21 @@ dependencies {
 
 ```toml
 [versions]
-hurok = "2.0.0
+hurok = "2.0.1"
 
 [libraries]
 hurok-base = { group = "com.ekezet.hurok", name = "base", version.ref = "hurok" }
 hurok-compose = { group = "com.ekezet.hurok", name = "compsoe", version.ref = "hurok" }
 hurok-test = { group = "com.ekezet.hurok", name = "test", version.ref = "hurok" }
+
+[bundles]
+hurok = ["hurok-base", "hurok-compose", "hurok-test"]
+```
+
+```kotlin
+dependencies {
+    implementation(libs.bundles.hurok)
+}
 ```
 
 ## Technologies
