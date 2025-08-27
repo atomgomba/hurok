@@ -1,16 +1,16 @@
 [versions]
-agp = "8.10.1"
+agp = "8.11.1"
 android-compileSdk = "36"
 android-minSdk = "24"
 cmp = "1.8.2"
-common-lifecycle = "2.9.1"
+common-lifecycle = "2.9.2"
 dokka = "2.0.0"
 dokka-mermaid = "0.6.0"
-junit5 = "5.13.1"
-kotlin = "2.1.21"
+junit5 = "5.13.4"
+kotlin = "2.2.10"
 kotlinx-coroutines = "1.10.2"
 kover = "0.9.1"
-maven-publish = "0.32.0"
+maven-publish = "0.34.0"
 
 [libraries]
 common-lifecycle-viewmodelCompose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "common-lifecycle" }

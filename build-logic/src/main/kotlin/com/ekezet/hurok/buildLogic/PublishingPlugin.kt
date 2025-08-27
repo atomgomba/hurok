@@ -1,11 +1,11 @@
 package com.ekezet.hurok.buildLogic
 
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
-import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 
+@Suppress("unused")
 class PublishingPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         pluginManager.apply(libs.findPlugin("mavenPublish").get().get().pluginId)
@@ -17,7 +17,7 @@ class PublishingPlugin : Plugin<Project> {
 }
 
 private fun MavenPublishBaseExtension.configurePublishing() {
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    publishToMavenCentral(automaticRelease = true)
 
     signAllPublications()
 
