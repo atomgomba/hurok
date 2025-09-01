@@ -41,6 +41,7 @@ import kotlinx.coroutines.CoroutineScope
  * @param parentEmitter parent emitter, usually another Loop instance
  * @param scope CoroutineScope for launching actions
  * @param key used for storing the ViewModel
+ * @param loopStateCollector can provide different methods for collecting Loop state
  * @param content composable function used by the Loop
  * @throws IllegalStateException when [builder] result is not a Loop instance
  */
@@ -53,6 +54,7 @@ inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs
     parentEmitter: AnyActionEmitter? = null,
     scope: CoroutineScope = rememberCoroutineScope(),
     key: String? = TModel::class.qualifiedName,
+    loopStateCollector: LoopStateCollector<TState, TModel, TArgs, TDependency, TAction> = LoopStateCollectors.Standard(),
     crossinline content: @Composable TState.() -> Unit,
 ) {
     val vm = createRetainedViewModel(builder = builder, args = args, key = key)
@@ -68,7 +70,7 @@ inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs
     }
 
     CompositionLocalProvider(LocalActionEmitter provides loop) {
-        val state by loop.collectAsState()
+        val state by loopStateCollector(loop)
         state.content()
     }
 }
