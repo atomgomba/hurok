@@ -1,5 +1,6 @@
 package com.ekezet.hurok
 
+import com.ekezet.hurok.test.CoverageIgnore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -24,7 +25,7 @@ import kotlin.coroutines.CoroutineContext
  * @param dependency dependency container
  * @param effectContext dispatcher for launching effects
  */
-abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, in TArgs : Args<TModel>, TDependency, in TAction : Action<TModel, TDependency>>(
+abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, in TArgs, TDependency, in TAction : Action<TModel, TDependency>>(
     model: TModel,
     renderer: Renderer<TModel, TState>,
     args: TArgs? = null,
@@ -33,7 +34,9 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
     private val effectContext: CoroutineContext = Dispatchers.IO,
 ) : ActionEmitter<TModel, TDependency> {
 
-    private val currentModel = MutableStateFlow(args?.applyToModel(model) ?: model)
+    private val currentModel = MutableStateFlow(model.run {
+        args?.let { applyArgs(it) } ?: this
+    })
 
     val state: Flow<TState> = currentModel
         .map(renderer::renderState)
@@ -66,7 +69,7 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
     }
 
     fun applyArgs(args: TArgs) {
-        currentModel.update { args.applyToModel(it) }
+        currentModel.update { currentModel.value.applyArgs(args) }
     }
 
     /**
@@ -81,6 +84,11 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
         scope.launch { actions.collect(::onNextAction) }
         firstAction?.let { emit(it) }
         return this
+    }
+
+    @CoverageIgnore
+    protected open fun TModel.applyArgs(args: TArgs): TModel {
+        throw NotImplementedError("This method must be overridden to apply arguments")
     }
 
     private suspend fun onNextAction(action: TAction) = coroutineScope {

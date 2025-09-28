@@ -9,7 +9,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import com.ekezet.hurok.Action
 import com.ekezet.hurok.AnyActionEmitter
-import com.ekezet.hurok.Args
 import com.ekezet.hurok.LoopBuilder
 import com.ekezet.hurok.ViewState
 import kotlinx.coroutines.CoroutineScope
@@ -48,7 +47,7 @@ import kotlinx.coroutines.CoroutineScope
 @Throws(IllegalStateException::class)
 @Composable
 @NonRestartableComposable
-inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs : Args<TModel>, TDependency, TAction : Action<TModel, TDependency>> LoopView(
+inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> LoopView(
     builder: @DisallowComposableCalls LoopBuilder<TState, TModel, TArgs, TDependency, TAction>,
     args: TArgs? = null,
     parentEmitter: AnyActionEmitter? = null,

@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import com.ekezet.hurok.Action
-import com.ekezet.hurok.Args
 import com.ekezet.hurok.Loop
 import com.ekezet.hurok.ViewState
 import com.ekezet.hurok.firstState
@@ -22,5 +21,5 @@ import com.ekezet.hurok.test.CoverageIgnore
  */
 @Composable
 @CoverageIgnore
-fun <TState : ViewState<TModel, TDependency>, TModel : Any, TArgs : Args<TModel>, TDependency, TAction : Action<TModel, TDependency>> Loop<TState, TModel, TArgs, TDependency, TAction>.collectAsState(): State<TState> =
+fun <TState : ViewState<TModel, TDependency>, TModel : Any, TArgs : TModel, TDependency, TAction : Action<TModel, TDependency>> Loop<TState, TModel, TArgs, TDependency, TAction>.collectAsState(): State<TState> =
     state.collectAsState(initial = firstState, context = scope.coroutineContext)

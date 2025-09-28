@@ -1,7 +1,6 @@
 package com.ekezet.hurok.test
 
 import com.ekezet.hurok.Action
-import com.ekezet.hurok.Args
 import com.ekezet.hurok.DependencyContainer
 import com.ekezet.hurok.DispatcherProvider
 import com.ekezet.hurok.Effect
@@ -27,10 +26,7 @@ data class TestState(val title: String) : ViewState<TestModel, TestDependency>()
 /**
  * Args used in library tests.
  */
-data class TestArgs(val title: String, val foobar: Boolean? = null) : Args<TestModel>() {
-    override fun applyToModel(model: TestModel): TestModel =
-        model.copy(title = title, foobar = foobar ?: model.foobar)
-}
+data class TestArgs(val title: String, val foobar: Boolean? = null)
 
 /**
  * Dependency used in library tests.
@@ -69,7 +65,10 @@ class TestLoop(
     firstAction,
     dependency,
     effectContext,
-)
+) {
+    override fun TestModel.applyArgs(args: TestArgs): TestModel =
+        copy(title = args.title, foobar = args.foobar ?: foobar)
+}
 
 /**
  * Child loop used in library tests.
