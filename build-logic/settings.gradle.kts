@@ -21,3 +21,5 @@ dependencyResolutionManagement {
         }
     }
 }
+
+include(":convention")

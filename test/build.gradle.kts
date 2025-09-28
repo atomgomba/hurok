@@ -1,26 +1,8 @@
-import com.ekezet.hurok.buildLogic.ProjectDefaults
-
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.kover)
-
-    id("hurok.publishing")
+    id("hurok.config")
 }
 
 kotlin {
-    applyDefaultHierarchyTemplate()
-
-    jvm()
-
-    androidTarget {
-        publishLibraryVariants("release", "debug")
-    }
-
-    compilerOptions {
-        jvmToolchain(ProjectDefaults.javaVersion.majorVersion.toInt())
-    }
-
     sourceSets {
         val androidMain by getting {
             dependencies {
@@ -46,25 +28,6 @@ kotlin {
     }
 }
 
-java {
-    targetCompatibility = ProjectDefaults.javaVersion
-    sourceCompatibility = ProjectDefaults.javaVersion
-}
-
-android {
-    namespace = "com.ekezet.hurok"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-    }
-
-    compileOptions {
-        sourceCompatibility = ProjectDefaults.javaVersion
-        targetCompatibility = ProjectDefaults.javaVersion
-    }
-}
-
 dokka {
     moduleName = "hurok-test"
     modulePath = "test"
@@ -72,8 +35,4 @@ dokka {
     dokkaSourceSets.configureEach {
         includes.from("${rootProject.rootDir}/docs/include/index-test.md")
     }
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
 }

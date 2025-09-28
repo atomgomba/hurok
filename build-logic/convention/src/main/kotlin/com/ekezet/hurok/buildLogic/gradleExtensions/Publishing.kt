@@ -1,28 +1,17 @@
-package com.ekezet.hurok.buildLogic
+package com.ekezet.hurok.buildLogic.gradleExtensions
 
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
-import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.configure
 
-@Suppress("unused")
-class PublishingPlugin : Plugin<Project> {
-    override fun apply(target: Project) = with(target) {
-        pluginManager.apply(libs.findPlugin("mavenPublish").get().get().pluginId)
-
-        extensions.configure<MavenPublishBaseExtension> {
-            configurePublishing()
-        }
-    }
-}
-
-private fun MavenPublishBaseExtension.configurePublishing() {
-    publishToMavenCentral(automaticRelease = true)
+internal fun MavenPublishBaseExtension.configure(target: Project) = with(target) {
+    publishToMavenCentral()
 
     signAllPublications()
 
+    coordinates(group.toString(), name, version.toString())
+
     pom {
-        name.set("hurok")
+        name.set("hurok framework")
         description.set("UDF application framework for Kotlin")
         url.set("https://github.com/atomgomba/hurok")
 

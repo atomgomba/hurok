@@ -22,7 +22,12 @@ kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotl
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
-mavenPublish-gradlePlugin = { group = "com.vanniktech", name = "gradle-maven-publish-plugin", version.ref = "maven-publish" }
+
+# :build-logic dependencies
+androidLibrary-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+kotlinMultiplatform-gradlePlugin = { module = "org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin", version.ref = "kotlin" }
+kover-gradlePlugin = { module = "org.jetbrains.kotlinx:kover-gradle-plugin", version.ref = "kover" }
+mavenPublish-gradlePlugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish" }
 
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "agp" }

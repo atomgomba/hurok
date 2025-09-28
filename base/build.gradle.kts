@@ -1,34 +1,8 @@
-import com.ekezet.hurok.buildLogic.ProjectDefaults
-
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.kover)
-
-    id("hurok.publishing")
-}
-
-dependencies {
-    testImplementation(platform(libs.junit5.bom))
-    testImplementation(libs.junit5.jupiter)
-    testRuntimeOnly(libs.junit5.platform)
-
-    dokkaPlugin(libs.dokka.mermaid)
+    id("hurok.config")
 }
 
 kotlin {
-    applyDefaultHierarchyTemplate()
-
-    jvm()
-
-    androidTarget {
-        publishLibraryVariants("release", "debug")
-    }
-
-    compilerOptions {
-        jvmToolchain(ProjectDefaults.javaVersion.majorVersion.toInt())
-    }
-
     sourceSets {
         val androidMain by getting {
             dependencies {
@@ -57,23 +31,12 @@ kotlin {
     }
 }
 
-java {
-    targetCompatibility = ProjectDefaults.javaVersion
-    sourceCompatibility = ProjectDefaults.javaVersion
-}
+dependencies {
+    testImplementation(platform(libs.junit5.bom))
+    testImplementation(libs.junit5.jupiter)
+    testRuntimeOnly(libs.junit5.platform)
 
-android {
-    namespace = "com.ekezet.hurok"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-    }
-
-    compileOptions {
-        sourceCompatibility = ProjectDefaults.javaVersion
-        targetCompatibility = ProjectDefaults.javaVersion
-    }
+    dokkaPlugin(libs.dokka.mermaid)
 }
 
 dokka {
@@ -83,8 +46,4 @@ dokka {
     dokkaSourceSets.configureEach {
         includes.from("${rootProject.rootDir}/docs/include/index-base.md")
     }
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
 }

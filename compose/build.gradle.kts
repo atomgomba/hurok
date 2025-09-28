@@ -1,29 +1,13 @@
-import com.ekezet.hurok.buildLogic.ProjectDefaults
 import org.jetbrains.compose.ExperimentalComposeLibrary
 
 plugins {
-    alias(libs.plugins.androidLibrary)
+    id("hurok.config")
+
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.kover)
-
-    id("hurok.publishing")
 }
 
 kotlin {
-    applyDefaultHierarchyTemplate()
-
-    jvm()
-
-    androidTarget {
-        publishLibraryVariants("release", "debug")
-    }
-
-    compilerOptions {
-        jvmToolchain(ProjectDefaults.javaVersion.majorVersion.toInt())
-    }
-
     sourceSets {
         val androidMain by getting {
             dependencies {
@@ -60,25 +44,6 @@ kotlin {
     }
 }
 
-java {
-    targetCompatibility = ProjectDefaults.javaVersion
-    sourceCompatibility = ProjectDefaults.javaVersion
-}
-
-android {
-    namespace = "com.ekezet.hurok"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-    }
-
-    compileOptions {
-        sourceCompatibility = ProjectDefaults.javaVersion
-        targetCompatibility = ProjectDefaults.javaVersion
-    }
-}
-
 dokka {
     moduleName = "hurok-compose"
     modulePath = "compose"
@@ -86,8 +51,4 @@ dokka {
     dokkaSourceSets.configureEach {
         includes.from("${rootProject.rootDir}/docs/include/index-compose.md")
     }
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
 }
