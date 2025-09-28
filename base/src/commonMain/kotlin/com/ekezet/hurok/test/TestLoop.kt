@@ -27,7 +27,7 @@ data class TestState(val title: String) : ViewState<TestModel, TestDependency>()
 /**
  * Args used in library tests.
  */
-data class TestArgs(val title: String, val foobar: Boolean? = null) : Args<TestModel> {
+data class TestArgs(val title: String, val foobar: Boolean? = null) : Args<TestModel>() {
     override fun applyToModel(model: TestModel): TestModel =
         model.copy(title = title, foobar = foobar ?: model.foobar)
 }

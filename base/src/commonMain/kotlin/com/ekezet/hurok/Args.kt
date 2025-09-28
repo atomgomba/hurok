@@ -5,6 +5,6 @@ package com.ekezet.hurok
  *
  * @param TModel
  */
-interface Args<TModel : Any> {
-    fun applyToModel(model: TModel): TModel
+abstract class Args<TModel : Any> {
+    internal abstract fun applyToModel(model: TModel): TModel
 }
