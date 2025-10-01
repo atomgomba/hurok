@@ -12,6 +12,7 @@ import androidx.compose.ui.test.runComposeUiTest
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
+import com.ekezet.hurok.Action.Next
 import com.ekezet.hurok.LoopBuilder
 import com.ekezet.hurok.test.TestAction
 import com.ekezet.hurok.test.TestArgs
@@ -171,6 +172,35 @@ class LoopViewKtTest {
         }
 
         assertIs<TestChildLoop>(testDependency.childEmitter)
+    }
+
+    @Test
+    fun `Correct state should be produced when action is emitted`() = runComposeUiTest {
+        val testLoopBuilder = createTestLoopBuilder(
+            model = TestModel(title = "Hello"),
+        )
+        var recompositions = 0
+
+        setContent {
+            CompositionLocalProvider(
+                LocalViewModelStoreOwner provides testViewModelStoreOwner
+            ) {
+                LoopView(
+                    builder = testLoopBuilder,
+                    content = {
+                        if (recompositions == 0) {
+                            assertEquals("Hello, World!", title)
+                        } else if (recompositions == 1) {
+                            assertEquals("Ciao, World!", title)
+                        }
+                        if (recompositions == 0) {
+                            emit(TestAction { Next(copy(title = "Ciao")) })
+                        }
+                        recompositions += 1
+                    },
+                )
+            }
+        }
     }
 
     private fun createTestLoopBuilder(
