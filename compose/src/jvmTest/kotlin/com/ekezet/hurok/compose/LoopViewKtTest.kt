@@ -95,7 +95,6 @@ class LoopViewKtTest {
 
         setContent {
             val args: Ref<TestArgs> = remember { Ref<TestArgs>().apply { value = testArgs } }
-            var recompose by remember { mutableStateOf(false) }
 
             CompositionLocalProvider(
                 LocalViewModelStoreOwner provides testViewModelStoreOwner
@@ -116,7 +115,6 @@ class LoopViewKtTest {
 
             LaunchedEffect(Unit) {
                 args.value = TestArgs(title = "Hey")
-                recompose = true
             }
         }
 
