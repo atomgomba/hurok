@@ -17,7 +17,7 @@ package com.ekezet.hurok
  * @param TModel the type of the [Loop] model
  * @param TState the concrete type of the resulting [ViewState]
  */
-fun interface Renderer<in TModel : Any, out TState : ViewState<*, *>> {
+fun interface Renderer<out TState : ViewState<*, *>, in TModel : Any> {
     /**
      * @param model current [Loop] model
      * @return a new state

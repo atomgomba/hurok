@@ -1,4 +1,4 @@
-package com.ekezet.hurok
+package com.ekezet.hurok.utils
 
 import com.ekezet.hurok.test.CoverageIgnore
 import kotlinx.coroutines.CoroutineDispatcher

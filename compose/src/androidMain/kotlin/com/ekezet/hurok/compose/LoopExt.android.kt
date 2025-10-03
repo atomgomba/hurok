@@ -6,8 +6,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ekezet.hurok.Action
 import com.ekezet.hurok.Loop
 import com.ekezet.hurok.ViewState
-import com.ekezet.hurok.firstState
 import com.ekezet.hurok.test.CoverageIgnore
+import com.ekezet.hurok.utils.firstState
 
 /**
  * Collects state values from this Loop as a State<TState> in a lifecycle aware manner.

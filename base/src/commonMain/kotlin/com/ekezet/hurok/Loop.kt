@@ -1,6 +1,6 @@
 package com.ekezet.hurok
 
-import com.ekezet.hurok.test.CoverageIgnore
+import com.ekezet.hurok.utils.Dispatchers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -27,15 +27,20 @@ import kotlin.coroutines.CoroutineContext
  */
 abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, in TArgs, TDependency, in TAction : Action<TModel, TDependency>>(
     model: TModel,
-    renderer: Renderer<TModel, TState>,
+    renderer: Renderer<TState, TModel>,
     args: TArgs? = null,
+    private val argsApplyer: ArgsApplyer<TModel, TArgs>? = null,
     private val onStart: ActionEmitter<TModel, TDependency>.() -> Unit = {},
     private val dependency: TDependency? = null,
     private val effectContext: CoroutineContext = Dispatchers.IO,
 ) : ActionEmitter<TModel, TDependency> {
 
     private val currentModel = MutableStateFlow(model.run {
-        args?.let { applyArgs(it) } ?: this
+        if (argsApplyer == null || args == null) {
+            this
+        } else {
+            with(argsApplyer) { applyArgs(args) }
+        }
     })
 
     val state: Flow<TState> = currentModel
@@ -68,8 +73,13 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
         }.plus(child)
     }
 
-    fun applyArgs(args: TArgs) {
-        currentModel.update { currentModel.value.applyArgs(args) }
+    fun applyArgs(args: TArgs & Any) {
+        requireNotNull(argsApplyer) { "argsApplyer must not be null" }
+        currentModel.update { model ->
+            with(argsApplyer) {
+                model.applyArgs(args)
+            }
+        }
     }
 
     /**
@@ -86,11 +96,6 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
         return this
     }
 
-    @CoverageIgnore
-    protected open fun TModel.applyArgs(args: TArgs): TModel {
-        throw NotImplementedError("This method must be overridden to apply arguments")
-    }
-
     private suspend fun onNextAction(action: TAction) = coroutineScope {
         val (updatedModel, triggeredEffects) = action.run { currentModel.value.proceed() }
         updatedModel?.let { new -> currentModel.update { new } }
@@ -102,3 +107,4 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
         }
     }
 }
+

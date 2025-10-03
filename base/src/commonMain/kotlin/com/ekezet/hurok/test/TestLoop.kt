@@ -2,12 +2,13 @@ package com.ekezet.hurok.test
 
 import com.ekezet.hurok.Action
 import com.ekezet.hurok.ActionEmitter
+import com.ekezet.hurok.ArgsApplyer
 import com.ekezet.hurok.DependencyContainer
-import com.ekezet.hurok.DispatcherProvider
 import com.ekezet.hurok.Effect
 import com.ekezet.hurok.Loop
 import com.ekezet.hurok.Renderer
 import com.ekezet.hurok.ViewState
+import com.ekezet.hurok.utils.DispatcherProvider
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -54,22 +55,20 @@ fun interface TestEffect : Effect<TestModel, TestDependency>
  */
 class TestLoop(
     model: TestModel,
-    renderer: Renderer<TestModel, TestState>,
+    renderer: Renderer<TestState, TestModel>,
     args: TestArgs? = null,
     onStart: ActionEmitter<TestModel, TestDependency>.() -> Unit = {},
     dependency: TestDependency? = null,
     effectContext: CoroutineContext = DispatcherProvider.IO,
 ) : Loop<TestState, TestModel, TestArgs, TestDependency, TestAction>(
-    model,
-    renderer,
-    args,
-    onStart,
-    dependency,
-    effectContext,
-) {
-    override fun TestModel.applyArgs(args: TestArgs): TestModel =
-        copy(title = args.title, foobar = args.foobar ?: foobar)
-}
+    model = model,
+    renderer = renderer,
+    args = args,
+    argsApplyer = ArgsApplyer { args -> copy(title = args.title, foobar = args.foobar ?: foobar) },
+    onStart = onStart,
+    dependency = dependency,
+    effectContext = effectContext,
+)
 
 /**
  * Child loop used in library tests.
@@ -77,16 +76,17 @@ class TestLoop(
 @CoverageIgnore
 class TestChildLoop(
     model: TestModel,
-    renderer: Renderer<TestModel, TestState>,
+    renderer: Renderer<TestState, TestModel>,
     args: TestArgs? = null,
     onStart: ActionEmitter<TestModel, TestDependency>.() -> Unit = {},
     dependency: TestDependency? = null,
     effectContext: CoroutineContext = DispatcherProvider.IO,
 ) : Loop<TestState, TestModel, TestArgs, TestDependency, TestAction>(
-    model,
-    renderer,
-    args,
-    onStart,
-    dependency,
-    effectContext,
+    model = model,
+    renderer = renderer,
+    args = args,
+    argsApplyer = null,
+    onStart = onStart,
+    dependency = dependency,
+    effectContext = effectContext,
 )
