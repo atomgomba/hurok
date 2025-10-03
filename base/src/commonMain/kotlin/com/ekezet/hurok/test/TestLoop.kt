@@ -1,6 +1,7 @@
 package com.ekezet.hurok.test
 
 import com.ekezet.hurok.Action
+import com.ekezet.hurok.ActionEmitter
 import com.ekezet.hurok.DependencyContainer
 import com.ekezet.hurok.DispatcherProvider
 import com.ekezet.hurok.Effect
@@ -55,14 +56,14 @@ class TestLoop(
     model: TestModel,
     renderer: Renderer<TestModel, TestState>,
     args: TestArgs? = null,
-    firstAction: TestAction? = null,
+    onStart: ActionEmitter<TestModel, TestDependency>.() -> Unit = {},
     dependency: TestDependency? = null,
     effectContext: CoroutineContext = DispatcherProvider.IO,
 ) : Loop<TestState, TestModel, TestArgs, TestDependency, TestAction>(
     model,
     renderer,
     args,
-    firstAction,
+    onStart,
     dependency,
     effectContext,
 ) {
@@ -78,14 +79,14 @@ class TestChildLoop(
     model: TestModel,
     renderer: Renderer<TestModel, TestState>,
     args: TestArgs? = null,
-    firstAction: TestAction? = null,
+    onStart: ActionEmitter<TestModel, TestDependency>.() -> Unit = {},
     dependency: TestDependency? = null,
     effectContext: CoroutineContext = DispatcherProvider.IO,
 ) : Loop<TestState, TestModel, TestArgs, TestDependency, TestAction>(
     model,
     renderer,
     args,
-    firstAction,
+    onStart,
     dependency,
     effectContext,
 )

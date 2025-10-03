@@ -73,7 +73,7 @@ class LoopTest {
             renderer = { model ->
                 TestState(title = "${model.title}, World!")
             },
-            firstAction = { next((copy(title = "Howdy"))) },
+            onStart = { emit(TestAction { next(copy(title = "Howdy")) }) },
         )
 
         val expectedState = TestState(
@@ -159,7 +159,7 @@ class LoopTest {
             renderer = { model ->
                 TestState(title = "${model.title}, World!")
             },
-            firstAction = testAction,
+            onStart = { emit(testAction) },
         )
 
         backgroundScope.launch(UnconfinedTestDispatcher()) {
@@ -197,7 +197,7 @@ class LoopTest {
             renderer = { model ->
                 TestState(title = "${model.title}, World!")
             },
-            firstAction = testAction,
+            onStart = { emit(testAction) },
         )
 
         backgroundScope.launch(UnconfinedTestDispatcher()) {

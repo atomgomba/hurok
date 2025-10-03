@@ -21,7 +21,7 @@ import kotlin.coroutines.CoroutineContext
  * @param model the initial model
  * @param renderer transform model into state
  * @param args input arguments
- * @param firstAction action to emit when loop is constructed
+ * @param onStart block to run when the loop starts
  * @param dependency dependency container
  * @param effectContext dispatcher for launching effects
  */
@@ -29,7 +29,7 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
     model: TModel,
     renderer: Renderer<TModel, TState>,
     args: TArgs? = null,
-    private val firstAction: TAction? = null,
+    private val onStart: ActionEmitter<TModel, TDependency>.() -> Unit = {},
     private val dependency: TDependency? = null,
     private val effectContext: CoroutineContext = Dispatchers.IO,
 ) : ActionEmitter<TModel, TDependency> {
@@ -82,7 +82,7 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
     fun startIn(scope: CoroutineScope): Loop<TState, TModel, TArgs, TDependency, TAction> {
         _scope = scope
         scope.launch { actions.collect(::onNextAction) }
-        firstAction?.let { emit(it) }
+        onStart()
         return this
     }
 
