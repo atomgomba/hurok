@@ -1,12 +1,12 @@
 [versions]
-agp = "8.11.1"
+agp = "8.12.3"
 android-compileSdk = "36"
 android-minSdk = "24"
 cmp = "1.9.0"
 common-lifecycle = "2.9.4"
 dokka = "2.0.0"
 dokka-mermaid = "0.6.0"
-junit5 = "5.13.4"
+junit5 = "6.0.0"
 kotlin = "2.2.20"
 kotlinx-coroutines = "1.10.2"
 kover = "0.9.2"
@@ -26,7 +26,7 @@ kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 # :build-logic dependencies
 androidLibrary-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlinMultiplatform-gradlePlugin = { module = "org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin", version.ref = "kotlin" }
-kover-gradlePlugin = { module = "org.jetbrains.kotlinx:kover-gradle-plugin", version.ref = "kover" }
+#kover-gradlePlugin = { module = "org.jetbrains.kotlinx:kover-gradle-plugin", version.ref = "kover" }
 mavenPublish-gradlePlugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish" }
 
 [plugins]
