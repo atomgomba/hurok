@@ -1,6 +1,5 @@
 package com.ekezet.hurok
 
-import com.ekezet.hurok.test.CoverageIgnore
 import com.ekezet.hurok.utils.Dispatchers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
@@ -21,6 +20,7 @@ import kotlin.coroutines.CoroutineContext
  * @param model the initial model
  * @param renderer transform model into state
  * @param args input arguments
+ * @param argsApplyer method to apply new args to the model
  * @param firstAction action to emit when loop is constructed
  * @param dependency dependency container
  * @param effectContext dispatcher for launching effects
@@ -29,14 +29,21 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
     model: TModel,
     renderer: Renderer<TState, TModel>,
     args: TArgs? = null,
+    private val argsApplyer: ArgsApplyer<TModel, TArgs>? = null,
     private val firstAction: TAction? = null,
     private val dependency: TDependency? = null,
     private val effectContext: CoroutineContext = Dispatchers.IO,
 ) : ActionEmitter<TModel, TDependency> {
 
-    private val currentModel = MutableStateFlow(model.run {
-        args?.let { applyArgs(it) } ?: this
-    })
+    private val currentModel = MutableStateFlow(
+        model.run {
+            if (argsApplyer == null || args == null) {
+                this
+            } else {
+                with(argsApplyer) { applyArgs(args) }
+            }
+        },
+    )
 
     val state: Flow<TState> = currentModel
         .map(renderer::renderState)
@@ -65,8 +72,18 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
         }.plus(child)
     }
 
-    fun applyArgs(args: TArgs) {
-        currentModel.update { currentModel.value.applyArgs(args) }
+    /**
+     * Apply new arguments to this loop.
+     *
+     * @param args new arguments
+     * @return the loop
+     * @throws IllegalStateException if [argsApplyer] is null
+     */
+    fun applyArgs(args: TArgs & Any): Loop<TState, TModel, TArgs, TDependency, TAction> = apply {
+        requireNotNull(argsApplyer) { "argsApplyer must not be null" }
+        currentModel.update { model ->
+            with(argsApplyer) { model.applyArgs(args) }
+        }
     }
 
     /**
@@ -81,11 +98,6 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
         scope.launch { actions.collect(::onNextAction) }
         firstAction?.let { emit(it) }
         return this
-    }
-
-    @CoverageIgnore
-    protected open fun TModel.applyArgs(args: TArgs): TModel {
-        throw NotImplementedError("This method must be overridden to apply arguments")
     }
 
     private suspend fun onNextAction(action: TAction) = coroutineScope {

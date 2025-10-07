@@ -1,6 +1,7 @@
 package com.ekezet.hurok.test
 
 import com.ekezet.hurok.Action
+import com.ekezet.hurok.ArgsApplyer
 import com.ekezet.hurok.DependencyContainer
 import com.ekezet.hurok.utils.DispatcherProvider
 import com.ekezet.hurok.Effect
@@ -58,16 +59,14 @@ class TestLoop(
     dependency: TestDependency? = null,
     effectContext: CoroutineContext = DispatcherProvider.IO,
 ) : Loop<TestState, TestModel, TestArgs, TestDependency, TestAction>(
-    model,
-    renderer,
-    args,
-    firstAction,
-    dependency,
-    effectContext,
-) {
-    override fun TestModel.applyArgs(args: TestArgs): TestModel =
-        copy(title = args.title, foobar = args.foobar ?: foobar)
-}
+    model = model,
+    renderer = renderer,
+    args = args,
+    argsApplyer = ArgsApplyer { args -> copy(title = args.title, foobar = args.foobar ?: foobar) },
+    firstAction = firstAction,
+    dependency = dependency,
+    effectContext = effectContext,
+)
 
 /**
  * Child loop used in library tests.
@@ -84,6 +83,7 @@ class TestChildLoop(
     model,
     renderer,
     args,
+    argsApplyer = null,
     firstAction,
     dependency,
     effectContext,
