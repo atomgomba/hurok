@@ -56,7 +56,7 @@ fun ScoreScreenView(args: ScoreScreenArgs?) {
     }
 }
 
-class ScoreScreenRenderer : Renderer<ScoreScreenModel, ScoreScreenState> {
+class ScoreScreenRenderer : Renderer<ScoreScreenState, ScoreScreenModel> {
     fun renderState(model: ScoreScreenModel) = with(model) {
         ScoreScreenState(
             playerName = if (user == null) "N/A" else user.nickname,

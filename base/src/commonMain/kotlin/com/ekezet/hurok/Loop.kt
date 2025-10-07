@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
@@ -28,7 +27,7 @@ import kotlin.coroutines.CoroutineContext
  */
 abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TAction : Action<TModel, TDependency>>(
     model: TModel,
-    renderer: Renderer<TModel, TState>,
+    renderer: Renderer<TState, TModel>,
     args: TArgs? = null,
     private val firstAction: TAction? = null,
     private val dependency: TDependency? = null,
