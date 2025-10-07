@@ -2,7 +2,7 @@ package com.ekezet.hurok.test
 
 import com.ekezet.hurok.Action
 import com.ekezet.hurok.DependencyContainer
-import com.ekezet.hurok.DispatcherProvider
+import com.ekezet.hurok.utils.DispatcherProvider
 import com.ekezet.hurok.Effect
 import com.ekezet.hurok.Loop
 import com.ekezet.hurok.Renderer

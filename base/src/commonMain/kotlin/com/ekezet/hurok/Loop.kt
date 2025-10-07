@@ -1,6 +1,7 @@
 package com.ekezet.hurok
 
 import com.ekezet.hurok.test.CoverageIgnore
+import com.ekezet.hurok.utils.Dispatchers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
