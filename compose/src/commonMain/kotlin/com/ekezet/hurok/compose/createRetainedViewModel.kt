@@ -28,7 +28,7 @@ inline fun <TState : Any, reified TModel : Any, TArgs, TDependency, TAction : Ac
                 @Suppress("UNCHECKED_CAST")
                 override fun <T : ViewModel> create(modelClass: KClass<T>, extras: CreationExtras): T {
                     val loop = builder.build(args)
-                    return LoopViewModel(loop = loop, args = args) as T
+                    return LoopViewModel(loop = loop) as T
                 }
             }
         },

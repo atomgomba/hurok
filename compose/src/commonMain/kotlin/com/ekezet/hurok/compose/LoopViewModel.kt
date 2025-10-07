@@ -11,10 +11,8 @@ import com.ekezet.hurok.test.CoverageIgnore
  * See [Common ViewModel](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-viewmodel.html).
  *
  * @property loop the Loop to store
- * @property args the last applied Loop arguments
  */
 @CoverageIgnore
 data class LoopViewModel<TState : Any, TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>>(
     val loop: Loop<TState, TModel, TArgs, TDependency, TAction>,
-    var args: TArgs?,
 ) : ViewModel()
