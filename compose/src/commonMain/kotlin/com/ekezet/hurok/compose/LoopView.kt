@@ -59,7 +59,9 @@ inline fun <TState : Any, reified TModel : Any, TArgs, TDependency, TAction : Ac
 
     val loop = remember(key1 = key) {
         parentEmitter?.addChildEmitter(vm.loop)
-        vm.loop.startIn(scope)
+        vm.loop.apply {
+            startIn(scope)
+        }
     }
 
     if (args != vm.args) {

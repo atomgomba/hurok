@@ -33,7 +33,6 @@ fun ScoreScreenView(args: ScoreScreenArgs?) {
     LoopView(
         builder = ScoreScreenLoop,
         args = args,
-        firstAction = OnLoopStart,
     ) { emit ->
         Column {
             if (isLoading) {

@@ -214,12 +214,10 @@ class LoopViewKtTest {
                 model = model,
                 renderer = { model -> TestState(title = "${model.title}, World!") },
                 args = args,
-                firstAction = null,
                 dependency = testDependency,
                 effectContext = UnconfinedTestDispatcher(),
             )
         }
-
 
     private fun createTestChildLoopBuilder() =
         LoopBuilder<TestState, TestModel, TestArgs, TestDependency, TestAction> { args ->
@@ -227,7 +225,6 @@ class LoopViewKtTest {
                 model = TestModel(),
                 renderer = { model -> TestState(title = "${model.title}, World!") },
                 args = args,
-                firstAction = null,
                 dependency = TestDependency(),
                 effectContext = UnconfinedTestDispatcher(),
             )
