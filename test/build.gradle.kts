@@ -4,24 +4,20 @@ plugins {
 
 kotlin {
     sourceSets {
-        val androidMain by getting {
-            dependencies {
-                implementation(libs.kotlinx.coroutines.android)
-            }
-        }
-
         val commonMain by getting {
             dependencies {
+                implementation(libs.kotlin.test)
                 implementation(libs.kotlinx.coroutines)
                 implementation(libs.kotlinx.coroutines.test)
-                implementation(libs.kotlin.test)
 
                 implementation(projects.base)
             }
         }
 
-        val jvmTest by getting {
+        val commonTest by getting {
             dependencies {
+                implementation(libs.kotlin.test)
+
                 implementation(projects.base)
             }
         }
