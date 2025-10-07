@@ -57,7 +57,7 @@ class LoopViewKtTest {
                 LoopView(
                     builder = testLoopBuilder,
                     content = {
-                        assertEquals("Hello, World!", title)
+                        assertEquals("Hello, World!", result)
                     },
                 )
             }
@@ -79,7 +79,7 @@ class LoopViewKtTest {
                     builder = testLoopBuilder,
                     args = testArgs,
                     content = {
-                        assertEquals("Howdy, World!", title)
+                        assertEquals("Howdy, World!", result)
                     },
                 )
             }
@@ -105,9 +105,9 @@ class LoopViewKtTest {
                     args = args.value,
                     content = {
                         if (recompositions == 0) {
-                            assertEquals("Howdy, World!", title)
+                            assertEquals("Howdy, World!", result)
                         } else if (recompositions == 1) {
-                            assertEquals("Hey, World!", title)
+                            assertEquals("Hey, World!", result)
                         }
                         recompositions += 1
                     },
@@ -139,7 +139,7 @@ class LoopViewKtTest {
                     builder = testLoopBuilder,
                     args = args,
                     content = {
-                        assertEquals("Howdy, World!", title)
+                        assertEquals("Howdy, World!", result)
                     },
                 )
             }
@@ -189,9 +189,9 @@ class LoopViewKtTest {
                     builder = testLoopBuilder,
                     content = { emit ->
                         if (recompositions == 0) {
-                            assertEquals("Hello, World!", title)
+                            assertEquals("Hello, World!", result)
                         } else if (recompositions == 1) {
-                            assertEquals("Ciao, World!", title)
+                            assertEquals("Ciao, World!", result)
                         }
                         if (recompositions == 0) {
                             emit(TestAction { Next(copy(title = "Ciao")) })
@@ -212,7 +212,7 @@ class LoopViewKtTest {
         LoopBuilder<TestState, TestModel, TestArgs, TestDependency, TestAction> { args ->
             TestLoop(
                 model = model,
-                renderer = { model -> TestState(title = "${model.title}, World!") },
+                renderer = { model -> TestState(result = "${model.title}, World!") },
                 args = args,
                 dependency = testDependency,
                 effectContext = UnconfinedTestDispatcher(),
@@ -223,7 +223,7 @@ class LoopViewKtTest {
         LoopBuilder<TestState, TestModel, TestArgs, TestDependency, TestAction> { args ->
             TestChildLoop(
                 model = TestModel(),
-                renderer = { model -> TestState(title = "${model.title}, World!") },
+                renderer = { model -> TestState(result = "${model.title}, World!") },
                 args = args,
                 dependency = TestDependency(),
                 effectContext = UnconfinedTestDispatcher(),
