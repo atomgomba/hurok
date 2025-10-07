@@ -6,7 +6,6 @@ import com.ekezet.hurok.utils.DispatcherProvider
 import com.ekezet.hurok.Effect
 import com.ekezet.hurok.Loop
 import com.ekezet.hurok.Renderer
-import com.ekezet.hurok.ViewState
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -21,7 +20,7 @@ data class TestModel(val title: String = "", val foobar: Boolean = false)
 /**
  * State used in library tests.
  */
-data class TestState(val title: String) : ViewState<TestModel, TestDependency>()
+data class TestState(val title: String)
 
 /**
  * Args used in library tests.

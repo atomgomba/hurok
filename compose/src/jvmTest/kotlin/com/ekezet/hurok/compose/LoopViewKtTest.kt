@@ -187,7 +187,7 @@ class LoopViewKtTest {
             ) {
                 LoopView(
                     builder = testLoopBuilder,
-                    content = {
+                    content = { emit ->
                         if (recompositions == 0) {
                             assertEquals("Hello, World!", title)
                         } else if (recompositions == 1) {
@@ -196,6 +196,9 @@ class LoopViewKtTest {
                         if (recompositions == 0) {
                             emit(TestAction { Next(copy(title = "Ciao")) })
                         }
+                        // FIXME: Suppressed false positive, will be fixed in Kotlin 2.3.0
+                        // see: https://youtrack.jetbrains.com/projects/KT/issues/KT-78881/K2-False-positive-Assigned-value-is-never-read-in-composable-function
+                        @Suppress("AssignedValueIsNeverRead")
                         recompositions += 1
                     },
                 )

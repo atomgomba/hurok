@@ -10,14 +10,13 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ekezet.hurok.Action
 import com.ekezet.hurok.LoopBuilder
-import com.ekezet.hurok.ViewState
 import com.ekezet.hurok.test.CoverageIgnore
 import kotlin.reflect.KClass
 
 @Composable
 @NonRestartableComposable
 @CoverageIgnore
-inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> createRetainedViewModel(
+inline fun <TState : Any, reified TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> createRetainedViewModel(
     builder: @DisallowComposableCalls LoopBuilder<TState, TModel, TArgs, TDependency, TAction>,
     args: TArgs? = null,
     key: String? = TModel::class.qualifiedName,

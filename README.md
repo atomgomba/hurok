@@ -26,7 +26,7 @@ data class ScoreScreenState(
     val score: String,
     val isLoading: Boolean,
     val errorMessage: String?,
-) : ViewState<ScoreScreenModel, ScoreScreenDependency>
+)
 
 @Composable
 fun ScoreScreenView(args: ScoreScreenArgs?) {
@@ -34,7 +34,7 @@ fun ScoreScreenView(args: ScoreScreenArgs?) {
         builder = ScoreScreenLoop,
         args = args,
         firstAction = OnLoopStart,
-    ) {
+    ) { emit ->
         Column {
             if (isLoading) {
                 Text("Loading...")
@@ -96,14 +96,14 @@ data class UpdateScore(val userId: String) : ScoreScreenEffect {
 
 ## Parts
 
-| Name      | Description                                        |
-|-----------|----------------------------------------------------|
-| Model     | Holds data for business logic                      |
-| ViewState | UI state derived from the `Model`                  |
-| Renderer  | Uses the `Model` to create new `State` for the UI  |
-| Action    | Mutates the `Model` and can trigger (any) `Effect` |
-| Effect    | Does background work and triggers (any) `Action`   |
-| Loop      | Handles `Action` and `Effect`                      |
+| Name     | Description                                        |
+|----------|----------------------------------------------------|
+| State    | Loop state derived from the `Model`                |
+| Model    | Holds data for business logic                      |
+| Renderer | Uses the `Model` to create new `State` for the UI  |
+| Action   | Mutates the `Model` and can trigger (any) `Effect` |
+| Effect   | Does background work and triggers (any) `Action`   |
+| Loop     | Glue that holds the parts together                 |
 
 ## Using hurok with Gradle
 

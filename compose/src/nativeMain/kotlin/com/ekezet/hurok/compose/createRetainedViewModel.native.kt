@@ -9,7 +9,7 @@ import com.ekezet.hurok.ViewState
 
 @Composable
 @NonRestartableComposable
-actual inline fun <TState : ViewState<TModel, TDependency>, reified TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> createRetainedViewModel(
+actual inline fun <TState : Any, reified TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> createRetainedViewModel(
     builder: @DisallowComposableCalls LoopBuilder<TState, TModel, TArgs, TDependency, TAction>,
     args: TArgs?,
     key: String?,

@@ -26,7 +26,7 @@ import kotlin.coroutines.CoroutineContext
  * @param dependency dependency container
  * @param effectContext dispatcher for launching effects
  */
-abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, in TArgs, TDependency, in TAction : Action<TModel, TDependency>>(
+abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TAction : Action<TModel, TDependency>>(
     model: TModel,
     renderer: Renderer<TModel, TState>,
     args: TArgs? = null,
@@ -42,9 +42,6 @@ abstract class Loop<out TState : ViewState<TModel, TDependency>, TModel : Any, i
     val state: Flow<TState> = currentModel
         .map(renderer::renderState)
         .distinctUntilChanged()
-        .onEach {
-            it.emitter = this
-        }
 
     private val actions = MutableSharedFlow<TAction>()
 
