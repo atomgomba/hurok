@@ -10,3 +10,14 @@ fun interface LoopBuilder<out TState : Any, TModel : Any, in TArgs, TDependency,
      */
     fun build(args: TArgs?): Loop<TState, TModel, TArgs, TDependency, TAction>
 }
+
+/**
+ * @return a [LoopBuilder] for an existing loop (this)
+ */
+@Suppress("UNCHECKED_CAST")
+fun <TState : Any, TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>, TLoopBuilder : LoopBuilder<TState, TModel, TArgs, TDependency, TAction>> Loop<TState, TModel, TArgs, TDependency, TAction>.asBuilder(): TLoopBuilder =
+    (LoopBuilder<TState, TModel, TArgs, TDependency, TAction> { args: TArgs? ->
+        this@asBuilder.apply {
+            args?.let(::applyArgs)
+        }
+    }) as TLoopBuilder
