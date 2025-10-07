@@ -49,6 +49,9 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
         },
     )
 
+    /**
+     * The current state produced by this loop
+     */
     val state: Flow<TState> = currentModel
         .map(renderer::renderState)
         .distinctUntilChanged()
