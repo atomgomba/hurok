@@ -24,9 +24,7 @@ import com.ekezet.hurok.test.CoverageIgnore
  *
  * @param TModel the type of the [Loop] model
  * @param TDependency the type of the [Loop]'s dependency
- * @see mutate
  * @see next
- * @see outcome
  * @see skip
  * @see trigger
  */
@@ -94,7 +92,7 @@ val <TModel : Any, TDependency> Action<TModel, TDependency>.skip: Next<TModel, T
  */
 @Suppress("UnusedReceiverParameter")
 @CoverageIgnore
-fun <TModel : Any, TDependency> Action<TModel, TDependency>.outcome(
+fun <TModel : Any, TDependency> Action<TModel, TDependency>.next(
     model: TModel? = null,
     vararg effects: Effect<TModel, TDependency>,
 ): Next<TModel, TDependency> =
@@ -102,23 +100,6 @@ fun <TModel : Any, TDependency> Action<TModel, TDependency>.outcome(
         model = model,
         effects = effects.toSet(),
     )
-
-/**
- * Shorthand for returning an action result with optional model changes only.
- *
- * For example:
- *
- * ```kotlin
- * data object OnDetailsExpandClick : HelpScreenAction {
- *     override fun HelpScreenModel.proceed() =
- *         mutate(copy(showDetails = !showDetails))
- * }
- * ```
- */
-@Suppress("UnusedReceiverParameter")
-@CoverageIgnore
-fun <TModel : Any, TDependency> Action<TModel, TDependency>.mutate(model: TModel? = null): Next<TModel, TDependency> =
-    Next(model = model)
 
 /**
  * Shorthand for returning an action result with triggered effects only.

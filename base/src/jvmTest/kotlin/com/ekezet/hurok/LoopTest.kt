@@ -110,7 +110,7 @@ class LoopTest {
     }
 
     @Test
-    fun `Renderer should produce expected state when mutate Action emitted`() = runTest {
+    fun `Renderer should produce expected state when next Action emitted`() = runTest {
         val testModel = TestModel(title = "Hello")
 
         val subject = TestLoop(
@@ -145,7 +145,7 @@ class LoopTest {
             override suspend fun ActionEmitter<TestModel, TestDependency>.trigger(dependency: TestDependency?) =
                 emit(object : TestAction {
                     override fun TestModel.proceed() =
-                        mutate(copy(title = "Triggered"))
+                        next(copy(title = "Triggered"))
                 })
         }
         val testAction = object : TestAction {
@@ -183,12 +183,12 @@ class LoopTest {
             override suspend fun ActionEmitter<TestModel, TestDependency>.trigger(dependency: TestDependency?) =
                 emit(object : TestAction {
                     override fun TestModel.proceed() =
-                        mutate(copy(title = "Triggered"))
+                        next(copy(title = "Triggered"))
                 })
         }
         val testAction = object : TestAction {
             override fun TestModel.proceed() =
-                outcome(copy(), testEffect)
+                next(copy(), testEffect)
         }
 
         val subject = TestLoop(
@@ -215,12 +215,12 @@ class LoopTest {
     }
 
     @Test
-    fun `Renderer should produce expected state when args applied and mutate Action emitted`() = runTest {
+    fun `Renderer should produce expected state when args applied and next Action emitted`() = runTest {
         val testModel = TestModel(title = "Hello")
         val testArgs = TestArgs(title = "Hey", foobar = true)
         val testAction = object : TestAction {
             override fun TestModel.proceed() =
-                mutate(copy(title = "Howdy"))
+                next(copy(title = "Howdy"))
         }
 
         val subject = TestLoop(

@@ -1,7 +1,7 @@
 package com.ekezet.hurok.test
 
 import com.ekezet.hurok.ActionEmitter
-import com.ekezet.hurok.mutate
+import com.ekezet.hurok.next
 import com.ekezet.hurok.skip
 import com.ekezet.hurok.trigger
 import kotlin.test.Test
@@ -25,7 +25,7 @@ class ActionTestingKtTest {
         val testModel = TestModel()
         val testAction = object : TestAction {
             override fun TestModel.proceed() =
-                mutate(copy())
+                next(copy())
         }
 
         assertFailsWith(AssertionError::class) {
@@ -40,7 +40,7 @@ class ActionTestingKtTest {
         val testModel = TestModel()
         val testAction = object : TestAction {
             override fun TestModel.proceed() =
-                mutate(copy())
+                next(copy())
         }
 
         testModel after testAction matches {
@@ -53,7 +53,7 @@ class ActionTestingKtTest {
         val testModel = TestModel()
         val testAction = object : TestAction {
             override fun TestModel.proceed() =
-                mutate(null)
+                next(null)
         }
 
         assertFailsWith(AssertionError::class) {
@@ -68,7 +68,7 @@ class ActionTestingKtTest {
         val testModel = TestModel()
         val testAction = object : TestAction {
             override fun TestModel.proceed() =
-                mutate(copy())
+                next(copy())
         }
 
         assertFailsWith(AssertionError::class) {
@@ -82,7 +82,7 @@ class ActionTestingKtTest {
         val testModel = TestModel()
         val testEffects = arrayOf(
             object : TestEffect {
-                override suspend fun ActionEmitter<TestModel, TestDependency>.trigger(dependency: TestDependency?): Any? {
+                override suspend fun ActionEmitter<TestModel, TestDependency>.trigger(dependency: TestDependency?): Any {
                     TODO("Not yet implemented")
                 }
             }
@@ -102,14 +102,14 @@ class ActionTestingKtTest {
         val testModel = TestModel()
         val testEffects = arrayOf(
             object : TestEffect {
-                override suspend fun ActionEmitter<TestModel, TestDependency>.trigger(dependency: TestDependency?): Any? {
+                override suspend fun ActionEmitter<TestModel, TestDependency>.trigger(dependency: TestDependency?): Any {
                     TODO("Not yet implemented")
                 }
             }
         )
         val testAction = object : TestAction {
             override fun TestModel.proceed() =
-                mutate(copy())
+                next(copy())
         }
 
         assertFailsWith(AssertionError::class) {
@@ -124,7 +124,7 @@ class ActionTestingKtTest {
         val testModel = TestModel()
         val testEffects = arrayOf(
             object : TestEffect {
-                override suspend fun ActionEmitter<TestModel, TestDependency>.trigger(dependency: TestDependency?): Any? {
+                override suspend fun ActionEmitter<TestModel, TestDependency>.trigger(dependency: TestDependency?): Any {
                     TODO("Not yet implemented")
                 }
             }
@@ -157,7 +157,7 @@ class ActionTestingKtTest {
         val testModel = TestModel()
         val testAction = object : TestAction {
             override fun TestModel.proceed() =
-                mutate(copy())
+                next(copy())
         }
 
         assertFailsWith(AssertionError::class) {
@@ -172,7 +172,7 @@ class ActionTestingKtTest {
         val testModel = TestModel()
         val testAction = object : TestAction {
             override fun TestModel.proceed() =
-                mutate(null)
+                next(null)
         }
 
         testModel after testAction matches {
@@ -185,7 +185,7 @@ class ActionTestingKtTest {
         val testModel = TestModel()
         val testEffects = arrayOf(
             object : TestEffect {
-                override suspend fun ActionEmitter<TestModel, TestDependency>.trigger(dependency: TestDependency?): Any? {
+                override suspend fun ActionEmitter<TestModel, TestDependency>.trigger(dependency: TestDependency?): Any {
                     TODO("Not yet implemented")
                 }
             }
