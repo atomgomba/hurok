@@ -23,7 +23,7 @@ data class TestModel(val title: String = "", val foobar: Boolean = false)
 /**
  * State used in library tests.
  */
-data class TestState(val title: String)
+data class TestState(val result: String)
 
 /**
  * Args used in library tests.

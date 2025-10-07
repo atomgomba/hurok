@@ -28,12 +28,12 @@ class LoopTest {
         val subject = TestLoop(
             model = testModel,
             renderer = { model ->
-                TestState(title = "${model.title}, World!")
+                TestState(result = "${model.title}, World!")
             },
         )
 
         val expectedState = TestState(
-            title = "Hello, World!",
+            result = "Hello, World!",
         )
 
         backgroundScope.launch(UnconfinedTestDispatcher()) {
@@ -49,13 +49,13 @@ class LoopTest {
         val subject = TestLoop(
             model = testModel,
             renderer = { model ->
-                TestState(title = "${model.title}, World!")
+                TestState(result = "${model.title}, World!")
             },
             args = testArgs,
         )
 
         val expectedState = TestState(
-            title = "Hey, World!",
+            result = "Hey, World!",
         )
 
         backgroundScope.launch(UnconfinedTestDispatcher()) {
@@ -70,13 +70,13 @@ class LoopTest {
         val subject = TestLoop(
             model = testModel,
             renderer = { model ->
-                TestState(title = "${model.title}, World!")
+                TestState(result = "${model.title}, World!")
             },
             onStart = { emit(TestAction { next(copy(title = "Howdy")) }) },
         )
 
         val expectedState = TestState(
-            title = "Howdy, World!",
+            result = "Howdy, World!",
         )
 
         backgroundScope.launch(UnconfinedTestDispatcher()) {
@@ -94,7 +94,7 @@ class LoopTest {
         val subject = TestLoop(
             model = testModel,
             renderer = { model ->
-                TestState(title = "${model.title}, World!")
+                TestState(result = "${model.title}, World!")
             },
         )
 
@@ -103,7 +103,7 @@ class LoopTest {
         val state = subject.state.first()
 
         val expectedState = TestState(
-            title = "Hey, World!",
+            result = "Hey, World!",
         )
 
         assertEquals(expectedState, state)
@@ -116,7 +116,7 @@ class LoopTest {
         val subject = TestLoop(
             model = testModel,
             renderer = { model ->
-                TestState(title = "${model.title}, World!")
+                TestState(result = "${model.title}, World!")
             },
         )
 
@@ -128,7 +128,7 @@ class LoopTest {
         }
 
         val expectedState = TestState(
-            title = "Foobar, World!",
+            result = "Foobar, World!",
         )
 
         backgroundScope.launch(UnconfinedTestDispatcher()) {
@@ -156,7 +156,7 @@ class LoopTest {
         val subject = TestLoop(
             model = testModel,
             renderer = { model ->
-                TestState(title = "${model.title}, World!")
+                TestState(result = "${model.title}, World!")
             },
             onStart = { emit(testAction) },
         )
@@ -166,7 +166,7 @@ class LoopTest {
         }
 
         val expectedState = TestState(
-            title = "Triggered, World!",
+            result = "Triggered, World!",
         )
 
         backgroundScope.launch(UnconfinedTestDispatcher()) {
@@ -194,7 +194,7 @@ class LoopTest {
         val subject = TestLoop(
             model = testModel,
             renderer = { model ->
-                TestState(title = "${model.title}, World!")
+                TestState(result = "${model.title}, World!")
             },
             onStart = { emit(testAction) },
         )
@@ -204,7 +204,7 @@ class LoopTest {
         }
 
         val expectedState = TestState(
-            title = "Triggered, World!",
+            result = "Triggered, World!",
         )
 
         backgroundScope.launch(UnconfinedTestDispatcher()) {
@@ -227,7 +227,7 @@ class LoopTest {
             model = testModel,
             renderer = { model ->
                 TestState(
-                    title = if (model.foobar) "Foobar, World!" else "${model.title}, World!",
+                    result = if (model.foobar) "Foobar, World!" else "${model.title}, World!",
                 )
             },
             args = testArgs,
@@ -239,7 +239,7 @@ class LoopTest {
         }
 
         val expectedState = TestState(
-            title = "Foobar, World!",
+            result = "Foobar, World!",
         )
 
         backgroundScope.launch(UnconfinedTestDispatcher()) {
@@ -258,7 +258,7 @@ class LoopTest {
 
         val subject = TestLoop(
             model = testModel,
-            renderer = { TestState(title = "") },
+            renderer = { TestState(result = "") },
         )
 
         backgroundScope.launch(UnconfinedTestDispatcher()) {
@@ -274,12 +274,12 @@ class LoopTest {
 
         val subject = TestLoop(
             model = testModel,
-            renderer = { TestState(title = "") },
+            renderer = { TestState(result = "") },
         )
 
         val childEmitter = TestChildLoop(
             model = testModel,
-            renderer = { TestState(title = "") },
+            renderer = { TestState(result = "") },
         )
 
         assertFailsWith(IllegalArgumentException::class) {
@@ -294,13 +294,13 @@ class LoopTest {
 
         val subject = TestLoop(
             model = testModel,
-            renderer = { TestState(title = "") },
+            renderer = { TestState(result = "") },
             dependency = testDependency,
         )
 
         val childEmitter = TestChildLoop(
             model = testModel,
-            renderer = { TestState(title = "") },
+            renderer = { TestState(result = "") },
         )
 
         childEmitter.attachTo(subject)

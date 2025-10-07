@@ -13,10 +13,10 @@ class RenderStateTest {
         val testModel = TestModel(title = "Hello")
 
         val expectedState = TestState(
-            title = "Hello, World!",
+            result = "Hello, World!",
         )
 
-        val state = renderState(::TestLoop, testModel, Renderer { TestState(title = it.title + ", World!") })
+        val state = renderState(::TestLoop, testModel, Renderer { TestState(result = it.title + ", World!") })
 
         assertEquals(expectedState, state)
     }
