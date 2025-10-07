@@ -36,7 +36,7 @@ import kotlinx.coroutines.CoroutineScope
  *
  * @param builder used to create the underlying Loop
  * @param args arguments to pass to the Loop when created or to apply when the Loop already exists
- * @param parentEmitter parent emitter, usually another Loop instance
+ * @param childOf set of loops that serve as parents for this loop
  * @param scope CoroutineScope for launching actions
  * @param key used for storing the ViewModel
  * @param loopStateCollector can provide different methods for collecting Loop state
@@ -49,7 +49,7 @@ import kotlinx.coroutines.CoroutineScope
 inline fun <TState : Any, reified TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> LoopView(
     builder: @DisallowComposableCalls LoopBuilder<TState, TModel, TArgs, TDependency, TAction>,
     args: TArgs? = null,
-    parentEmitter: AnyActionEmitter? = null,
+    childOf: Set<AnyActionEmitter> = emptySet(),
     scope: CoroutineScope = rememberCoroutineScope(),
     key: String? = TModel::class.qualifiedName,
     loopStateCollector: LoopStateCollector<TState, TModel, TArgs, TDependency, TAction> = LoopStateCollectors.Standard(),
@@ -58,8 +58,8 @@ inline fun <TState : Any, reified TModel : Any, TArgs, TDependency, TAction : Ac
     val vm = createRetainedViewModel(builder = builder, args = args, key = key)
 
     val loop = remember(key1 = key) {
-        parentEmitter?.addChildEmitter(vm.loop)
         vm.loop.apply {
+            childOf.forEach(::attachTo)
             startIn(scope)
         }
     }

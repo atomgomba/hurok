@@ -163,7 +163,7 @@ class LoopViewKtTest {
             ) {
                 LoopView(
                     builder = testChildLoopBuilder,
-                    parentEmitter = testLoop,
+                    childOf = setOf(testLoop),
                     content = {
                         // do nothing
                     },

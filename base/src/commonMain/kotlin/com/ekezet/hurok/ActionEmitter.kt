@@ -1,28 +1,16 @@
 package com.ekezet.hurok
 
-import kotlinx.coroutines.CoroutineScope
-
 /**
  * Interface for [Action] emitters.
  *
  * @param TModel the type of the [Loop] model
  * @param TDependency the type of the [Loop]'s dependency
  */
-interface ActionEmitter<TModel : Any, TDependency> {
+fun interface ActionEmitter<TModel : Any, TDependency> {
     /**
-     * Scope used for emission.
-     */
-    val scope: CoroutineScope
-
-    /**
-     * Emit an action for the [Loop] using the given [scope].
+     * Emit an action to change the state or trigger an effect.
      */
     fun emit(action: Action<TModel, TDependency>)
-
-    /**
-     * Add a child emitter on the dependency.
-     */
-    fun addChildEmitter(child: AnyActionEmitter) {}
 }
 
 /**
