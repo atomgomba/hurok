@@ -2,7 +2,7 @@ package com.ekezet.hurok.test
 
 import com.ekezet.hurok.Action.Next
 import com.ekezet.hurok.ActionEmitter
-import com.ekezet.hurok.mutate
+import com.ekezet.hurok.next
 import com.ekezet.hurok.skip
 import com.ekezet.hurok.trigger
 import kotlin.test.Test
@@ -30,7 +30,7 @@ class NextAsserterTest {
         val testModel = TestModel()
         val testAction = object : TestAction {
             override fun TestModel.proceed(): Next<TestModel, TestDependency> =
-                mutate(copy(title = "Mutated"))
+                next(copy(title = "Mutated"))
 
         }
 
@@ -50,7 +50,7 @@ class NextAsserterTest {
         val testModel = TestModel()
         val testEffects = arrayOf(
             object : TestEffect {
-                override suspend fun ActionEmitter<TestModel, TestDependency>.trigger(dependency: TestDependency?): Any? {
+                override suspend fun ActionEmitter<TestModel, TestDependency>.trigger(dependency: TestDependency?): Any {
                     TODO("Not yet implemented")
                 }
             }
@@ -75,7 +75,7 @@ class NextAsserterTest {
         val testModel = TestModel()
         val testAction = object : TestAction {
             override fun TestModel.proceed(): Next<TestModel, TestDependency> =
-                mutate(null)
+                next(null)
 
         }
 
@@ -93,7 +93,7 @@ class NextAsserterTest {
         val testModel = TestModel()
         val testAction = object : TestAction {
             override fun TestModel.proceed(): Next<TestModel, TestDependency> =
-                mutate(copy())
+                next(copy())
 
         }
 

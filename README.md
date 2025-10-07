@@ -68,17 +68,17 @@ class ScoreScreenRenderer : Renderer<ScoreScreenState, ScoreScreenModel> {
 
 data object OnUpdateScoreClick : ScoreScreenAction {
     override fun ScoreScreenModel.proceed() =
-        outcome(copy(isLoading = true, throwable = null), UpdateScore(user.id))
+        next(copy(isLoading = true, throwable = null), UpdateScore(user.id))
 }
 
 data class UpdateScoreSuccess(val user: User) : ScoreScreenAction {
     override fun ScoreScreenModel.proceed() =
-        mutate(copy(user = user, isLoading = false))
+        next(copy(user = user, isLoading = false))
 }
 
 data class UpdateScoreError(val throwable: Throwable) : ScoreScreenAction {
     override fun ScoreScreenModel.proceed() =
-        mutate(copy(throwable = throwable, isLoading = false))
+        next(copy(throwable = throwable, isLoading = false))
 }
 
 data class UpdateScore(val userId: String) : ScoreScreenEffect {
