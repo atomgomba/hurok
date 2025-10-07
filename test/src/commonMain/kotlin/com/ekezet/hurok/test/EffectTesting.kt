@@ -35,7 +35,7 @@ abstract class EffectTest(
      */
     infix fun <TModel : Any, TDependency> TDependency.runWith(
         effect: Effect<TModel, TDependency>,
-    ) = EmitAsserter<TModel, TDependency>(testScope).apply {
+    ) = EmitAsserter<TModel, TDependency>().apply {
         runBlocking {
             effect.run { trigger(this@runWith) }
         }
@@ -47,12 +47,9 @@ abstract class EffectTest(
  *
  * @param TModel
  * @param TDependency
- * @property scope
  * @constructor Create empty Emit asserter
  */
-class EmitAsserter<TModel : Any, TDependency> internal constructor(
-    override val scope: CoroutineScope,
-) : ActionEmitter<TModel, TDependency> {
+class EmitAsserter<TModel : Any, TDependency> internal constructor() : ActionEmitter<TModel, TDependency> {
     private val emitted: MutableList<Action<TModel, TDependency>> = mutableListOf()
 
     override fun emit(action: Action<TModel, TDependency>) {

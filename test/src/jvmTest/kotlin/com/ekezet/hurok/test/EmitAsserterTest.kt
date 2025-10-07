@@ -15,7 +15,7 @@ class EmitAsserterTest {
             override fun TestModel.proceed() = skip
         }
 
-        val subject = EmitAsserter<TestModel, TestDependency>(this)
+        val subject = EmitAsserter<TestModel, TestDependency>()
 
         subject.emit(testAction)
         subject.emit(testAction2)
@@ -31,7 +31,7 @@ class EmitAsserterTest {
             override fun TestModel.proceed() = skip
         }
 
-        val subject = EmitAsserter<TestModel, TestDependency>(this)
+        val subject = EmitAsserter<TestModel, TestDependency>()
 
         subject.emit(testAction)
 
@@ -44,7 +44,7 @@ class EmitAsserterTest {
 
     @Test
     fun assertNoActionsSuccess() = runTest {
-        val subject = EmitAsserter<TestModel, TestDependency>(this)
+        val subject = EmitAsserter<TestModel, TestDependency>()
 
         subject matches {
             assertNoActions()
@@ -57,7 +57,7 @@ class EmitAsserterTest {
             override fun TestModel.proceed() = skip
         }
 
-        val subject = EmitAsserter<TestModel, TestDependency>(this)
+        val subject = EmitAsserter<TestModel, TestDependency>()
 
         subject.emit(testAction)
 

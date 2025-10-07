@@ -35,7 +35,7 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
     args: TArgs? = null,
     private val argsApplyer: ArgsApplyer<TModel, TArgs>? = null,
     private val onStart: ActionEmitter<TModel, TDependency>.() -> Unit = {},
-    private val dependency: TDependency? = null,
+    internal val dependency: TDependency? = null,
     private val effectContext: CoroutineContext = Dispatchers.IO,
 ) : ActionEmitter<TModel, TDependency> {
 
@@ -59,7 +59,7 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
     private val actions = MutableSharedFlow<TAction>()
 
     private lateinit var _scope: CoroutineScope
-    override val scope: CoroutineScope
+    private val scope: CoroutineScope
         @Throws(IllegalArgumentException::class)
         get() = if (!::_scope.isInitialized) {
             error("Loop must be started. Please call startIn() first!")
@@ -71,12 +71,6 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
         scope.launch {
             @Suppress("UNCHECKED_CAST") actions.emit(action as TAction)
         }
-    }
-
-    final override fun addChildEmitter(child: AnyActionEmitter) {
-        requireNotNull(dependency as? DependencyContainer) {
-            "Dependency must implement DependencyContainer before adding a child emitter"
-        }.plus(child)
     }
 
     /**
@@ -112,6 +106,19 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
         }
     }
 
+    /**
+     * Attach this loop as a child to another loop.
+     *
+     * The dependency of the parent loop must implement [HasActionEmitter] for this to work.
+     *
+     * @param parent loop serving as the parent
+     */
+    fun attachTo(parent: AnyActionEmitter) {
+        val container = (parent as? AnyLoop)?.dependency as? HasActionEmitter
+        requireNotNull(container) { "to attach this loop as a child the dependency of the parent must implement HasChildLoop" }
+        container + this
+    }
+
     private suspend fun onNextAction(action: TAction) = coroutineScope {
         val (updatedModel, triggeredEffects) = action.run { currentModel.value.proceed() }
         updatedModel?.let { new -> currentModel.update { new } }
@@ -123,3 +130,5 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
         }
     }
 }
+
+typealias AnyLoop = Loop<*, *, *, *, *>
