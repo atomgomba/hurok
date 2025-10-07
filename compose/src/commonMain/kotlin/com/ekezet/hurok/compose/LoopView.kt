@@ -64,10 +64,7 @@ inline fun <TState : Any, reified TModel : Any, TArgs, TDependency, TAction : Ac
         }
     }
 
-    if (args != vm.args) {
-        args?.let { loop.applyArgs(args) }
-        vm.args = args
-    }
+    args?.let { loop.applyArgs(args) }
 
     CompositionLocalProvider(LocalActionEmitter provides loop) {
         val state by loopStateCollector(loop)

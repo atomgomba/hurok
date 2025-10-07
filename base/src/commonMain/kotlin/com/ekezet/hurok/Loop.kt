@@ -67,6 +67,8 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
             _scope
         }
 
+    private var lastArgs: TArgs? = args
+
     final override fun emit(action: Action<TModel, TDependency>) {
         scope.launch {
             @Suppress("UNCHECKED_CAST") actions.emit(action as TAction)
@@ -80,11 +82,17 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
      * @return the loop
      * @throws IllegalStateException if [argsApplyer] is null
      */
-    fun applyArgs(args: TArgs & Any): Loop<TState, TModel, TArgs, TDependency, TAction> = apply {
+    @Synchronized
+    fun applyArgs(args: TArgs & Any): Loop<TState, TModel, TArgs, TDependency, TAction> {
         requireNotNull(argsApplyer) { "argsApplyer must not be null" }
+        if (lastArgs == args) {
+            return this
+        }
+        lastArgs = args
         currentModel.update { model ->
             with(argsApplyer) { model.applyArgs(args) }
         }
+        return this
     }
 
     /**
