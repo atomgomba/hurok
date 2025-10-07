@@ -20,6 +20,7 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(libs.common.lifecycle.viewmodelCompose)
                 implementation(libs.kotlinx.coroutines)
+                implementation(compose.desktop.currentOs)
 
                 implementation(projects.base)
             }
@@ -30,15 +31,6 @@ kotlin {
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.uiTest)
                 implementation(libs.kotlin.test)
-            }
-        }
-
-        val jvmMain by getting {
-        }
-
-        val jvmTest by getting {
-            dependencies {
-                implementation(compose.desktop.currentOs)
             }
         }
     }

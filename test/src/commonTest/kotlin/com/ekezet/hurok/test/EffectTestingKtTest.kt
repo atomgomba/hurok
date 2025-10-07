@@ -9,7 +9,7 @@ class EffectTestingKtTest {
     fun runWithFailure() {
         val testDependency = TestDependency()
         val testEffect = object : TestEffect {
-            override suspend fun ActionEmitter<TestModel, TestDependency>.trigger(dependency: TestDependency?): Any? {
+            override suspend fun ActionEmitter<TestModel, TestDependency>.trigger(dependency: TestDependency?): Any {
                 TODO("Not yet implemented")
             }
         }
