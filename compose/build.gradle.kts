@@ -22,7 +22,7 @@ kotlin {
                 implementation(libs.kotlinx.coroutines)
                 implementation(compose.desktop.currentOs)
 
-                implementation(projects.base)
+                api(projects.base)
             }
         }
 
