@@ -3,7 +3,9 @@ $dokka.linkExtension:html
 
 module:hurok-base
 com.ekezet.hurok
+com.ekezet.hurok.dsl
 com.ekezet.hurok.test
+com.ekezet.hurok.utils
 module:hurok-compose
 com.ekezet.hurok.compose
 module:hurok-test
