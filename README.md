@@ -95,14 +95,16 @@ data class UpdateScore(val userId: String) : ScoreScreenEffect {
 
 ## Parts
 
-| Name     | Description                                        |
-|----------|----------------------------------------------------|
-| State    | Loop state derived from the `Model`                |
-| Model    | Holds data for business logic                      |
-| Renderer | Uses the `Model` to create new `State` for the UI  |
-| Action   | Mutates the `Model` and can trigger (any) `Effect` |
-| Effect   | Does background work and triggers (any) `Action`   |
-| Loop     | Glue that holds the parts together                 |
+| Name        | Description                                        |
+|-------------|----------------------------------------------------|
+| State       | Loop state derived from the `Model`                |
+| Model       | Holds data for business logic                      |
+| Args        | A way to pass inputs to an existing `Loop`         |
+| ArgsApplyer | Applies arguments to the `Model`                   |
+| Renderer    | Uses the `Model` to create new `State` for the UI  |
+| Action      | Mutates the `Model` and can trigger (any) `Effect` |
+| Effect      | Does background work and triggers (any) `Action`   |
+| Loop        | Glue that holds the parts together                 |
 
 ## Using hurok with Gradle
 
