@@ -222,7 +222,7 @@ class LoopViewKtTest {
                 copy(title = args.title, foobar = args.foobar ?: foobar)
             }
 
-            render { model ->
+            onRender { model ->
                 TestState(result = "${model.title}, World!")
             }
         }

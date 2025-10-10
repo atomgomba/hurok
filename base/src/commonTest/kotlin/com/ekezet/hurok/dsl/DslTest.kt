@@ -35,7 +35,7 @@ class DslTest {
                 initCalled = true
             }
 
-            render { model ->
+            onRender { model ->
                 actualModel = model
                 TestState(result = "Hello, ${model.title}")
             }
@@ -78,7 +78,7 @@ class DslTest {
                 copy(title = args.title)
             }
 
-            render { model ->
+            onRender { model ->
                 actualModel = model
                 TestState(result = "Hello, ${model.title}")
             }

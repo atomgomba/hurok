@@ -18,7 +18,7 @@ abstract class BuilderScope<TState : Any, TModel : Any, TDependency> {
         init = block
     }
 
-    fun render(block: Renderer<TState, TModel>) {
+    fun onRender(block: Renderer<TState, TModel>) {
         renderer = block
     }
 }
