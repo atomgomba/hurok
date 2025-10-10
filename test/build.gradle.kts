@@ -21,6 +21,8 @@ kotlin {
                 implementation(projects.base)
             }
         }
+
+        val jvmTest by getting { }
     }
 }
 

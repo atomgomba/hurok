@@ -10,6 +10,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import com.ekezet.hurok.Action
 import com.ekezet.hurok.AnyActionEmitter
 import com.ekezet.hurok.LoopBuilder
+import com.ekezet.hurok.compose.viewModel.createRetainedViewModel
 import kotlinx.coroutines.CoroutineScope
 
 /**
@@ -51,7 +52,7 @@ inline fun <TState : Any, reified TModel : Any, TArgs, TDependency, TAction : Ac
     args: TArgs? = null,
     childOf: Set<AnyActionEmitter> = emptySet(),
     scope: CoroutineScope = rememberCoroutineScope(),
-    key: String? = TModel::class.qualifiedName,
+    key: String? = TModel::class.simpleName,
     loopStateCollector: LoopStateCollector<TState, TModel, TArgs, TDependency, TAction> = LoopStateCollectors.Standard(),
     crossinline content: @Composable TState.(emit: (action: TAction) -> Unit) -> Unit,
 ) {

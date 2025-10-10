@@ -19,7 +19,7 @@ inline fun <TState : Any, TModel : Any, TArgs, TDependency, TAction : Action<TMo
     model: TModel,
     renderer: TRenderer,
     args: TArgs? = null,
-): TState = constructor(model, renderer, args).firstState
+): TState = constructor(model, renderer, args).latestState
 
 /**
  * Render a given [com.ekezet.hurok.Loop] into a state.
@@ -37,4 +37,4 @@ inline fun <TState : Any, TModel : Any, TArgs, TArgsApplyer : ArgsApplyer<TModel
     renderer: TRenderer,
     args: TArgs? = null,
     argsApplyer: TArgsApplyer? = null,
-): TState = constructor(model, renderer, args, argsApplyer).firstState
+): TState = constructor(model, renderer, args, argsApplyer).latestState

@@ -1,4 +1,4 @@
-package com.ekezet.hurok.compose
+package com.ekezet.hurok.compose.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.ekezet.hurok.Action

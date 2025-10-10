@@ -11,7 +11,7 @@ actual object DispatcherProvider {
     actual val Default: CoroutineDispatcher
         get() = Dispatchers.Default
     actual val IO: CoroutineDispatcher
-        get() = Dispatchers.IO
+        get() = error("IO dispatcher is not available in JS")
     actual val Unconfined: CoroutineDispatcher
         get() = Dispatchers.Unconfined
 }

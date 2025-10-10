@@ -12,7 +12,16 @@ internal fun KotlinMultiplatformExtension.configure() {
         publishLibraryVariants("release", "debug")
     }
 
+    js(IR) {
+        browser()
+        nodejs()
+    }
+
     compilerOptions {
         jvmToolchain(ProjectDefaults.javaVersion.majorVersion.toInt())
+
+        freeCompilerArgs.addAll(
+            "-Xexpect-actual-classes",
+        )
     }
 }

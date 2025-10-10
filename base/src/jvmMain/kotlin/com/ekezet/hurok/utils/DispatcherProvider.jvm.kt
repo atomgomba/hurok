@@ -12,4 +12,6 @@ actual object DispatcherProvider {
         get() = Dispatchers.Default
     actual val IO: CoroutineDispatcher
         get() = Dispatchers.IO
+    actual val Unconfined: CoroutineDispatcher
+        get() = Dispatchers.Unconfined
 }

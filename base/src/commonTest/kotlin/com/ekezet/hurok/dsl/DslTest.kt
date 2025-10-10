@@ -1,5 +1,6 @@
 package com.ekezet.hurok.dsl
 
+import com.ekezet.hurok.dsl.withArgs.loop
 import com.ekezet.hurok.test.TestArgs
 import com.ekezet.hurok.test.TestDependency
 import com.ekezet.hurok.test.TestModel
@@ -34,7 +35,7 @@ class DslTest {
                 initCalled = true
             }
 
-            renderer { model ->
+            render { model ->
                 actualModel = model
                 TestState(result = "Hello, ${model.title}")
             }
@@ -77,7 +78,7 @@ class DslTest {
                 copy(title = args.title)
             }
 
-            renderer { model ->
+            render { model ->
                 actualModel = model
                 TestState(result = "Hello, ${model.title}")
             }

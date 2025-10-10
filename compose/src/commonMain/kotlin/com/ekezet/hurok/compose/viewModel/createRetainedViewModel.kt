@@ -1,4 +1,4 @@
-package com.ekezet.hurok.compose
+package com.ekezet.hurok.compose.viewModel
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisallowComposableCalls
@@ -19,7 +19,7 @@ import kotlin.reflect.KClass
 inline fun <TState : Any, reified TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> createRetainedViewModel(
     builder: @DisallowComposableCalls LoopBuilder<TState, TModel, TArgs, TDependency, TAction>,
     args: TArgs? = null,
-    key: String? = TModel::class.qualifiedName,
+    key: String?,
 ): LoopViewModel<TState, TModel, TArgs, TDependency, TAction> =
     viewModel<LoopViewModel<TState, TModel, TArgs, TDependency, TAction>>(
         key = key,

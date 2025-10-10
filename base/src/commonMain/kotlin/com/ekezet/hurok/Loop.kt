@@ -1,6 +1,5 @@
 package com.ekezet.hurok
 
-import com.ekezet.hurok.utils.Dispatchers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
@@ -31,12 +30,12 @@ import kotlin.coroutines.CoroutineContext
  */
 abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TAction : Action<TModel, TDependency>>(
     model: TModel,
-    renderer: Renderer<TState, TModel>,
+    private val renderer: Renderer<TState, TModel>,
     args: TArgs? = null,
     private val argsApplyer: ArgsApplyer<TModel, TArgs>? = null,
     private val onStart: ActionEmitter<TModel, TDependency>.() -> Unit = {},
     internal val dependency: TDependency? = null,
-    private val effectContext: CoroutineContext = Dispatchers.IO,
+    private val effectContext: CoroutineContext = DefaultEffectContext,
 ) : ActionEmitter<TModel, TDependency> {
 
     private val currentModel = MutableStateFlow(
@@ -48,6 +47,9 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
             }
         },
     )
+
+    val latestState: TState
+        get() = renderer.renderState(currentModel.value)
 
     /**
      * The current state produced by this loop
@@ -82,7 +84,6 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
      * @return the loop
      * @throws IllegalStateException if [argsApplyer] is null
      */
-    @Synchronized
     fun applyArgs(args: TArgs & Any): Loop<TState, TModel, TArgs, TDependency, TAction> {
         requireNotNull(argsApplyer) { "argsApplyer must not be null" }
         if (lastArgs == args) {
@@ -140,3 +141,5 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
 }
 
 typealias AnyLoop = Loop<*, *, *, *, *>
+
+expect val DefaultEffectContext: CoroutineContext

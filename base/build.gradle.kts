@@ -24,6 +24,9 @@ kotlin {
         }
 
         val jvmMain by getting {
+            dependencies {
+                implementation(libs.kotlinx.coroutines.swing)
+            }
         }
     }
 }

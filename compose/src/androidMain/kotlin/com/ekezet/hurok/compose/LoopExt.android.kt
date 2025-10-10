@@ -7,7 +7,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ekezet.hurok.Action
 import com.ekezet.hurok.Loop
 import com.ekezet.hurok.test.CoverageIgnore
-import com.ekezet.hurok.utils.firstState
 import kotlinx.coroutines.CoroutineScope
 
 /**
@@ -25,4 +24,4 @@ import kotlinx.coroutines.CoroutineScope
 fun <TState : Any, TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> Loop<TState, TModel, TArgs, TDependency, TAction>.collectAsStateWithLifecycle(
     scope: CoroutineScope = rememberCoroutineScope(),
 ): State<TState> =
-    state.collectAsStateWithLifecycle(initialValue = firstState, context = scope.coroutineContext)
+    state.collectAsStateWithLifecycle(initialValue = latestState, context = scope.coroutineContext)

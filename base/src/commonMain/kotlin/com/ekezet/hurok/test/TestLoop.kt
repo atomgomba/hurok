@@ -59,7 +59,7 @@ class TestLoop(
     args: TestArgs? = null,
     onStart: ActionEmitter<TestModel, TestDependency>.() -> Unit = {},
     dependency: TestDependency? = null,
-    effectContext: CoroutineContext = DispatcherProvider.IO,
+    effectContext: CoroutineContext = DispatcherProvider.Default,
 ) : Loop<TestState, TestModel, TestArgs, TestDependency, TestAction>(
     model = model,
     renderer = renderer,
@@ -80,7 +80,7 @@ class TestChildLoop(
     args: TestArgs? = null,
     onStart: ActionEmitter<TestModel, TestDependency>.() -> Unit = {},
     dependency: TestDependency? = null,
-    effectContext: CoroutineContext = DispatcherProvider.IO,
+    effectContext: CoroutineContext = DispatcherProvider.Default,
 ) : Loop<TestState, TestModel, TestArgs, TestDependency, TestAction>(
     model = model,
     renderer = renderer,

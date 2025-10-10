@@ -14,7 +14,7 @@ import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import com.ekezet.hurok.Action.Next
 import com.ekezet.hurok.LoopBuilder
 import com.ekezet.hurok.asBuilder
-import com.ekezet.hurok.dsl.loop
+import com.ekezet.hurok.dsl.withArgs.loop
 import com.ekezet.hurok.test.TestAction
 import com.ekezet.hurok.test.TestArgs
 import com.ekezet.hurok.test.TestChildLoop
@@ -222,7 +222,7 @@ class LoopViewKtTest {
                 copy(title = args.title, foobar = args.foobar ?: foobar)
             }
 
-            renderer { model ->
+            render { model ->
                 TestState(result = "${model.title}, World!")
             }
         }

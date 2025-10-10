@@ -133,7 +133,7 @@ dependencies {
 
 ```toml
 [versions]
-hurok = "3.0.0"
+hurok = "3.1.0"
 
 [libraries]
 hurok-base = { group = "com.ekezet.hurok", name = "base", version.ref = "hurok" }
