@@ -121,11 +121,11 @@ repositories {
 ```kotlin
 dependencies {
     // core multiplatform package
-    implementation("com.ekezet.hurok:base:3.0.0")
+    implementation("com.ekezet.hurok:base:3.1.0")
     // library for using hurok with Compose Multiplatform
-    implementation("com.ekezet.hurok:compose:3.0.0")
+    implementation("com.ekezet.hurok:compose:3.1.0")
     // library for testing hurok-based applications
-    testImplementation("com.ekezet.hurok:test:3.0.0")
+    testImplementation("com.ekezet.hurok:test:3.1.0")
 }
 ```
 
