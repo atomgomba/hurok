@@ -1,6 +1,7 @@
 # hurok
 
-This is a framework library for developing applications on the JVM based on the unidirectional dataflow model.
+This is a Kotlin Multiplatform framework library for developing applications on the JVM, JavaScript and Android based on
+the unidirectional dataflow model.
 
 ```mermaid
 flowchart LR
@@ -15,12 +16,14 @@ Please click here for [generated documentation](https://atomgomba.github.io/huro
 This brief example is missing some glue code to provide a quick feel of the library mechanics.
 
 ```kotlin
+// Data model for business logic
 data class ScoreScreenModel(
     val user: User? = null,
     val isLoading: Boolean = false,
     val throwable: Throwable? = null,
 )
 
+// State for representation
 data class ScoreScreenState(
     val playerName: String,
     val score: String,
@@ -28,8 +31,21 @@ data class ScoreScreenState(
     val errorMessage: String?,
 )
 
+// Renderer converts  the model into a state
+class ScoreScreenRenderer : Renderer<ScoreScreenState, ScoreScreenModel> {
+    fun renderState(model: ScoreScreenModel) = with(model) {
+        ScoreScreenState(
+            playerName = if (user == null) "N/A" else user.nickname,
+            score = if (user == null) "N/A" else user.score.roundToInt().toString(),
+            errorMessage = throwable?.run { message ?: "Unknown error" },
+            isLoading = isLoading,
+        )
+    }
+}
+
 @Composable
 fun ScoreScreenView(args: ScoreScreenArgs?) {
+    // Wraps a loop as a @Composable
     LoopView(
         builder = ScoreScreenLoop,
         args = args,
@@ -40,6 +56,7 @@ fun ScoreScreenView(args: ScoreScreenArgs?) {
             } else if (errorMessage != null) {
                 Text(errorMessage)
 
+                // Buttons emit an update action
                 Button(onClick = { emit(OnUpdateScoreClick) }) {
                     Text("Retry")
                 }
@@ -55,32 +72,25 @@ fun ScoreScreenView(args: ScoreScreenArgs?) {
     }
 }
 
-class ScoreScreenRenderer : Renderer<ScoreScreenState, ScoreScreenModel> {
-    fun renderState(model: ScoreScreenModel) = with(model) {
-        ScoreScreenState(
-            playerName = if (user == null) "N/A" else user.nickname,
-            score = if (user == null) "N/A" else user.score.roundToInt().toString(),
-            errorMessage = throwable?.run { message ?: "Unknown error" },
-            isLoading = isLoading,
-        )
-    }
-}
-
+// Action to start updating the score on user click
 data object OnUpdateScoreClick : ScoreScreenAction {
     override fun ScoreScreenModel.proceed() =
         next(copy(isLoading = true, throwable = null), UpdateScore(user.id))
 }
 
+// Action on successful update
 data class UpdateScoreSuccess(val user: User) : ScoreScreenAction {
     override fun ScoreScreenModel.proceed() =
         next(copy(user = user, isLoading = false))
 }
 
+// Action on update failure
 data class UpdateScoreError(val throwable: Throwable) : ScoreScreenAction {
     override fun ScoreScreenModel.proceed() =
         next(copy(throwable = throwable, isLoading = false))
 }
 
+// Background side effect for updating the data
 data class UpdateScore(val userId: String) : ScoreScreenEffect {
     override suspend fun ScoreScreenEmitter.trigger(dependency: ScoreScreenDependencv) {
         try {
@@ -101,7 +111,7 @@ data class UpdateScore(val userId: String) : ScoreScreenEffect {
 | Model       | Holds data for business logic                      |
 | Args        | A way to pass inputs to an existing `Loop`         |
 | ArgsApplyer | Applies arguments to the `Model`                   |
-| Renderer    | Uses the `Model` to create new `State` for the UI  |
+| Renderer    | Uses the `Model` to create new `State`             |
 | Action      | Mutates the `Model` and can trigger (any) `Effect` |
 | Effect      | Does background work and triggers (any) `Action`   |
 | Loop        | Glue that holds the parts together                 |
@@ -120,7 +130,7 @@ repositories {
 
 ```kotlin
 dependencies {
-    // core multiplatform package
+    // core multiplatform package (added transitively when using the compose package below)
     implementation("com.ekezet.hurok:base:3.1.0")
     // library for using hurok with Compose Multiplatform
     implementation("com.ekezet.hurok:compose:3.1.0")

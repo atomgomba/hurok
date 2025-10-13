@@ -35,17 +35,14 @@ configuration change).
 class ScoreScreenLoop(
     model: ScoreScreenModel,
     renderer: Renderer<ScoreScreenModel, ScoreScreenDependency, ScoreScreenState>,
-    args: ScoreScreenArgs? = null,
-    firstAction: ScoreScreenAction? = null,
     dependency: ScoreScreenDependency? = null,
     effectContext: CoroutineContext = DispatcherProvider.IO,
 ) : Loop<ScoreScreenState, ScoreScreenModel, ScoreScreenArgs, ScoreScreenDependency, ScoreScreenAction>(
-    model,
-    renderer,
-    args,
-    firstAction,
-    dependency,
-    effectContext,
+    model = model,
+    renderer = renderer,
+    argsApplyer = { TODO() },
+    dependency = dependency,
+    effectContext = effectContext,
 ) {
     companion object Builder :
         LoopBuilder<ScoreScreenState, ScorescreenModel, ScoreScreenArgs, ScoreScreenDependency, ScoreScreenAction> {
