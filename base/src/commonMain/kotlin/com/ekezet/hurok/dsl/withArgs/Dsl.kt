@@ -1,3 +1,5 @@
+@file:CoverageIgnore
+
 package com.ekezet.hurok.dsl.withArgs
 
 import com.ekezet.hurok.Action
@@ -5,6 +7,7 @@ import com.ekezet.hurok.ArgsApplyer
 import com.ekezet.hurok.DefaultEffectContext
 import com.ekezet.hurok.Loop
 import com.ekezet.hurok.dsl.BuilderScope
+import com.ekezet.hurok.test.CoverageIgnore
 import kotlin.coroutines.CoroutineContext
 
 abstract class BuilderScopeWithArgs<TState : Any, TModel : Any, TArgs, TDependency> :

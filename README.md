@@ -1,7 +1,7 @@
 # hurok
 
 This is a Kotlin Multiplatform framework library for developing applications on the JVM, JavaScript and Android based on
-the unidirectional dataflow model.
+the unidirectional dataflow model. The basic idea can be considered as an MVI architecture with reducer, but without the reducer.
 
 ```mermaid
 flowchart LR
@@ -31,7 +31,7 @@ data class ScoreScreenState(
     val errorMessage: String?,
 )
 
-// Renderer converts  the model into a state
+// Renderer converts the model into a state
 class ScoreScreenRenderer : Renderer<ScoreScreenState, ScoreScreenModel> {
     fun renderState(model: ScoreScreenModel) = with(model) {
         ScoreScreenState(
