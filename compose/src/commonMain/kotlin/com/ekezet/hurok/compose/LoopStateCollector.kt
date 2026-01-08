@@ -12,5 +12,6 @@ fun interface LoopStateCollector<TState : Any, TModel : Any, TArgs, TDependency,
 
 object LoopStateCollectors
 
+@Suppress("UnusedReceiverParameter", "FunctionName")
 fun <TState : Any, TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> LoopStateCollectors.Standard() =
     LoopStateCollector<TState, TModel, TArgs, TDependency, TAction> { it.collectAsState() }
