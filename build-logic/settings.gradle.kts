@@ -9,6 +9,7 @@ pluginManagement {
 rootProject.name = "build-logic"
 
 dependencyResolutionManagement {
+    @Suppress("UnstableApiUsage")
     repositories {
         google()
         gradlePluginPortal()

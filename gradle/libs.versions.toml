@@ -1,19 +1,20 @@
 [versions]
-agp = "8.12.3"
+agp = "9.1.0-alpha05"
 android-compileSdk = "36"
-android-minSdk = "26"
-cmp = "1.9.0"
-common-lifecycle = "2.9.4"
-dokka = "2.0.0"
+cmp = "1.10.0"
+common-lifecycle = "2.9.6"
+dokka = "2.1.0"
 dokka-mermaid = "0.6.0"
-junit5 = "6.0.0"
-kotlin = "2.2.20"
+junit5 = "6.0.2"
+kotlin = "2.3.0"
 kotlinx-coroutines = "1.10.2"
-kover = "0.9.2"
-maven-publish = "0.34.0"
+kover = "0.9.4"
+maven-publish = "0.36.0"
 
 [libraries]
 common-lifecycle-viewmodelCompose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "common-lifecycle" }
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "cmp" }
+compose-ui-test = { module = "org.jetbrains.compose.ui:ui-test", version.ref = "cmp" }
 dokka-mermaid = { group = "com.glureau", name = "html-mermaid-dokka-plugin", version.ref = "dokka-mermaid" }
 junit5-bom = { group = "org.junit", name = "junit-bom", version.ref = "junit5" }
 junit5-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter" }
@@ -25,13 +26,13 @@ kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-co
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 
 # :build-logic dependencies
-androidLibrary-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+androidKotlinMultiplatformLibrary-gradlePlugin = { module = "com.android.kotlin.multiplatform.library:com.android.kotlin.multiplatform.library.gradle.plugin", version.ref = "agp" }
 kotlinMultiplatform-gradlePlugin = { module = "org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin", version.ref = "kotlin" }
 #kover-gradlePlugin = { module = "org.jetbrains.kotlinx:kover-gradle-plugin", version.ref = "kover" }
 mavenPublish-gradlePlugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish" }
 
 [plugins]
-androidLibrary = { id = "com.android.library", version.ref = "agp" }
+androidKotlinMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "cmp" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }

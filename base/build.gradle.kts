@@ -28,14 +28,18 @@ kotlin {
                 implementation(libs.kotlinx.coroutines.swing)
             }
         }
+
+        val jvmTest by getting {
+            dependencies {
+                implementation(libs.junit5.jupiter)
+                runtimeOnly(libs.junit5.platform)
+            }
+        }
     }
 }
 
 dependencies {
-    testImplementation(platform(libs.junit5.bom))
-    testImplementation(libs.junit5.jupiter)
-    testRuntimeOnly(libs.junit5.platform)
-
+    platform(libs.junit5.bom)
     dokkaPlugin(libs.dokka.mermaid)
 }
 

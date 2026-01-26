@@ -4,8 +4,14 @@ plugins {
 
 group = "com.ekezet.hurok.buildlogic"
 
+kotlin {
+    compilerOptions {
+        jvmToolchain(21)
+    }
+}
+
 dependencies {
-    compileOnly(libs.androidLibrary.gradlePlugin)
+    compileOnly(libs.androidKotlinMultiplatformLibrary.gradlePlugin)
     compileOnly(libs.kotlinMultiplatform.gradlePlugin)
     compileOnly(libs.mavenPublish.gradlePlugin)
 }

@@ -12,6 +12,7 @@ pluginManagement {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 dependencyResolutionManagement {
+    @Suppress("UnstableApiUsage")
     repositories {
         google()
         mavenCentral()

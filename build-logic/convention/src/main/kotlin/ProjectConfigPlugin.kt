@@ -1,4 +1,5 @@
-import com.android.build.api.dsl.LibraryExtension
+
+import com.android.build.api.variant.KotlinMultiplatformAndroidComponentsExtension
 import com.ekezet.hurok.buildLogic.gradleExtensions.configure
 import com.ekezet.hurok.buildLogic.libs
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
@@ -8,13 +9,14 @@ import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import kotlin.jvm.java
 
 @Suppress("unused")
 class ProjectConfigPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
-                apply(libs.findPlugin("androidLibrary").get().get().pluginId)
+                apply(libs.findPlugin("androidKotlinMultiplatformLibrary").get().get().pluginId)
                 apply(libs.findPlugin("kotlinMultiplatform").get().get().pluginId)
                 apply(libs.findPlugin("kover").get().get().pluginId)
                 apply(libs.findPlugin("mavenPublish").get().get().pluginId)
@@ -22,8 +24,8 @@ class ProjectConfigPlugin : Plugin<Project> {
 
             with(extensions) {
                 getByType(JavaPluginExtension::class.java).configure()
+                getByType(KotlinMultiplatformAndroidComponentsExtension::class.java).configure(target)
                 getByType(KotlinMultiplatformExtension::class.java).configure()
-                getByType(LibraryExtension::class.java).configure(target)
                 getByType(MavenPublishBaseExtension::class.java).configure(target)
             }
 

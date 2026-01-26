@@ -1,5 +1,3 @@
-import org.jetbrains.compose.ExperimentalComposeLibrary
-
 plugins {
     id("hurok.config")
 
@@ -17,7 +15,7 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
-                implementation(compose.runtime)
+                implementation(libs.compose.runtime)
                 implementation(libs.common.lifecycle.viewmodelCompose)
                 implementation(libs.kotlinx.coroutines)
 
@@ -27,9 +25,9 @@ kotlin {
 
         val commonTest by getting {
             dependencies {
-                @OptIn(ExperimentalComposeLibrary::class)
-                implementation(compose.uiTest)
+                implementation(libs.compose.ui.test)
                 implementation(libs.kotlin.test)
+                implementation(libs.kotlinx.coroutines.test)
             }
         }
 

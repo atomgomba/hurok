@@ -8,10 +8,6 @@ internal fun KotlinMultiplatformExtension.configure() {
 
     jvm()
 
-    androidTarget {
-        publishLibraryVariants("release", "debug")
-    }
-
     js(IR) {
         browser()
         nodejs()
