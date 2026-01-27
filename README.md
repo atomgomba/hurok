@@ -131,11 +131,11 @@ repositories {
 ```kotlin
 dependencies {
     // core multiplatform package (added transitively when using the compose package below)
-    implementation("com.ekezet.hurok:base:3.1.0")
+    implementation("com.ekezet.hurok:hurok-base:3.1.0")
     // library for using hurok with Compose Multiplatform
-    implementation("com.ekezet.hurok:compose:3.1.0")
+    implementation("com.ekezet.hurok:hurok-compose:3.1.0")
     // library for testing hurok-based applications
-    testImplementation("com.ekezet.hurok:test:3.1.0")
+    testImplementation("com.ekezet.hurok:hurok-test:3.1.0")
 }
 ```
 
@@ -146,9 +146,9 @@ dependencies {
 hurok = "3.1.0"
 
 [libraries]
-hurok-base = { group = "com.ekezet.hurok", name = "base", version.ref = "hurok" }
-hurok-compose = { group = "com.ekezet.hurok", name = "compsoe", version.ref = "hurok" }
-hurok-test = { group = "com.ekezet.hurok", name = "test", version.ref = "hurok" }
+hurok-base = { group = "com.ekezet.hurok", name = "hurok-base", version.ref = "hurok" }
+hurok-compose = { group = "com.ekezet.hurok", name = "hurok-compose", version.ref = "hurok" }
+hurok-test = { group = "com.ekezet.hurok", name = "hurok-test", version.ref = "hurok" }
 
 [bundles]
 hurok = ["hurok-base", "hurok-compose"]

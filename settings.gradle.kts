@@ -23,7 +23,7 @@ dependencyResolutionManagement {
 rootProject.name = "hurok"
 
 include(
-    ":base",
-    ":compose",
-    ":test",
+    ":hurok-base",
+    ":hurok-compose",
+    ":hurok-test",
 )

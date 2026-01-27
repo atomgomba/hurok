@@ -51,13 +51,13 @@ kover {
 }
 
 dependencies {
-    kover(projects.base)
-    kover(projects.compose)
-    kover(projects.test)
+    kover(projects.hurokBase)
+    kover(projects.hurokCompose)
+    kover(projects.hurokTest)
 
     dokkaPlugin(libs.dokka.mermaid)
 
-    dokka(projects.base)
-    dokka(projects.compose)
-    dokka(projects.test)
+    dokka(projects.hurokBase)
+    dokka(projects.hurokCompose)
+    dokka(projects.hurokTest)
 }

@@ -1,5 +1,8 @@
 plugins {
     id("hurok.config")
+
+    alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.composeMultiplatform)
 }
 
 kotlin {
@@ -12,12 +15,17 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
+                implementation(libs.compose.runtime)
+                implementation(libs.common.lifecycle.viewmodelCompose)
                 implementation(libs.kotlinx.coroutines)
+
+                api(projects.hurokBase)
             }
         }
 
         val commonTest by getting {
             dependencies {
+                implementation(libs.compose.ui.test)
                 implementation(libs.kotlin.test)
                 implementation(libs.kotlinx.coroutines.test)
             }
@@ -25,29 +33,14 @@ kotlin {
 
         val jvmMain by getting {
             dependencies {
-                implementation(libs.kotlinx.coroutines.swing)
-            }
-        }
-
-        val jvmTest by getting {
-            dependencies {
-                implementation(libs.junit5.jupiter)
-                runtimeOnly(libs.junit5.platform)
+                implementation(compose.desktop.currentOs)
             }
         }
     }
 }
 
-dependencies {
-    platform(libs.junit5.bom)
-    dokkaPlugin(libs.dokka.mermaid)
-}
-
 dokka {
-    moduleName = "hurok-base"
-    modulePath = "base"
-
     dokkaSourceSets.configureEach {
-        includes.from("${rootProject.rootDir}/docs/include/index-base.md")
+        includes.from("${rootProject.rootDir}/docs/include/index-compose.md")
     }
 }

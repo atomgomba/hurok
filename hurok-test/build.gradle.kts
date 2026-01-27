@@ -10,7 +10,7 @@ kotlin {
                 implementation(libs.kotlinx.coroutines)
                 implementation(libs.kotlinx.coroutines.test)
 
-                implementation(projects.base)
+                implementation(projects.hurokBase)
             }
         }
 
@@ -18,7 +18,7 @@ kotlin {
             dependencies {
                 implementation(libs.kotlin.test)
 
-                implementation(projects.base)
+                implementation(projects.hurokBase)
             }
         }
 
@@ -27,9 +27,6 @@ kotlin {
 }
 
 dokka {
-    moduleName = "hurok-test"
-    modulePath = "test"
-
     dokkaSourceSets.configureEach {
         includes.from("${rootProject.rootDir}/docs/include/index-test.md")
     }
