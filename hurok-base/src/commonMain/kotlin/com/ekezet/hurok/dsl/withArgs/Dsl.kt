@@ -7,24 +7,36 @@ import com.ekezet.hurok.ArgsApplyer
 import com.ekezet.hurok.DefaultEffectContext
 import com.ekezet.hurok.Loop
 import com.ekezet.hurok.dsl.BuilderScope
+import com.ekezet.hurok.dsl.BuilderScopeImpl
+import com.ekezet.hurok.dsl.ExperimentalLoopBuilderApi
 import com.ekezet.hurok.test.CoverageIgnore
 import kotlin.coroutines.CoroutineContext
 
-abstract class BuilderScopeWithArgs<TState : Any, TModel : Any, TArgs, TDependency> :
-    BuilderScope<TState, TModel, TDependency>() {
-    internal var argsApplyer: ArgsApplyer<TModel, TArgs>? = null
+@ExperimentalLoopBuilderApi
+interface BuilderScopeWithArgs<TState : Any, TModel : Any, TArgs, TDependency> :
+    BuilderScope<TState, TModel, TDependency> {
 
-    fun onNewArgs(block: ArgsApplyer<TModel, TArgs>) {
+    fun onNewArgs(block: ArgsApplyer<TModel, TArgs>)
+}
+
+@ExperimentalLoopBuilderApi
+private class BuilderScopeWithArgsImpl<TState : Any, TModel : Any, TArgs, TDependency> :
+    BuilderScopeImpl<TState, TModel, TDependency>(), BuilderScopeWithArgs<TState, TModel, TArgs, TDependency> {
+
+    var argsApplyer: ArgsApplyer<TModel, TArgs>? = null
+
+    override fun onNewArgs(block: ArgsApplyer<TModel, TArgs>) {
         argsApplyer = block
     }
 }
 
+@ExperimentalLoopBuilderApi
 fun <TState : Any, TModel : Any, TArgs, TAction : Action<TModel, Unit>> loop(
     model: TModel,
     effectContext: CoroutineContext = DefaultEffectContext,
     builder: BuilderScopeWithArgs<TState, TModel, TArgs, Unit>.() -> Unit,
 ): Loop<TState, TModel, TArgs, Unit, TAction> {
-    val scope = object : BuilderScopeWithArgs<TState, TModel, TArgs, Unit>() {}
+    val scope = BuilderScopeWithArgsImpl<TState, TModel, TArgs, Unit>()
 
     scope.builder()
 
@@ -41,6 +53,7 @@ fun <TState : Any, TModel : Any, TArgs, TAction : Action<TModel, Unit>> loop(
     }
 }
 
+@ExperimentalLoopBuilderApi
 fun <TState : Any, TModel : Any, TArgs, TDependency : Any, TAction : Action<TModel, TDependency>> loop(
     model: TModel,
     args: TArgs,
@@ -48,7 +61,7 @@ fun <TState : Any, TModel : Any, TArgs, TDependency : Any, TAction : Action<TMod
     effectContext: CoroutineContext = DefaultEffectContext,
     builder: BuilderScopeWithArgs<TState, TModel, TArgs, TDependency>.() -> Unit,
 ): Loop<TState, TModel, TArgs, TDependency, TAction> {
-    val scope = object : BuilderScopeWithArgs<TState, TModel, TArgs, TDependency>() {}
+    val scope = BuilderScopeWithArgsImpl<TState, TModel, TArgs, TDependency>()
 
     scope.builder()
 
@@ -65,6 +78,7 @@ fun <TState : Any, TModel : Any, TArgs, TDependency : Any, TAction : Action<TMod
     }
 }
 
+@ExperimentalLoopBuilderApi
 fun <TState : Any, TModel : Any, TArgs : Any, TAction : Action<TModel, Unit>> loop(
     model: TModel,
     args: TArgs,

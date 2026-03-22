@@ -14,6 +14,7 @@ import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import com.ekezet.hurok.Action.Next
 import com.ekezet.hurok.LoopBuilder
 import com.ekezet.hurok.asBuilder
+import com.ekezet.hurok.dsl.ExperimentalLoopBuilderApi
 import com.ekezet.hurok.dsl.withArgs.loop
 import com.ekezet.hurok.test.TestAction
 import com.ekezet.hurok.test.TestArgs
@@ -211,6 +212,7 @@ class LoopViewKtTest {
      * TODO
      */
     @Test
+    @ExperimentalLoopBuilderApi
     fun `Test builder extension`() = runComposeUiTest {
         val testLoop = loop(
             model = TestModel(title = "Hello"),

@@ -10,26 +10,34 @@ import com.ekezet.hurok.Renderer
 import com.ekezet.hurok.test.CoverageIgnore
 import kotlin.coroutines.CoroutineContext
 
-abstract class BuilderScope<TState : Any, TModel : Any, TDependency> {
-    internal var renderer: Renderer<TState, TModel>? = null
-    internal var init: (ActionEmitter<TModel, TDependency>.() -> Unit)? = null
+@ExperimentalLoopBuilderApi
+interface BuilderScope<TState : Any, TModel : Any, TDependency> {
+    fun onStart(block: ActionEmitter<TModel, TDependency>.() -> Unit)
+    fun onRender(block: Renderer<TState, TModel>)
+}
 
-    fun onStart(block: ActionEmitter<TModel, TDependency>.() -> Unit) {
+@ExperimentalLoopBuilderApi
+internal open class BuilderScopeImpl<TState : Any, TModel : Any, TDependency> : BuilderScope<TState, TModel, TDependency> {
+    var renderer: Renderer<TState, TModel>? = null
+    var init: (ActionEmitter<TModel, TDependency>.() -> Unit)? = null
+
+    override fun onStart(block: ActionEmitter<TModel, TDependency>.() -> Unit) {
         init = block
     }
 
-    fun onRender(block: Renderer<TState, TModel>) {
+    override fun onRender(block: Renderer<TState, TModel>) {
         renderer = block
     }
 }
 
+@ExperimentalLoopBuilderApi
 fun <TState : Any, TModel : Any, TDependency, TAction : Action<TModel, TDependency>> loop(
     model: TModel,
     dependency: TDependency,
     effectContext: CoroutineContext = DefaultEffectContext,
     builder: BuilderScope<TState, TModel, TDependency>.() -> Unit,
 ): Loop<TState, TModel, Unit, TDependency, TAction> {
-    val scope = object : BuilderScope<TState, TModel, TDependency>() {}
+    val scope = BuilderScopeImpl<TState, TModel, TDependency>()
 
     scope.builder()
 
@@ -46,12 +54,13 @@ fun <TState : Any, TModel : Any, TDependency, TAction : Action<TModel, TDependen
     }
 }
 
+@ExperimentalLoopBuilderApi
 fun <TState : Any, TModel : Any, TAction : Action<TModel, Unit>> loop(
     model: TModel,
     effectContext: CoroutineContext = DefaultEffectContext,
     builder: BuilderScope<TState, TModel, Unit>.() -> Unit,
 ): Loop<TState, TModel, Unit, Unit, TAction> {
-    val scope = object : BuilderScope<TState, TModel, Unit>() {}
+    val scope = BuilderScopeImpl<TState, TModel, Unit>()
 
     scope.builder()
 

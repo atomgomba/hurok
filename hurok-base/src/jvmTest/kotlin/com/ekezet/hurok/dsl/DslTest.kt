@@ -15,8 +15,9 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
+@OptIn(ExperimentalCoroutinesApi::class)
+@ExperimentalLoopBuilderApi
 class DslTest {
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `Loop without args should be created correctly`() = runTest {
         val model = TestModel(title = "World")
@@ -54,7 +55,6 @@ class DslTest {
         assertEquals(model, actualModel)
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `Loop with args should be created correctly`() = runTest {
         val model = TestModel(title = "World")
