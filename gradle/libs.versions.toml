@@ -1,14 +1,14 @@
 [versions]
-agp = "9.1.0-alpha05"
+agp = "9.1.0"
 android-compileSdk = "36"
-cmp = "1.10.0"
-common-lifecycle = "2.9.6"
+cmp = "1.10.3"
+common-lifecycle = "2.10.0"
 dokka = "2.1.0"
 dokka-mermaid = "0.6.0"
-junit5 = "6.0.2"
-kotlin = "2.3.0"
+junit5 = "6.0.3"
+kotlin = "2.3.20"
 kotlinx-coroutines = "1.10.2"
-kover = "0.9.4"
+kover = "0.9.7"
 maven-publish = "0.36.0"
 
 [libraries]
