@@ -1,6 +1,7 @@
 [versions]
 agp = "9.1.0"
 android-compileSdk = "36"
+bcv = "0.18.1"
 cmp = "1.10.3"
 common-lifecycle = "2.10.0"
 dokka = "2.1.0"
@@ -33,6 +34,7 @@ mavenPublish-gradlePlugin = { module = "com.vanniktech:gradle-maven-publish-plug
 
 [plugins]
 androidKotlinMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
+binaryCompatibilityValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "bcv" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "cmp" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }

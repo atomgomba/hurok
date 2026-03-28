@@ -10,6 +10,7 @@ plugins {
     alias(libs.plugins.mavenPublish).apply(false)
 
     // apply these to the whole project
+    alias(libs.plugins.binaryCompatibilityValidator)
     alias(libs.plugins.dokka)
     alias(libs.plugins.kover)
 }

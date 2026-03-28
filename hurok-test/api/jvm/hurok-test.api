@@ -1,0 +1,48 @@
+public final class com/ekezet/hurok/test/ActionTestingKt {
+	public static final fun after (Ljava/lang/Object;Lcom/ekezet/hurok/Action;)Lcom/ekezet/hurok/Action$Next;
+	public static final fun matches (Lcom/ekezet/hurok/Action$Next;Lkotlin/jvm/functions/Function2;)V
+}
+
+public abstract class com/ekezet/hurok/test/EffectTest : kotlinx/coroutines/CoroutineScope {
+	public fun <init> ()V
+	public fun <init> (Lkotlin/coroutines/CoroutineContext;Lkotlinx/coroutines/CoroutineScope;)V
+	public synthetic fun <init> (Lkotlin/coroutines/CoroutineContext;Lkotlinx/coroutines/CoroutineScope;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getCoroutineContext ()Lkotlin/coroutines/CoroutineContext;
+	public final fun runWith (Ljava/lang/Object;Lcom/ekezet/hurok/Effect;)Lcom/ekezet/hurok/test/EmitAsserter;
+}
+
+public final class com/ekezet/hurok/test/EffectTestingKt {
+	public static final fun matches (Lcom/ekezet/hurok/test/EmitAsserter;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class com/ekezet/hurok/test/EmitAsserter : com/ekezet/hurok/ActionEmitter {
+	public final fun assertActions (Ljava/util/List;Ljava/lang/String;)V
+	public static synthetic fun assertActions$default (Lcom/ekezet/hurok/test/EmitAsserter;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)V
+	public final fun assertNoActions (Ljava/lang/String;)V
+	public static synthetic fun assertNoActions$default (Lcom/ekezet/hurok/test/EmitAsserter;Ljava/lang/String;ILjava/lang/Object;)V
+	public fun emit (Lcom/ekezet/hurok/Action;)V
+}
+
+public final class com/ekezet/hurok/test/NextAsserter : kotlin/test/Asserter {
+	public final fun assertEffects (Ljava/util/Set;Ljava/lang/String;)V
+	public static synthetic fun assertEffects$default (Lcom/ekezet/hurok/test/NextAsserter;Ljava/util/Set;Ljava/lang/String;ILjava/lang/Object;)V
+	public fun assertEquals (Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+	public final fun assertModel (Ljava/lang/Object;Ljava/lang/String;)V
+	public static synthetic fun assertModel$default (Lcom/ekezet/hurok/test/NextAsserter;Ljava/lang/Object;Ljava/lang/String;ILjava/lang/Object;)V
+	public final fun assertModelNotChanged (Ljava/lang/String;)V
+	public static synthetic fun assertModelNotChanged$default (Lcom/ekezet/hurok/test/NextAsserter;Ljava/lang/String;ILjava/lang/Object;)V
+	public final fun assertNoEffects (Ljava/lang/String;)V
+	public static synthetic fun assertNoEffects$default (Lcom/ekezet/hurok/test/NextAsserter;Ljava/lang/String;ILjava/lang/Object;)V
+	public fun assertNotEquals (Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+	public fun assertNotNull (Ljava/lang/String;Ljava/lang/Object;)V
+	public fun assertNotSame (Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+	public fun assertNull (Ljava/lang/String;Ljava/lang/Object;)V
+	public fun assertSame (Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+	public final fun assertSkipped (Ljava/lang/String;)V
+	public static synthetic fun assertSkipped$default (Lcom/ekezet/hurok/test/NextAsserter;Ljava/lang/String;ILjava/lang/Object;)V
+	public fun assertTrue (Ljava/lang/String;Z)V
+	public fun assertTrue (Lkotlin/jvm/functions/Function0;Z)V
+	public fun fail (Ljava/lang/String;)Ljava/lang/Void;
+	public fun fail (Ljava/lang/String;Ljava/lang/Throwable;)Ljava/lang/Void;
+}
+

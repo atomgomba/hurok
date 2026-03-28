@@ -1,0 +1,180 @@
+public abstract interface class com/ekezet/hurok/Action {
+	public abstract fun proceed (Ljava/lang/Object;)Lcom/ekezet/hurok/Action$Next;
+}
+
+public final class com/ekezet/hurok/Action$Next {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/Object;Ljava/util/Set;)V
+	public synthetic fun <init> (Ljava/lang/Object;Ljava/util/Set;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/Object;
+	public final fun component2 ()Ljava/util/Set;
+	public final fun copy (Ljava/lang/Object;Ljava/util/Set;)Lcom/ekezet/hurok/Action$Next;
+	public static synthetic fun copy$default (Lcom/ekezet/hurok/Action$Next;Ljava/lang/Object;Ljava/util/Set;ILjava/lang/Object;)Lcom/ekezet/hurok/Action$Next;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEffects ()Ljava/util/Set;
+	public final fun getModel ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/ekezet/hurok/ActionEmitter {
+	public abstract fun emit (Lcom/ekezet/hurok/Action;)V
+}
+
+public final class com/ekezet/hurok/ActionKt {
+	public static final fun getSkip (Lcom/ekezet/hurok/Action;)Lcom/ekezet/hurok/Action$Next;
+	public static final fun next (Lcom/ekezet/hurok/Action;Ljava/lang/Object;[Lcom/ekezet/hurok/Effect;)Lcom/ekezet/hurok/Action$Next;
+	public static synthetic fun next$default (Lcom/ekezet/hurok/Action;Ljava/lang/Object;[Lcom/ekezet/hurok/Effect;ILjava/lang/Object;)Lcom/ekezet/hurok/Action$Next;
+	public static final fun trigger (Lcom/ekezet/hurok/Action;[Lcom/ekezet/hurok/Effect;)Lcom/ekezet/hurok/Action$Next;
+}
+
+public abstract interface class com/ekezet/hurok/ArgsApplyer {
+	public abstract fun applyArgs (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public abstract interface class com/ekezet/hurok/Effect {
+	public abstract fun trigger (Lcom/ekezet/hurok/ActionEmitter;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class com/ekezet/hurok/HasActionEmitter {
+	public abstract fun plus (Lcom/ekezet/hurok/ActionEmitter;)V
+}
+
+public abstract class com/ekezet/hurok/Loop : com/ekezet/hurok/ActionEmitter {
+	public fun <init> (Ljava/lang/Object;Lcom/ekezet/hurok/Renderer;Ljava/lang/Object;Lcom/ekezet/hurok/ArgsApplyer;Lkotlin/jvm/functions/Function1;Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;)V
+	public synthetic fun <init> (Ljava/lang/Object;Lcom/ekezet/hurok/Renderer;Ljava/lang/Object;Lcom/ekezet/hurok/ArgsApplyer;Lkotlin/jvm/functions/Function1;Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun applyArgs (Ljava/lang/Object;)Lcom/ekezet/hurok/Loop;
+	public final fun attachTo (Lcom/ekezet/hurok/ActionEmitter;)V
+	public final fun emit (Lcom/ekezet/hurok/Action;)V
+	public final fun getLatestState ()Ljava/lang/Object;
+	public final fun getState ()Lkotlinx/coroutines/flow/Flow;
+	public final fun startIn (Lkotlinx/coroutines/CoroutineScope;)Lkotlinx/coroutines/Job;
+}
+
+public abstract interface class com/ekezet/hurok/LoopBuilder {
+	public abstract fun build (Ljava/lang/Object;)Lcom/ekezet/hurok/Loop;
+}
+
+public final class com/ekezet/hurok/LoopBuilderKt {
+	public static final fun asBuilder (Lcom/ekezet/hurok/Loop;)Lcom/ekezet/hurok/LoopBuilder;
+}
+
+public final class com/ekezet/hurok/Loop_jvmKt {
+	public static final fun getDefaultEffectContext ()Lkotlin/coroutines/CoroutineContext;
+}
+
+public abstract interface class com/ekezet/hurok/Renderer {
+	public abstract fun renderState (Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public abstract interface class com/ekezet/hurok/dsl/BuilderScope {
+	public abstract fun onRender (Lcom/ekezet/hurok/Renderer;)V
+	public abstract fun onStart (Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class com/ekezet/hurok/dsl/DslKt {
+	public static final fun loop (Ljava/lang/Object;Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;)Lcom/ekezet/hurok/Loop;
+	public static final fun loop (Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;)Lcom/ekezet/hurok/Loop;
+	public static synthetic fun loop$default (Ljava/lang/Object;Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/ekezet/hurok/Loop;
+	public static synthetic fun loop$default (Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/ekezet/hurok/Loop;
+}
+
+public abstract interface annotation class com/ekezet/hurok/dsl/ExperimentalLoopBuilderApi : java/lang/annotation/Annotation {
+}
+
+public abstract interface class com/ekezet/hurok/dsl/withArgs/BuilderScopeWithArgs : com/ekezet/hurok/dsl/BuilderScope {
+	public abstract fun onNewArgs (Lcom/ekezet/hurok/ArgsApplyer;)V
+}
+
+public final class com/ekezet/hurok/dsl/withArgs/DslKt {
+	public static final fun loop (Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;)Lcom/ekezet/hurok/Loop;
+	public static final fun loop (Ljava/lang/Object;Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;)Lcom/ekezet/hurok/Loop;
+	public static final fun loop (Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;)Lcom/ekezet/hurok/Loop;
+	public static synthetic fun loop$default (Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/ekezet/hurok/Loop;
+	public static synthetic fun loop$default (Ljava/lang/Object;Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/ekezet/hurok/Loop;
+	public static synthetic fun loop$default (Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/ekezet/hurok/Loop;
+}
+
+public abstract interface annotation class com/ekezet/hurok/test/CoverageIgnore : java/lang/annotation/Annotation {
+}
+
+public abstract interface class com/ekezet/hurok/test/TestAction : com/ekezet/hurok/Action {
+}
+
+public final class com/ekezet/hurok/test/TestArgs {
+	public fun <init> (Ljava/lang/String;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/Boolean;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Boolean;)Lcom/ekezet/hurok/test/TestArgs;
+	public static synthetic fun copy$default (Lcom/ekezet/hurok/test/TestArgs;Ljava/lang/String;Ljava/lang/Boolean;ILjava/lang/Object;)Lcom/ekezet/hurok/test/TestArgs;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFoobar ()Ljava/lang/Boolean;
+	public final fun getTitle ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/ekezet/hurok/test/TestChildLoop : com/ekezet/hurok/Loop {
+	public fun <init> (Lcom/ekezet/hurok/test/TestModel;Lcom/ekezet/hurok/Renderer;Lcom/ekezet/hurok/test/TestArgs;Lkotlin/jvm/functions/Function1;Lcom/ekezet/hurok/test/TestDependency;Lkotlin/coroutines/CoroutineContext;)V
+	public synthetic fun <init> (Lcom/ekezet/hurok/test/TestModel;Lcom/ekezet/hurok/Renderer;Lcom/ekezet/hurok/test/TestArgs;Lkotlin/jvm/functions/Function1;Lcom/ekezet/hurok/test/TestDependency;Lkotlin/coroutines/CoroutineContext;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/ekezet/hurok/test/TestDependency : com/ekezet/hurok/HasActionEmitter {
+	public fun <init> ()V
+	public fun <init> (Lcom/ekezet/hurok/test/TestChildLoop;)V
+	public synthetic fun <init> (Lcom/ekezet/hurok/test/TestChildLoop;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getChildEmitter ()Lcom/ekezet/hurok/test/TestChildLoop;
+	public fun plus (Lcom/ekezet/hurok/ActionEmitter;)V
+	public final fun setChildEmitter (Lcom/ekezet/hurok/test/TestChildLoop;)V
+}
+
+public abstract interface class com/ekezet/hurok/test/TestEffect : com/ekezet/hurok/Effect {
+}
+
+public final class com/ekezet/hurok/test/TestLoop : com/ekezet/hurok/Loop {
+	public fun <init> (Lcom/ekezet/hurok/test/TestModel;Lcom/ekezet/hurok/Renderer;Lcom/ekezet/hurok/test/TestArgs;Lkotlin/jvm/functions/Function1;Lcom/ekezet/hurok/test/TestDependency;Lkotlin/coroutines/CoroutineContext;)V
+	public synthetic fun <init> (Lcom/ekezet/hurok/test/TestModel;Lcom/ekezet/hurok/Renderer;Lcom/ekezet/hurok/test/TestArgs;Lkotlin/jvm/functions/Function1;Lcom/ekezet/hurok/test/TestDependency;Lkotlin/coroutines/CoroutineContext;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/ekezet/hurok/test/TestModel {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Z)V
+	public synthetic fun <init> (Ljava/lang/String;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Z
+	public final fun copy (Ljava/lang/String;Z)Lcom/ekezet/hurok/test/TestModel;
+	public static synthetic fun copy$default (Lcom/ekezet/hurok/test/TestModel;Ljava/lang/String;ZILjava/lang/Object;)Lcom/ekezet/hurok/test/TestModel;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFoobar ()Z
+	public final fun getTitle ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/ekezet/hurok/test/TestState {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/ekezet/hurok/test/TestState;
+	public static synthetic fun copy$default (Lcom/ekezet/hurok/test/TestState;Ljava/lang/String;ILjava/lang/Object;)Lcom/ekezet/hurok/test/TestState;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getResult ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/ekezet/hurok/utils/DispatcherProvider {
+	public static final field INSTANCE Lcom/ekezet/hurok/utils/DispatcherProvider;
+	public final fun getDefault ()Lkotlinx/coroutines/CoroutineDispatcher;
+	public final fun getIO ()Lkotlinx/coroutines/CoroutineDispatcher;
+	public final fun getMain ()Lkotlinx/coroutines/CoroutineDispatcher;
+	public final fun getUnconfined ()Lkotlinx/coroutines/CoroutineDispatcher;
+}
+
+public final class com/ekezet/hurok/utils/ToolsKt {
+	public static final fun renderState (Lkotlin/jvm/functions/Function3;Ljava/lang/Object;Lcom/ekezet/hurok/Renderer;Ljava/lang/Object;)Ljava/lang/Object;
+	public static final fun renderState (Lkotlin/jvm/functions/Function4;Ljava/lang/Object;Lcom/ekezet/hurok/Renderer;Ljava/lang/Object;Lcom/ekezet/hurok/ArgsApplyer;)Ljava/lang/Object;
+	public static synthetic fun renderState$default (Lkotlin/jvm/functions/Function3;Ljava/lang/Object;Lcom/ekezet/hurok/Renderer;Ljava/lang/Object;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun renderState$default (Lkotlin/jvm/functions/Function4;Ljava/lang/Object;Lcom/ekezet/hurok/Renderer;Ljava/lang/Object;Lcom/ekezet/hurok/ArgsApplyer;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
