@@ -15,6 +15,7 @@ maven-publish = "0.36.0"
 [libraries]
 common-lifecycle-viewmodelCompose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "common-lifecycle" }
 compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "cmp" }
+compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "cmp" }
 compose-ui-test = { module = "org.jetbrains.compose.ui:ui-test", version.ref = "cmp" }
 dokka-mermaid = { group = "com.glureau", name = "html-mermaid-dokka-plugin", version.ref = "dokka-mermaid" }
 junit5-bom = { group = "org.junit", name = "junit-bom", version.ref = "junit5" }

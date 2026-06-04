@@ -16,6 +16,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(libs.compose.runtime)
+                implementation(libs.compose.ui)
                 implementation(libs.common.lifecycle.viewmodelCompose)
                 implementation(libs.kotlinx.coroutines)
 
