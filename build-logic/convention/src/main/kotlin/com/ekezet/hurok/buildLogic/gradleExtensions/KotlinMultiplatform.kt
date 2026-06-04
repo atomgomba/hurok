@@ -8,7 +8,7 @@ internal fun KotlinMultiplatformExtension.configure() {
 
     jvm()
 
-    js(IR) {
+    js {
         browser()
         nodejs()
     }
