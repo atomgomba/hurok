@@ -7,7 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.test.ExperimentalTestApi
-import androidx.compose.ui.test.runComposeUiTest
+import androidx.compose.ui.test.v2.runComposeUiTest
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
@@ -89,7 +89,7 @@ class LoopViewKtTest {
     }
 
     @Test
-    fun `Correct state should be produced when args change`() = runComposeUiTest {
+    fun `Correct state should be produced when args change`() = runComposeUiTest(effectContext = UnconfinedTestDispatcher()) {
         val testLoopBuilder = createTestLoopBuilder(
             model = TestModel(title = "Hello"),
         )
@@ -125,7 +125,7 @@ class LoopViewKtTest {
     }
 
     @Test
-    fun `Correct state should be produced when args change to null`() = runComposeUiTest {
+    fun `Correct state should be produced when args change to null`() = runComposeUiTest(effectContext = UnconfinedTestDispatcher()) {
         val testLoopBuilder = createTestLoopBuilder(
             model = TestModel(title = "Hello"),
         )
