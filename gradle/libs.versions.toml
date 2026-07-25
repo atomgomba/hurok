@@ -10,7 +10,7 @@ junit5 = "6.1.2"
 kotlin = "2.4.10"
 kotlinx-coroutines = "1.11.0"
 kover = "0.9.9"
-maven-publish = "0.36.0"
+maven-publish = "0.37.0"
 
 [libraries]
 common-lifecycle-viewmodelCompose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "common-lifecycle" }
