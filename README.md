@@ -46,6 +46,7 @@ class ScoreScreenRenderer : Renderer<ScoreScreenState, ScoreScreenModel> {
 @Composable
 fun ScoreScreenView(args: ScoreScreenArgs?) {
     // Wraps a loop as a @Composable
+    // ...or there's the lifecycle-aware LoopViewWithLifecycle() on Android
     LoopView(
         builder = ScoreScreenLoop,
         args = args,
@@ -131,11 +132,11 @@ repositories {
 ```kotlin
 dependencies {
     // core multiplatform package (added transitively when using the compose package below)
-    implementation("com.ekezet.hurok:hurok-base:3.1.0")
+    implementation("com.ekezet.hurok:hurok-base:3.2.0")
     // library for using hurok with Compose Multiplatform
-    implementation("com.ekezet.hurok:hurok-compose:3.1.0")
+    implementation("com.ekezet.hurok:hurok-compose:3.2.0")
     // library for testing hurok-based applications
-    testImplementation("com.ekezet.hurok:hurok-test:3.1.0")
+    testImplementation("com.ekezet.hurok:hurok-test:3.2.0")
 }
 ```
 
@@ -143,7 +144,7 @@ dependencies {
 
 ```toml
 [versions]
-hurok = "3.1.0"
+hurok = "3.2.0"
 
 [libraries]
 hurok-base = { group = "com.ekezet.hurok", name = "hurok-base", version.ref = "hurok" }
