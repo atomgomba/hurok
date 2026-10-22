@@ -21,8 +21,6 @@ allprojects {
 }
 
 subprojects {
-    apply(plugin = rootProject.libs.plugins.dokka.get().pluginId)
-
     tasks.withType<KotlinCompile> {
         compilerOptions {
             freeCompilerArgs.add("-Xexpect-actual-classes")

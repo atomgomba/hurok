@@ -17,6 +17,7 @@ class ProjectConfigPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply(libs.findPlugin("androidKotlinMultiplatformLibrary").get().get().pluginId)
+                apply(libs.findPlugin("dokka").get().get().pluginId)
                 apply(libs.findPlugin("kotlinMultiplatform").get().get().pluginId)
                 apply(libs.findPlugin("kover").get().get().pluginId)
                 apply(libs.findPlugin("mavenPublish").get().get().pluginId)
