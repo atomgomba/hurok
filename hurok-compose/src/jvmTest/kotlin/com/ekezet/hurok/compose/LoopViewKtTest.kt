@@ -13,9 +13,8 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import com.ekezet.hurok.Action.Next
 import com.ekezet.hurok.LoopBuilder
-import com.ekezet.hurok.asBuilder
 import com.ekezet.hurok.dsl.ExperimentalLoopBuilderApi
-import com.ekezet.hurok.dsl.withArgs.loop
+import com.ekezet.hurok.dsl.loop
 import com.ekezet.hurok.test.TestAction
 import com.ekezet.hurok.test.TestArgs
 import com.ekezet.hurok.test.TestChildLoop
@@ -203,55 +202,6 @@ class LoopViewKtTest {
                 )
             }
         }
-
-        assertEquals(2, recompositions)
-    }
-
-    /**
-     * Test builder extensions
-     * TODO
-     */
-    @Test
-    @ExperimentalLoopBuilderApi
-    fun `Test builder extension`() = runComposeUiTest {
-        val testLoop = loop(
-            model = TestModel(title = "Hello"),
-            args = null,
-            dependency = testDependency,
-            effectContext = UnconfinedTestDispatcher(),
-        ) {
-            onNewArgs { args: TestArgs ->
-                copy(title = args.title, foobar = args.foobar ?: foobar)
-            }
-
-            onRender { model ->
-                TestState(result = "${model.title}, World!")
-            }
-        }
-
-        var recompositions = 0
-
-        setContent {
-            CompositionLocalProvider(
-                LocalViewModelStoreOwner provides testViewModelStoreOwner
-            ) {
-                LoopView<TestState, TestModel, TestArgs, TestDependency, TestAction>(
-                    builder = testLoop.asBuilder(),
-                    content = { emit ->
-                        if (recompositions == 0) {
-                            assertEquals("Hello, World!", result)
-                        } else if (recompositions == 1) {
-                            assertEquals("Ciao, World!", result)
-                        }
-                        if (recompositions == 0) {
-                            emit(TestAction { Next(copy(title = "Ciao")) })
-                        }
-                        recompositions += 1
-                    },
-                )
-            }
-        }
-
 
         assertEquals(2, recompositions)
     }
