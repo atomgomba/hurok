@@ -3,11 +3,11 @@ package com.ekezet.hurok.compose
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.rememberCoroutineScope
 import com.ekezet.hurok.Action
 import com.ekezet.hurok.Loop
 import com.ekezet.hurok.test.CoverageIgnore
-import kotlinx.coroutines.CoroutineScope
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 /**
  * Collects state values from this Loop as a State<TState>.
@@ -22,6 +22,6 @@ import kotlinx.coroutines.CoroutineScope
 @Composable
 @CoverageIgnore
 fun <TState : Any, TModel : Any, TArgs : TModel, TDependency, TAction : Action<TModel, TDependency>> Loop<TState, TModel, TArgs, TDependency, TAction>.collectAsState(
-    scope: CoroutineScope = rememberCoroutineScope(),
+    context: CoroutineContext = EmptyCoroutineContext,
 ): State<TState> =
-    state.collectAsState(initial = latestState, context = scope.coroutineContext)
+    state.collectAsState(initial = latestState, context = context)

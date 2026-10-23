@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import com.ekezet.hurok.Action
 import com.ekezet.hurok.Loop
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 fun interface LoopStateCollector<TState : Any, TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> {
     @Composable
@@ -13,5 +15,7 @@ fun interface LoopStateCollector<TState : Any, TModel : Any, TArgs, TDependency,
 object LoopStateCollectors
 
 @Suppress("UnusedReceiverParameter", "FunctionName")
-fun <TState : Any, TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> LoopStateCollectors.Standard() =
-    LoopStateCollector<TState, TModel, TArgs, TDependency, TAction> { it.collectAsState() }
+fun <TState : Any, TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> LoopStateCollectors.Standard(
+    context: CoroutineContext = EmptyCoroutineContext
+) =
+    LoopStateCollector<TState, TModel, TArgs, TDependency, TAction> { it.collectAsState(context) }

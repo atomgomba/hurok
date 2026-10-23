@@ -2,12 +2,15 @@ package com.ekezet.hurok.compose
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ekezet.hurok.Action
 import com.ekezet.hurok.Loop
 import com.ekezet.hurok.test.CoverageIgnore
-import kotlinx.coroutines.CoroutineScope
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 /**
  * Collects state values from this Loop as a State<TState> in a lifecycle aware manner.
@@ -22,6 +25,13 @@ import kotlinx.coroutines.CoroutineScope
 @Composable
 @CoverageIgnore
 fun <TState : Any, TModel : Any, TArgs, TDependency, TAction : Action<TModel, TDependency>> Loop<TState, TModel, TArgs, TDependency, TAction>.collectAsStateWithLifecycle(
-    scope: CoroutineScope = rememberCoroutineScope(),
+    lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
+    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
+    context: CoroutineContext = EmptyCoroutineContext,
 ): State<TState> =
-    state.collectAsStateWithLifecycle(initialValue = latestState, context = scope.coroutineContext)
+    state.collectAsStateWithLifecycle(
+        initialValue = latestState,
+        lifecycleOwner = lifecycleOwner,
+        minActiveState = minActiveState,
+        context = context,
+    )
