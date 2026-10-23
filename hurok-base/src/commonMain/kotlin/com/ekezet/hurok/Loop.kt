@@ -124,7 +124,7 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
      */
     fun attachTo(parent: AnyActionEmitter) {
         val container = (parent as? AnyLoop)?.dependency as? HasActionEmitter
-        requireNotNull(container) { "to attach this loop as a child the dependency of the parent must implement HasChildLoop" }
+        requireNotNull(container) { "To attach this loop as a child the dependency of the parent must implement ${HasActionEmitter::class.simpleName}" }
         container + this
     }
 
