@@ -72,7 +72,7 @@ class LoopTest {
             renderer = { model ->
                 TestState(result = "${model.title}, World!")
             },
-            onStart = { emit(TestAction { next(copy(title = "Howdy")) }) },
+            onStart = { emit(TestAction { next(it.copy(title = "Howdy")) }) },
         )
 
         val expectedState = TestState(
@@ -123,7 +123,7 @@ class LoopTest {
         backgroundScope.launch(UnconfinedTestDispatcher()) {
             subject.startIn(this)
             subject.emit {
-                next(copy(title = "Foobar"))
+                next(it.copy(title = "Foobar"))
             }
         }
 
@@ -144,12 +144,12 @@ class LoopTest {
         val testEffect = object : TestEffect {
             override suspend fun ActionEmitter<TestModel, TestDependency>.trigger(dependency: TestDependency?) =
                 emit(object : TestAction {
-                    override fun TestModel.proceed() =
-                        next(copy(title = "Triggered"))
+                    override fun proceed(model: TestModel) =
+                        next(model.copy(title = "Triggered"))
                 })
         }
         val testAction = object : TestAction {
-            override fun TestModel.proceed() =
+            override fun proceed(model: TestModel) =
                 trigger(testEffect)
         }
 
@@ -182,13 +182,13 @@ class LoopTest {
         val testEffect = object : TestEffect {
             override suspend fun ActionEmitter<TestModel, TestDependency>.trigger(dependency: TestDependency?) =
                 emit(object : TestAction {
-                    override fun TestModel.proceed() =
-                        next(copy(title = "Triggered"))
+                    override fun proceed(model: TestModel) =
+                        next(model.copy(title = "Triggered"))
                 })
         }
         val testAction = object : TestAction {
-            override fun TestModel.proceed() =
-                next(copy(), testEffect)
+            override fun proceed(model: TestModel) =
+                next(model.copy(), testEffect)
         }
 
         val subject = TestLoop(
@@ -219,8 +219,8 @@ class LoopTest {
         val testModel = TestModel(title = "Hello")
         val testArgs = TestArgs(title = "Hey", foobar = true)
         val testAction = object : TestAction {
-            override fun TestModel.proceed() =
-                next(copy(title = "Howdy"))
+            override fun proceed(model: TestModel) =
+                next(model.copy(title = "Howdy"))
         }
 
         val subject = TestLoop(
@@ -253,7 +253,7 @@ class LoopTest {
     fun `Emit should throw error when Loop not started`() = runTest {
         val testModel = TestModel()
         val testAction = object : TestAction {
-            override fun TestModel.proceed() = skip
+            override fun proceed(model: TestModel) = skip
         }
 
         val subject = TestLoop(

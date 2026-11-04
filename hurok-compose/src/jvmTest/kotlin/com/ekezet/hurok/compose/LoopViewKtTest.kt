@@ -11,10 +11,8 @@ import androidx.compose.ui.test.v2.runComposeUiTest
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
-import com.ekezet.hurok.Action.Next
 import com.ekezet.hurok.LoopBuilder
-import com.ekezet.hurok.dsl.ExperimentalLoopBuilderApi
-import com.ekezet.hurok.dsl.loop
+import com.ekezet.hurok.next
 import com.ekezet.hurok.test.TestAction
 import com.ekezet.hurok.test.TestArgs
 import com.ekezet.hurok.test.TestChildLoop
@@ -195,7 +193,7 @@ class LoopViewKtTest {
                             assertEquals("Ciao, World!", result)
                         }
                         if (recompositions == 0) {
-                            emit(TestAction { Next(copy(title = "Ciao")) })
+                            emit(TestAction { next(it.copy(title = "Ciao")) })
                         }
                         recompositions += 1
                     },

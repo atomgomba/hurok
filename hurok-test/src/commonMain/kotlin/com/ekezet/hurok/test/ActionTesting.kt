@@ -87,7 +87,7 @@ class NextAsserter<TModel : Any, TDependency> internal constructor(
  */
 infix fun <TModel : Any, TDependency> TModel.after(
     action: Action<TModel, TDependency>,
-): Next<TModel, TDependency> = action.run { proceed() }
+): Next<TModel, TDependency> = action.proceed(this)
 
 /**
  * Assert the result of an action.

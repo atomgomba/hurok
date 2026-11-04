@@ -12,13 +12,13 @@ class NextAsserterTest {
     fun assertSkipped() {
         val testModel = TestModel()
         val testAction = object : TestAction {
-            override fun TestModel.proceed(): Next<TestModel, TestDependency> = skip
+            override fun proceed(model: TestModel): Next<TestModel, TestDependency> = skip
 
         }
 
         val subject = NextAsserter(
             with(testAction) {
-                testModel.proceed()
+                proceed(testModel)
             }
         )
 
@@ -29,14 +29,14 @@ class NextAsserterTest {
     fun assertModel() {
         val testModel = TestModel()
         val testAction = object : TestAction {
-            override fun TestModel.proceed(): Next<TestModel, TestDependency> =
-                next(copy(title = "Mutated"))
+            override fun proceed(model: TestModel): Next<TestModel, TestDependency> =
+                next(model.copy(title = "Mutated"))
 
         }
 
         val subject = NextAsserter(
             with(testAction) {
-                testModel.proceed()
+                proceed(testModel)
             }
         )
 
@@ -56,14 +56,14 @@ class NextAsserterTest {
             }
         )
         val testAction = object : TestAction {
-            override fun TestModel.proceed(): Next<TestModel, TestDependency> =
+            override fun proceed(model: TestModel): Next<TestModel, TestDependency> =
                 trigger(effects = testEffects)
 
         }
 
         val subject = NextAsserter(
             with(testAction) {
-                testModel.proceed()
+                proceed(testModel)
             }
         )
 
@@ -74,14 +74,14 @@ class NextAsserterTest {
     fun assertModelNotChanged() {
         val testModel = TestModel()
         val testAction = object : TestAction {
-            override fun TestModel.proceed(): Next<TestModel, TestDependency> =
+            override fun proceed(model: TestModel): Next<TestModel, TestDependency> =
                 next(null)
 
         }
 
         val subject = NextAsserter(
             with(testAction) {
-                testModel.proceed()
+                proceed(testModel)
             }
         )
 
@@ -92,14 +92,14 @@ class NextAsserterTest {
     fun assertNoEffects() {
         val testModel = TestModel()
         val testAction = object : TestAction {
-            override fun TestModel.proceed(): Next<TestModel, TestDependency> =
-                next(copy())
+            override fun proceed(model: TestModel): Next<TestModel, TestDependency> =
+                next(model.copy())
 
         }
 
         val subject = NextAsserter(
             with(testAction) {
-                testModel.proceed()
+                proceed(testModel)
             }
         )
 

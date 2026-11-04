@@ -129,7 +129,7 @@ abstract class Loop<out TState : Any, TModel : Any, in TArgs, TDependency, in TA
     }
 
     private suspend fun onNextAction(action: TAction) = coroutineScope {
-        val (updatedModel, triggeredEffects) = action.run { currentModel.value.proceed() }
+        val (updatedModel, triggeredEffects) = action.run { proceed(currentModel.value) }
         updatedModel?.let { new -> currentModel.update { new } }
         val effects = triggeredEffects.takeIf { it.isNotEmpty() } ?: return@coroutineScope
         launch(effectContext) {

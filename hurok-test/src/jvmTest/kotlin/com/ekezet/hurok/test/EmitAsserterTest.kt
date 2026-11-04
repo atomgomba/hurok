@@ -9,10 +9,10 @@ class EmitAsserterTest {
     @Test
     fun assertActionsSuccess() = runTest {
         val testAction = object : TestAction {
-            override fun TestModel.proceed() = skip
+            override fun proceed(model: TestModel) = skip
         }
         val testAction2 = object : TestAction {
-            override fun TestModel.proceed() = skip
+            override fun proceed(model: TestModel) = skip
         }
 
         val subject = EmitAsserter<TestModel, TestDependency>()
@@ -28,7 +28,7 @@ class EmitAsserterTest {
     @Test
     fun assertActionsFailure() = runTest {
         val testAction = object : TestAction {
-            override fun TestModel.proceed() = skip
+            override fun proceed(model: TestModel) = skip
         }
 
         val subject = EmitAsserter<TestModel, TestDependency>()
@@ -54,7 +54,7 @@ class EmitAsserterTest {
     @Test
     fun assertNoActionsFailure() = runTest {
         val testAction = object : TestAction {
-            override fun TestModel.proceed() = skip
+            override fun proceed(model: TestModel) = skip
         }
 
         val subject = EmitAsserter<TestModel, TestDependency>()

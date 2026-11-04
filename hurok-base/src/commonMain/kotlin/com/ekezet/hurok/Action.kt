@@ -50,7 +50,7 @@ fun interface Action<TModel : Any, TDependency> {
      *
      * @return the result as a [Next] instance
      */
-    fun TModel.proceed(): Next<TModel, TDependency>
+    fun proceed(model: TModel): Next<TModel, TDependency>
 }
 
 /**

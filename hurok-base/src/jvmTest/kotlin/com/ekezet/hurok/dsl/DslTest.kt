@@ -33,7 +33,7 @@ class DslTest {
         // when
         backgroundScope.launch(UnconfinedTestDispatcher()) {
             loop.startIn(this)
-            loop.emit { next(copy(title = "hello")) }
+            loop.emit { next(it.copy(title = "hello")) }
         }
 
         // then
@@ -55,7 +55,7 @@ class DslTest {
             }
 
             onStart {
-                emit { next(copy(title = "hello")) }
+                emit { next(it.copy(title = "hello")) }
             }
 
             onApplyArgs { args ->
@@ -94,7 +94,7 @@ class DslTest {
         // when
         backgroundScope.launch(UnconfinedTestDispatcher()) {
             loop.startIn(this)
-            loop.emit { next(null, setOf(TestEffect { emit { next(copy(title = "hello")) } })) }
+            loop.emit { next(null, setOf(TestEffect { emit { next(it.copy(title = "hello")) } })) }
         }
 
         // then

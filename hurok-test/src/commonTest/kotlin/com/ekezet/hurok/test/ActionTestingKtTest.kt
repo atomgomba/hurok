@@ -12,7 +12,7 @@ class ActionTestingKtTest {
     fun assertSkippedSuccess() {
         val testModel = TestModel()
         val testAction = object : TestAction {
-            override fun TestModel.proceed() = skip
+            override fun proceed(model: TestModel) = skip
         }
 
         testModel after testAction matches {
@@ -24,8 +24,8 @@ class ActionTestingKtTest {
     fun assertSkippedFailure() {
         val testModel = TestModel()
         val testAction = object : TestAction {
-            override fun TestModel.proceed() =
-                next(copy())
+            override fun proceed(model: TestModel) =
+                next(model.copy())
         }
 
         assertFailsWith(AssertionError::class) {
@@ -39,8 +39,8 @@ class ActionTestingKtTest {
     fun assertModelSuccess() {
         val testModel = TestModel()
         val testAction = object : TestAction {
-            override fun TestModel.proceed() =
-                next(copy())
+            override fun proceed(model: TestModel) =
+                next(model.copy())
         }
 
         testModel after testAction matches {
@@ -52,7 +52,7 @@ class ActionTestingKtTest {
     fun assertModelFailure() {
         val testModel = TestModel()
         val testAction = object : TestAction {
-            override fun TestModel.proceed() =
+            override fun proceed(model: TestModel) =
                 next(null)
         }
 
@@ -67,8 +67,8 @@ class ActionTestingKtTest {
     fun assertModelOmittedFailure() {
         val testModel = TestModel()
         val testAction = object : TestAction {
-            override fun TestModel.proceed() =
-                next(copy())
+            override fun proceed(model: TestModel) =
+                next(model.copy())
         }
 
         assertFailsWith(AssertionError::class) {
@@ -88,7 +88,7 @@ class ActionTestingKtTest {
             }
         )
         val testAction = object : TestAction {
-            override fun TestModel.proceed() =
+            override fun proceed(model: TestModel) =
                 trigger(effects = testEffects)
         }
 
@@ -108,8 +108,8 @@ class ActionTestingKtTest {
             }
         )
         val testAction = object : TestAction {
-            override fun TestModel.proceed() =
-                next(copy())
+            override fun proceed(model: TestModel) =
+                next(model.copy())
         }
 
         assertFailsWith(AssertionError::class) {
@@ -130,7 +130,7 @@ class ActionTestingKtTest {
             }
         )
         val testAction = object : TestAction {
-            override fun TestModel.proceed() =
+            override fun proceed(model: TestModel) =
                 trigger(effects = testEffects)
         }
 
@@ -144,7 +144,7 @@ class ActionTestingKtTest {
     fun assertModelNotChangedSuccess() {
         val testModel = TestModel()
         val testAction = object : TestAction {
-            override fun TestModel.proceed() = skip
+            override fun proceed(model: TestModel) = skip
         }
 
         testModel after testAction matches {
@@ -156,8 +156,8 @@ class ActionTestingKtTest {
     fun assertModelNotChangedFailure() {
         val testModel = TestModel()
         val testAction = object : TestAction {
-            override fun TestModel.proceed() =
-                next(copy())
+            override fun proceed(model: TestModel) =
+                next(model.copy())
         }
 
         assertFailsWith(AssertionError::class) {
@@ -171,7 +171,7 @@ class ActionTestingKtTest {
     fun assertNoEffectsSuccess() {
         val testModel = TestModel()
         val testAction = object : TestAction {
-            override fun TestModel.proceed() =
+            override fun proceed(model: TestModel) =
                 next(null)
         }
 
@@ -191,7 +191,7 @@ class ActionTestingKtTest {
             }
         )
         val testAction = object : TestAction {
-            override fun TestModel.proceed() =
+            override fun proceed(model: TestModel) =
                 trigger(effects = testEffects)
         }
 
