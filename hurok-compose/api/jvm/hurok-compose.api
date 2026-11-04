@@ -3,7 +3,7 @@ public final class com/ekezet/hurok/compose/LocalActionEmitterKt {
 }
 
 public final class com/ekezet/hurok/compose/LoopExtKt {
-	public static final fun collectAsState (Lcom/ekezet/hurok/Loop;Lkotlinx/coroutines/CoroutineScope;Landroidx/compose/runtime/Composer;II)Landroidx/compose/runtime/State;
+	public static final fun collectAsState (Lcom/ekezet/hurok/Loop;Lkotlin/coroutines/CoroutineContext;Landroidx/compose/runtime/Composer;II)Landroidx/compose/runtime/State;
 }
 
 public abstract interface class com/ekezet/hurok/compose/LoopStateCollector {
@@ -11,7 +11,8 @@ public abstract interface class com/ekezet/hurok/compose/LoopStateCollector {
 }
 
 public final class com/ekezet/hurok/compose/LoopStateCollectorKt {
-	public static final fun Standard (Lcom/ekezet/hurok/compose/LoopStateCollectors;)Lcom/ekezet/hurok/compose/LoopStateCollector;
+	public static final fun Standard (Lcom/ekezet/hurok/compose/LoopStateCollectors;Lkotlin/coroutines/CoroutineContext;)Lcom/ekezet/hurok/compose/LoopStateCollector;
+	public static synthetic fun Standard$default (Lcom/ekezet/hurok/compose/LoopStateCollectors;Lkotlin/coroutines/CoroutineContext;ILjava/lang/Object;)Lcom/ekezet/hurok/compose/LoopStateCollector;
 }
 
 public final class com/ekezet/hurok/compose/LoopStateCollectors {

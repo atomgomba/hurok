@@ -55,10 +55,6 @@ public abstract interface class com/ekezet/hurok/LoopBuilder {
 	public abstract fun build (Ljava/lang/Object;)Lcom/ekezet/hurok/Loop;
 }
 
-public final class com/ekezet/hurok/LoopBuilderKt {
-	public static final fun asBuilder (Lcom/ekezet/hurok/Loop;)Lcom/ekezet/hurok/LoopBuilder;
-}
-
 public final class com/ekezet/hurok/Loop_jvmKt {
 	public static final fun getDefaultEffectContext ()Lkotlin/coroutines/CoroutineContext;
 }
@@ -67,32 +63,63 @@ public abstract interface class com/ekezet/hurok/Renderer {
 	public abstract fun renderState (Ljava/lang/Object;)Ljava/lang/Object;
 }
 
-public abstract interface class com/ekezet/hurok/dsl/BuilderScope {
-	public abstract fun onRender (Lcom/ekezet/hurok/Renderer;)V
-	public abstract fun onStart (Lkotlin/jvm/functions/Function1;)V
+public abstract class com/ekezet/hurok/dsl/AbstractLoopBuilderScope {
+	public field initModel Ljava/lang/Object;
+	public abstract fun getDependency ()Ljava/lang/Object;
+	public final fun getEffectContext ()Lkotlin/coroutines/CoroutineContext;
+	public final fun getInitModel ()Ljava/lang/Object;
+	public final fun onRender (Lcom/ekezet/hurok/Renderer;)V
+	public final fun onStart (Lkotlin/jvm/functions/Function1;)V
+	public abstract fun setDependency (Ljava/lang/Object;)V
+	public final fun setEffectContext (Lkotlin/coroutines/CoroutineContext;)V
+	public final fun setInitModel (Ljava/lang/Object;)V
+}
+
+public final class com/ekezet/hurok/dsl/ArgsApplyerDsl {
+	public fun <init> ()V
+	public final fun invoke (Lcom/ekezet/hurok/ArgsApplyer;)V
 }
 
 public final class com/ekezet/hurok/dsl/DslKt {
-	public static final fun loop (Ljava/lang/Object;Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;)Lcom/ekezet/hurok/Loop;
-	public static final fun loop (Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;)Lcom/ekezet/hurok/Loop;
-	public static synthetic fun loop$default (Ljava/lang/Object;Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/ekezet/hurok/Loop;
-	public static synthetic fun loop$default (Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/ekezet/hurok/Loop;
+	public static final fun loop (Lkotlin/jvm/functions/Function1;)Lcom/ekezet/hurok/LoopBuilder;
+	public static final fun loopWithArgs (Lkotlin/jvm/functions/Function1;)Lcom/ekezet/hurok/LoopBuilder;
+	public static final fun pureLoop (Lkotlin/jvm/functions/Function1;)Lcom/ekezet/hurok/LoopBuilder;
+	public static final fun pureLoopWithArgs (Lkotlin/jvm/functions/Function1;)Lcom/ekezet/hurok/LoopBuilder;
 }
 
 public abstract interface annotation class com/ekezet/hurok/dsl/ExperimentalLoopBuilderApi : java/lang/annotation/Annotation {
 }
 
-public abstract interface class com/ekezet/hurok/dsl/withArgs/BuilderScopeWithArgs : com/ekezet/hurok/dsl/BuilderScope {
-	public abstract fun onNewArgs (Lcom/ekezet/hurok/ArgsApplyer;)V
+public final class com/ekezet/hurok/dsl/LoopBuilderScope : com/ekezet/hurok/dsl/AbstractLoopBuilderScope {
+	public fun <init> ()V
+	public synthetic fun getDependency ()Ljava/lang/Object;
+	public fun getDependency ()Lkotlin/Unit;
+	public synthetic fun setDependency (Ljava/lang/Object;)V
+	public fun setDependency (Lkotlin/Unit;)V
 }
 
-public final class com/ekezet/hurok/dsl/withArgs/DslKt {
-	public static final fun loop (Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;)Lcom/ekezet/hurok/Loop;
-	public static final fun loop (Ljava/lang/Object;Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;)Lcom/ekezet/hurok/Loop;
-	public static final fun loop (Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;)Lcom/ekezet/hurok/Loop;
-	public static synthetic fun loop$default (Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/ekezet/hurok/Loop;
-	public static synthetic fun loop$default (Ljava/lang/Object;Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/ekezet/hurok/Loop;
-	public static synthetic fun loop$default (Ljava/lang/Object;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/ekezet/hurok/Loop;
+public final class com/ekezet/hurok/dsl/LoopBuilderScopeWithArgs : com/ekezet/hurok/dsl/AbstractLoopBuilderScope {
+	public fun <init> ()V
+	public synthetic fun getDependency ()Ljava/lang/Object;
+	public fun getDependency ()Lkotlin/Unit;
+	public final fun getOnApplyArgs ()Lcom/ekezet/hurok/dsl/ArgsApplyerDsl;
+	public synthetic fun setDependency (Ljava/lang/Object;)V
+	public fun setDependency (Lkotlin/Unit;)V
+}
+
+public final class com/ekezet/hurok/dsl/LoopBuilderScopeWithArgsAndDependency : com/ekezet/hurok/dsl/AbstractLoopBuilderScope {
+	public field dependency Ljava/lang/Object;
+	public fun <init> ()V
+	public fun getDependency ()Ljava/lang/Object;
+	public final fun getOnApplyArgs ()Lcom/ekezet/hurok/dsl/ArgsApplyerDsl;
+	public fun setDependency (Ljava/lang/Object;)V
+}
+
+public final class com/ekezet/hurok/dsl/LoopBuilderScopeWithDependency : com/ekezet/hurok/dsl/AbstractLoopBuilderScope {
+	public field dependency Ljava/lang/Object;
+	public fun <init> ()V
+	public fun getDependency ()Ljava/lang/Object;
+	public fun setDependency (Ljava/lang/Object;)V
 }
 
 public abstract interface annotation class com/ekezet/hurok/test/CoverageIgnore : java/lang/annotation/Annotation {
