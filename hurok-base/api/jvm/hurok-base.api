@@ -199,9 +199,6 @@ public final class com/ekezet/hurok/utils/DispatcherProvider {
 }
 
 public final class com/ekezet/hurok/utils/ToolsKt {
-	public static final fun renderState (Lkotlin/jvm/functions/Function3;Ljava/lang/Object;Lcom/ekezet/hurok/Renderer;Ljava/lang/Object;)Ljava/lang/Object;
-	public static final fun renderState (Lkotlin/jvm/functions/Function4;Ljava/lang/Object;Lcom/ekezet/hurok/Renderer;Ljava/lang/Object;Lcom/ekezet/hurok/ArgsApplyer;)Ljava/lang/Object;
-	public static synthetic fun renderState$default (Lkotlin/jvm/functions/Function3;Ljava/lang/Object;Lcom/ekezet/hurok/Renderer;Ljava/lang/Object;ILjava/lang/Object;)Ljava/lang/Object;
-	public static synthetic fun renderState$default (Lkotlin/jvm/functions/Function4;Ljava/lang/Object;Lcom/ekezet/hurok/Renderer;Ljava/lang/Object;Lcom/ekezet/hurok/ArgsApplyer;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun renderState (Lkotlin/jvm/functions/Function3;Ljava/lang/Object;Lcom/ekezet/hurok/Renderer;)Ljava/lang/Object;
 }
 

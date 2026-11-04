@@ -7,7 +7,7 @@ import com.ekezet.hurok.test.TestState
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class RenderStateTest {
+class ToolsKtTest {
     @Test
     fun `Should render the expected state`() {
         val testModel = TestModel(title = "Hello")
@@ -16,7 +16,11 @@ class RenderStateTest {
             result = "Hello, World!",
         )
 
-        val state = renderState(::TestLoop, testModel, Renderer { TestState(result = it.title + ", World!") })
+        val state = renderState(
+            constructor = ::TestLoop,
+            model = testModel,
+            renderer = Renderer { TestState(result = it.title + ", World!") },
+        )
 
         assertEquals(expectedState, state)
     }
