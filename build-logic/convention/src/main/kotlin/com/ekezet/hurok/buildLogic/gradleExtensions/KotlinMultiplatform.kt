@@ -11,6 +11,7 @@ internal fun KotlinMultiplatformExtension.configure() {
     js {
         browser()
         nodejs()
+        binaries.executable()
     }
 
     compilerOptions {

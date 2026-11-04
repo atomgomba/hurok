@@ -4,32 +4,32 @@ plugins {
 
 kotlin {
     sourceSets {
-        val androidMain by getting {
+        androidMain {
             dependencies {
                 implementation(libs.kotlinx.coroutines.android)
             }
         }
 
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 implementation(libs.kotlinx.coroutines)
             }
         }
 
-        val commonTest by getting {
+        commonTest {
             dependencies {
                 implementation(libs.kotlin.test)
                 implementation(libs.kotlinx.coroutines.test)
             }
         }
 
-        val jvmMain by getting {
+        jvmMain {
             dependencies {
                 implementation(libs.kotlinx.coroutines.swing)
             }
         }
 
-        val jvmTest by getting {
+        jvmTest {
             dependencies {
                 implementation(libs.junit5.jupiter)
                 runtimeOnly(libs.junit5.platform)

@@ -7,13 +7,13 @@ plugins {
 
 kotlin {
     sourceSets {
-        val androidMain by getting {
+        androidMain {
             dependencies {
                 implementation(libs.kotlinx.coroutines.android)
             }
         }
 
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 implementation(libs.compose.runtime)
                 implementation(libs.compose.ui)
@@ -24,7 +24,7 @@ kotlin {
             }
         }
 
-        val commonTest by getting {
+        commonTest {
             dependencies {
                 implementation(libs.compose.ui.test)
                 implementation(libs.kotlin.test)
@@ -32,7 +32,7 @@ kotlin {
             }
         }
 
-        val jvmMain by getting {
+        jvmMain {
             dependencies {
                 implementation(compose.desktop.currentOs)
             }

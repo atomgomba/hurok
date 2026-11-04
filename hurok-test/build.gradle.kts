@@ -4,7 +4,7 @@ plugins {
 
 kotlin {
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 implementation(libs.kotlin.test)
                 implementation(libs.kotlinx.coroutines)
@@ -14,7 +14,7 @@ kotlin {
             }
         }
 
-        val commonTest by getting {
+        commonTest {
             dependencies {
                 implementation(libs.kotlin.test)
 
@@ -22,7 +22,7 @@ kotlin {
             }
         }
 
-        val jvmTest by getting { }
+        jvmTest { }
     }
 }
 
