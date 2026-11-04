@@ -1,3 +1,5 @@
+@file:CoverageIgnore
+
 package com.ekezet.hurok.compose
 
 import android.annotation.SuppressLint
@@ -6,6 +8,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.ekezet.hurok.Action
+import com.ekezet.hurok.test.CoverageIgnore
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 

@@ -35,6 +35,10 @@ kover {
                 annotatedBy(
                     "com.ekezet.hurok.test.CoverageIgnore",
                 )
+
+                packages(
+                    "com.ekezet.hurok.test",
+                )
             }
         }
 

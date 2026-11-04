@@ -73,7 +73,6 @@ class TestLoop(
 /**
  * Child loop used in library tests.
  */
-@CoverageIgnore
 class TestChildLoop(
     model: TestModel,
     renderer: Renderer<TestState, TestModel>,
